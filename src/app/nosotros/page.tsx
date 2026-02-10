@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Award, Users, Map, Heart } from "lucide-react";
+import Link from "next/link";
+import { Award, Users, Map, Heart, MessageSquare } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/language-context";
 
 export default function AboutPage() {
@@ -17,9 +19,17 @@ export default function AboutPage() {
             <p className="text-xl text-muted-foreground leading-relaxed mb-8">
               {t("about.history_p1")}
             </p>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl text-muted-foreground leading-relaxed mb-10">
               {t("about.history_p2")}
             </p>
+            <div className="flex gap-6 slide-up">
+              <Link href="/contacto">
+                <Button className="rounded-full px-10 h-14 bg-primary text-primary-foreground font-bold text-xs tracking-[0.2em] hover:scale-105 transition-all flex items-center gap-3">
+                  <MessageSquare size={18} />
+                  {t("hero.cta.secondary")}
+                </Button>
+              </Link>
+            </div>
           </div>
           <div className="relative aspect-square rounded-[3rem] overflow-hidden border-[16px] border-primary/5 shadow-2xl slide-up">
             <Image 
