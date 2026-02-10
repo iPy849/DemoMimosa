@@ -1,0 +1,47 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-bacalar",
+      "description": "Aerial view of Bacalar lagoon",
+      "imageUrl": "https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?q=80&w=1920&h=1080&auto=format&fit=crop",
+      "imageHint": "Bacalar aerial"
+    },
+    {
+      "id": "bacalar-1",
+      "description": "Luxury villa in Bacalar",
+      "imageUrl": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=800&h=600&auto=format&fit=crop",
+      "imageHint": "luxury villa"
+    },
+    {
+      "id": "bacalar-2",
+      "description": "Interior design of villa",
+      "imageUrl": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&h=600&auto=format&fit=crop",
+      "imageHint": "modern interior"
+    },
+    {
+      "id": "bacalar-3",
+      "description": "Pool view over lagoon",
+      "imageUrl": "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=800&h=600&auto=format&fit=crop",
+      "imageHint": "infinity pool"
+    },
+    {
+      "id": "tulum-1",
+      "description": "Eco-friendly development in Tulum",
+      "imageUrl": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=800&h=600&auto=format&fit=crop",
+      "imageHint": "eco resort"
+    },
+    {
+      "id": "merida-1",
+      "description": "Colonial mansion in Merida",
+      "imageUrl": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=800&h=600&auto=format&fit=crop",
+      "imageHint": "mansion exterior"
+    },
+    {
+      "id": "blog-interior",
+      "description": "Interior design trends blog",
+      "imageUrl": "https://images.unsplash.com/photo-1616489953149-8f6f5986872a?q=80&w=800&h=500&auto=format&fit=crop",
+      "imageHint": "interior design"
+    }
+  ]
+}
