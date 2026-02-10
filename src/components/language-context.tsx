@@ -64,7 +64,9 @@ const translations = {
     "sitemap.desc": "Explora todas las secciones de nuestro portal.",
     "sitemap.sec1": "Principales",
     "sitemap.sec2": "Desarrollos",
-    "sitemap.sec3": "Legal"
+    "sitemap.sec3": "Legal",
+    "common.loading": "Cargando...",
+    "common.back": "Regresar"
   },
   en: {
     "nav.home": "Home",
@@ -125,7 +127,9 @@ const translations = {
     "sitemap.desc": "Explore all sections of our portal.",
     "sitemap.sec1": "Main",
     "sitemap.sec2": "Developments",
-    "sitemap.sec3": "Legal"
+    "sitemap.sec3": "Legal",
+    "common.loading": "Loading...",
+    "common.back": "Go Back"
   }
 };
 

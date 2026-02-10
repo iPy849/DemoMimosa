@@ -4,45 +4,45 @@
 
 @layer base {
   :root {
-    --background: 36 33% 96%; /* #F8F5F0 Cream */
-    --foreground: 0 0% 15%; /* #262626 Dark Gray for high legibility */
+    --background: 36 33% 98%; /* Even lighter cream */
+    --foreground: 0 0% 12%; 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 15%;
+    --card-foreground: 0 0% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 15%;
-    --primary: 25 30% 51%; /* #A67B5B Golden Brown */
-    --primary-foreground: 36 33% 96%;
-    --secondary: 36 33% 90%;
-    --secondary-foreground: 25 30% 51%;
-    --muted: 36 10% 85%;
-    --muted-foreground: 0 0% 30%; /* Darker for light mode contrast */
-    --accent: 36 33% 90%;
-    --accent-foreground: 25 30% 51%;
+    --popover-foreground: 0 0% 12%;
+    --primary: 34 19% 40%; /* Darker version of #BFAF9C for readability */
+    --primary-foreground: 36 33% 98%;
+    --secondary: 34 19% 92%;
+    --secondary-foreground: 34 19% 40%;
+    --muted: 34 10% 88%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 34 19% 90%;
+    --accent-foreground: 34 19% 40%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 36 20% 85%;
-    --input: 36 20% 85%;
-    --ring: 25 30% 51%;
-    --radius: 0.75rem;
+    --border: 34 15% 85%;
+    --input: 34 15% 85%;
+    --ring: 34 19% 40%;
+    --radius: 0.5rem;
   }
   .dark {
-    --background: 0 0% 7%;
-    --foreground: 36 33% 96%;
-    --card: 0 0% 10%;
-    --card-foreground: 36 33% 96%;
-    --popover: 0 0% 10%;
-    --popover-foreground: 36 33% 96%;
-    --primary: 25 30% 51%;
-    --primary-foreground: 36 33% 96%;
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 25 30% 51%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 75%;
-    --accent: 0 0% 15%;
-    --accent-foreground: 36 33% 96%;
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 25 30% 51%;
+    --background: 0 0% 5%;
+    --foreground: 36 33% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 36 33% 98%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 36 33% 98%;
+    --primary: 34 19% 75%; /* The original light #BFAF9C tone for dark mode */
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 34 19% 75%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 0 0% 12%;
+    --accent-foreground: 36 33% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 34 19% 75%;
   }
 }
 
@@ -72,14 +72,14 @@
 }
 
 @keyframes slideUp {
-  from { transform: translateY(30px); opacity: 0; }
+  from { transform: translateY(40px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 
 .glass-nav {
-  @apply backdrop-blur-xl bg-background/80 border-b shadow-sm;
+  @apply backdrop-blur-xl bg-background/90 border-b shadow-sm;
 }
 
 .luxury-text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#A67B5B] to-[#D4AF37];
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#BFAF9C] to-[#D4AF37];
 }

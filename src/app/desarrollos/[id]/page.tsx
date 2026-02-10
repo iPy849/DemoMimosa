@@ -15,13 +15,16 @@ import {
 } from "@/components/ui/carousel";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/components/language-context";
 
 const developments = {
   "cuatro-bacalar": {
     title: "Cuatro Bacalar",
     location: "Bacalar, Quintana Roo",
     description: "Cuatro Bacalar es un desarrollo residencial de lujo diseñado para armonizar con la belleza natural de la Laguna de los Siete Colores. Con una arquitectura orgánica que utiliza materiales locales y tecnología sustentable, este proyecto ofrece 24 exclusivas unidades con vistas panorámicas, club de playa privado y amenidades de clase mundial.",
+    descriptionEn: "Cuatro Bacalar is a luxury residential development designed to harmonize with the natural beauty of the Seven Colors Lagoon. With organic architecture using local materials and sustainable technology, this project offers 24 exclusive units with panoramic views, private beach club, and world-class amenities.",
     amenities: ["Beach Club Privado", "Seguridad 24/7", "Alberca Infinity", "Gimnasio", "Restaurante Gourmet", "Muelle Privado"],
+    amenitiesEn: ["Private Beach Club", "24/7 Security", "Infinity Pool", "Gym", "Gourmet Restaurant", "Private Pier"],
     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15082.4939223793!2d-88.3974443!3d18.6755455!2m3!1f0!2f0!3f0!3m2!1i1024!2i1024!2f1080!3m2!1m1!2zMTjCsDQwJzMyLjAiTiA4OMKwMjMnNTAuOCJX!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx",
     virtualTour: "https://kuula.co/share/hs7cq/collection/7Dgjf?logo=0&info=0&fs=1&vr=1&initload=0&thumbs=1",
     images: [
@@ -35,6 +38,7 @@ const developments = {
 
 export default function DevelopmentPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
+  const { language, t } = useLanguage();
   const data = developments[id as keyof typeof developments] || developments["cuatro-bacalar"];
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -51,7 +55,7 @@ export default function DevelopmentPage({ params }: { params: Promise<{ id: stri
     <div className="pt-24 min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <Link href="/desarrollos" className="inline-flex items-center gap-2 text-sm text-primary font-bold mb-12 hover:opacity-70 transition-opacity">
-          <ArrowLeft size={16} /> VOLVER A DESARROLLOS
+          <ArrowLeft size={16} /> {t("dev.back")}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
@@ -63,11 +67,11 @@ export default function DevelopmentPage({ params }: { params: Promise<{ id: stri
               </div>
               <h1 className="text-5xl md:text-7xl font-headline font-bold mb-8">{data.title}</h1>
               <p className="text-muted-foreground leading-relaxed text-xl mb-10">
-                {data.description}
+                {language === 'es' ? data.description : data.descriptionEn}
               </p>
               
               <div className="grid grid-cols-2 gap-6 mb-10">
-                {data.amenities.map((item) => (
+                {(language === 'es' ? data.amenities : data.amenitiesEn).map((item) => (
                   <div key={item} className="flex items-center gap-3 text-sm">
                     <CheckCircle2 size={18} className="text-primary" />
                     <span className="font-medium">{item}</span>
@@ -77,7 +81,7 @@ export default function DevelopmentPage({ params }: { params: Promise<{ id: stri
             </div>
 
             <div className="space-y-6 pt-10 border-t">
-              <h3 className="font-headline font-bold text-2xl uppercase tracking-wider">Ubicación Estratégica</h3>
+              <h3 className="font-headline font-bold text-2xl uppercase tracking-wider">{t("dev.location")}</h3>
               <div className="aspect-video w-full rounded-3xl overflow-hidden border shadow-2xl">
                 <iframe
                   src={data.mapUrl}
@@ -100,7 +104,7 @@ export default function DevelopmentPage({ params }: { params: Promise<{ id: stri
                 <CarouselContent>
                   {data.images.map((src, idx) => (
                     <CarouselItem key={idx}>
-                      <div className="relative aspect-[16/10] w-full rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
+                      <div className="relative aspect-[16/10] w-full rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-border/50">
                         <Image 
                           src={src} 
                           alt={`${data.title} slide ${idx + 1}`} 
@@ -133,13 +137,13 @@ export default function DevelopmentPage({ params }: { params: Promise<{ id: stri
             </div>
 
             {/* Virtual Tour Section */}
-            <div className="space-y-8 bg-card p-10 rounded-[2.5rem] shadow-2xl border">
+            <div className="space-y-8 bg-card p-10 rounded-[2.5rem] shadow-2xl border border-border">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-headline font-bold text-3xl mb-2">Experiencia Inmersiva</h3>
-                  <p className="text-sm text-muted-foreground uppercase tracking-[0.2em]">Recorrido Virtual 360°</p>
+                  <h3 className="font-headline font-bold text-3xl mb-2">{t("dev.immersive")}</h3>
+                  <p className="text-sm text-muted-foreground uppercase tracking-[0.2em]">{t("dev.360")}</p>
                 </div>
-                <span className="bg-primary/10 text-primary text-[10px] font-bold px-4 py-2 rounded-full border border-primary/20">EXPLORA AHORA</span>
+                <span className="bg-primary/10 text-primary text-[10px] font-bold px-4 py-2 rounded-full border border-primary/20">{t("dev.explore")}</span>
               </div>
               <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl bg-muted relative border-4 border-background">
                 <iframe
