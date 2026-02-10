@@ -14,6 +14,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 const developments = {
   "cuatro-bacalar": {
