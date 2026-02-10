@@ -3,7 +3,7 @@
 import { use } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, ArrowLeft, Download, Share2, CheckCircle2 } from "lucide-react";
+import { MapPin, ArrowLeft, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -73,16 +73,6 @@ export default function DevelopmentPage({ params }: { params: Promise<{ id: stri
                     <span className="font-medium">{item}</span>
                   </div>
                 ))}
-              </div>
-
-              <div className="flex gap-4">
-                <Button className="rounded-full px-10 bg-primary text-background flex-1 h-14 font-bold tracking-widest text-xs hover:scale-105 transition-all">SOLICITAR DOSSIER</Button>
-                <Button variant="outline" size="icon" className="rounded-full w-14 h-14 border-primary text-primary hover:bg-primary/10 transition-colors">
-                  <Download size={20} />
-                </Button>
-                <Button variant="outline" size="icon" className="rounded-full w-14 h-14 border-primary text-primary hover:bg-primary/10 transition-colors">
-                  <Share2 size={20} />
-                </Button>
               </div>
             </div>
 
