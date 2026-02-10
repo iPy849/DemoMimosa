@@ -40,21 +40,25 @@ export default function Home() {
     <div className="w-full">
       {/* Hero Section */}
       <section className="relative h-screen w-full overflow-hidden">
-        <Image 
-          src="https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?q=80&w=1920&h=1080&auto=format&fit=crop"
-          alt="Cuatro Bacalar Hero"
-          fill
-          priority
-          className="object-cover brightness-[0.85] dark:brightness-[0.4]"
-          data-ai-hint="Bacalar aerial"
-        />
+        {/* Cinematic Video Background - Representing Cuatro Bacalar */}
+        <div className="absolute inset-0 z-0">
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline 
+            className="object-cover w-full h-full brightness-[0.7] dark:brightness-[0.4]"
+          >
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-resort-in-the-maldives-32981-large.mp4" type="video/mp4" />
+          </video>
+        </div>
         
         {/* Navbar Contrast Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-transparent z-[5] h-40" />
         
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
           <div className="fade-in space-y-8 flex flex-col items-center">
-            <h2 className="text-sm uppercase tracking-[0.6em] mb-4 text-white drop-shadow-lg slide-up">{t("hero.subtitle")}</h2>
+            <span className="text-sm uppercase tracking-[0.6em] mb-4 text-white drop-shadow-lg slide-up">{t("hero.subtitle")}</span>
             <h1 className="text-6xl md:text-9xl font-headline font-bold leading-tight slide-up text-white drop-shadow-2xl">
               MIMOSA <span className="text-primary italic">Developments</span>
             </h1>
@@ -63,12 +67,12 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-8 justify-center slide-up pt-12">
               <Link href="/desarrollos">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-16 h-20 font-bold tracking-[0.3em] text-sm border-none shadow-2xl transition-all hover:scale-110">
+                <Button size="lg" className="bg-primary text-background hover:opacity-90 rounded-sm px-16 h-20 font-bold tracking-[0.3em] text-sm border-none shadow-2xl transition-all hover:scale-110">
                   {t("hero.cta.primary")}
                 </Button>
               </Link>
               <Link href="/contacto">
-                <Button size="lg" variant="outline" className="bg-transparent text-primary border-2 border-primary hover:bg-primary/10 backdrop-blur-md rounded-full px-16 h-20 font-bold tracking-[0.3em] text-sm transition-all hover:scale-110">
+                <Button size="lg" variant="outline" className="bg-transparent text-primary border-2 border-primary/60 hover:border-primary hover:bg-primary/10 backdrop-blur-md rounded-sm px-16 h-20 font-bold tracking-[0.3em] text-sm transition-all hover:scale-110">
                   {t("hero.cta.secondary")}
                 </Button>
               </Link>
@@ -107,7 +111,7 @@ export default function Home() {
       {/* About Section */}
       <section className="py-32 px-6 bg-secondary/30 relative overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-          <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl order-2 lg:order-1 slide-up border-[8px] border-background">
+          <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-2xl order-2 lg:order-1 slide-up border-[8px] border-background">
             <Image 
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&h=1000&auto=format&fit=crop" 
               alt="About Mimosa Developments" 
@@ -124,21 +128,21 @@ export default function Home() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mb-16">
               <div className="space-y-4">
-                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-xl text-primary">
+                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-sm text-primary">
                   <Star size={32} />
                 </div>
                 <h4 className="font-bold text-xl">{t("about.pillar1.title")}</h4>
                 <p className="text-base text-muted-foreground leading-relaxed">{t("about.pillar1.desc")}</p>
               </div>
               <div className="space-y-4">
-                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-xl text-primary">
+                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-sm text-primary">
                   <ShieldCheck size={32} />
                 </div>
                 <h4 className="font-bold text-xl">{t("about.pillar2.title")}</h4>
                 <p className="text-base text-muted-foreground leading-relaxed">{t("about.pillar2.desc")}</p>
               </div>
               <div className="space-y-4">
-                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-xl text-primary">
+                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-sm text-primary">
                   <Gem size={32} />
                 </div>
                 <h4 className="font-bold text-xl">{t("about.pillar3.title")}</h4>
@@ -147,7 +151,7 @@ export default function Home() {
             </div>
 
             <Link href="/nosotros">
-              <Button size="lg" className="rounded-full px-16 h-16 bg-primary text-primary-foreground hover:scale-105 transition-all text-sm tracking-widest font-bold">{t("about.cta")}</Button>
+              <Button size="lg" className="rounded-full px-16 h-16 bg-primary text-background hover:scale-105 transition-all text-sm tracking-widest font-bold">{t("about.cta")}</Button>
             </Link>
           </div>
         </div>
@@ -161,27 +165,27 @@ export default function Home() {
           <p className="text-muted-foreground text-xl max-w-2xl mx-auto leading-relaxed">{t("contact.desc")}</p>
         </div>
 
-        <div className="max-w-3xl mx-auto bg-card p-12 md:p-20 rounded-xl shadow-2xl border border-border/50 slide-up">
+        <div className="max-w-3xl mx-auto bg-card p-12 md:p-20 rounded-sm shadow-2xl border border-border/50 slide-up">
           <form className="space-y-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               <div className="space-y-3">
                 <label className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">{t("contact.form.name")}</label>
-                <Input placeholder="..." className="rounded-xl bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
+                <Input placeholder="..." className="rounded-sm bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
               </div>
               <div className="space-y-3">
                 <label className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">{t("contact.form.email")}</label>
-                <Input type="email" placeholder="..." className="rounded-xl bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
+                <Input type="email" placeholder="..." className="rounded-sm bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
               </div>
             </div>
             <div className="space-y-3">
               <label className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">{t("contact.form.interest")}</label>
-              <Input placeholder="..." className="rounded-xl bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
+              <Input placeholder="..." className="rounded-sm bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
             </div>
             <div className="space-y-3">
               <label className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">{t("contact.form.message")}</label>
-              <Textarea placeholder="..." className="min-h-[160px] rounded-xl bg-background border-border focus:ring-primary focus:border-primary text-lg" />
+              <Textarea placeholder="..." className="min-h-[160px] rounded-sm bg-background border-border focus:ring-primary focus:border-primary text-lg" />
             </div>
-            <Button className="w-full h-20 rounded-full bg-primary text-primary-foreground font-bold tracking-[0.3em] text-sm hover:bg-primary/90 transition-all hover:scale-[1.03] shadow-xl shadow-primary/20">
+            <Button className="w-full h-20 rounded-full bg-primary text-background font-bold tracking-[0.3em] text-sm hover:bg-primary/90 transition-all hover:scale-[1.03] shadow-xl shadow-primary/20">
               {t("contact.form.submit")}
             </Button>
           </form>

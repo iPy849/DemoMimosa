@@ -23,7 +23,7 @@
     --border: 34 15% 85%;
     --input: 34 15% 85%;
     --ring: 34 19% 40%;
-    --radius: 1rem; /* Reduced from 2.5rem for a more professional/architectural look */
+    --radius: 0.5rem; /* Reduced for a more professional/architectural look */
   }
   .dark {
     --background: 0 0% 5%; /* Deep Black */
@@ -78,8 +78,4 @@
 
 .glass-nav {
   @apply backdrop-blur-xl bg-background/90 border-b shadow-sm;
-}
-
-.luxury-shadow {
-  shadow: 0 20px 50px rgba(0,0,0,0.05);
 }
