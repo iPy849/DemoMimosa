@@ -1,10 +1,9 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Moon, Sun, Globe, MessageSquare } from "lucide-react";
+import { Moon, Sun, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -27,7 +26,7 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4 px-6 md:px-12",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-700 py-6 px-6 md:px-12",
         scrolled 
           ? "glass-nav py-3" 
           : "bg-transparent text-white"
@@ -40,15 +39,15 @@ export default function Navbar() {
           <span className={cn(scrolled ? "text-foreground" : "text-white/80")}> ESTATES</span>
         </Link>
 
-        {/* Navigation Links */}
-        <div className="hidden md:flex items-center gap-4 lg:gap-8">
+        {/* Navigation Links - Centered with 1rem (gap-4) */}
+        <div className="hidden md:flex items-center gap-4 lg:gap-8 absolute left-1/2 -translate-x-1/2">
           {["Inicio", "Nosotros", "Desarrollos", "Blog", "Contacto"].map((item) => (
             <Link
               key={item}
               href={item === "Inicio" ? "/" : `/${item.toLowerCase()}`}
               className={cn(
-                "text-sm uppercase tracking-widest transition-colors hover:text-primary",
-                scrolled ? "text-foreground font-medium" : "text-white"
+                "text-sm uppercase tracking-[0.2em] transition-all hover:text-primary",
+                scrolled ? "text-foreground font-medium" : "text-white/90"
               )}
             >
               {item}
@@ -57,7 +56,7 @@ export default function Navbar() {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <button
             className={cn(
               "p-2 rounded-full border border-current flex items-center justify-center w-8 h-8 transition-opacity hover:opacity-70",
@@ -72,7 +71,7 @@ export default function Navbar() {
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className={cn(scrolled ? "text-foreground" : "text-white hover:bg-white/10")}
+            className={cn("rounded-full", scrolled ? "text-foreground" : "text-white hover:bg-white/10")}
           >
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </Button>
@@ -80,14 +79,14 @@ export default function Navbar() {
           <Link href="/contacto">
             <Button 
               className={cn(
-                "hidden sm:flex items-center gap-2 rounded-full px-6 transition-all duration-300",
+                "hidden sm:flex items-center gap-2 rounded-full px-6 transition-all duration-500",
                 scrolled 
                   ? "bg-primary text-white hover:bg-primary/90" 
                   : "bg-white text-primary hover:bg-white/90"
               )}
             >
-              <MessageSquare size={16} />
-              CONTACTO
+              <MessageSquare size={18} />
+              <span className="text-xs tracking-widest font-bold">CONTACTO</span>
             </Button>
           </Link>
         </div>

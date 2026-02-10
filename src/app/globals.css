@@ -1,22 +1,21 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 36 33% 96%;
-    --foreground: 0 0% 15%;
+    --background: 36 33% 96%; /* #F8F5F0 Cream */
+    --foreground: 0 0% 15%; /* #262626 Dark Gray for high legibility */
     --card: 0 0% 100%;
     --card-foreground: 0 0% 15%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 15%;
-    --primary: 25 30% 51%;
+    --primary: 25 30% 51%; /* #A67B5B Golden Brown */
     --primary-foreground: 36 33% 96%;
     --secondary: 36 33% 90%;
     --secondary-foreground: 25 30% 51%;
-    --muted: 36 20% 90%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 36 10% 85%;
+    --muted-foreground: 0 0% 30%; /* Darker for light mode contrast */
     --accent: 36 33% 90%;
     --accent-foreground: 25 30% 51%;
     --destructive: 0 84.2% 60.2%;
@@ -27,22 +26,22 @@
     --radius: 0.75rem;
   }
   .dark {
-    --background: 0 0% 10%;
+    --background: 0 0% 7%;
     --foreground: 36 33% 96%;
-    --card: 0 0% 12%;
+    --card: 0 0% 10%;
     --card-foreground: 36 33% 96%;
-    --popover: 0 0% 12%;
+    --popover: 0 0% 10%;
     --popover-foreground: 36 33% 96%;
     --primary: 25 30% 51%;
     --primary-foreground: 36 33% 96%;
-    --secondary: 0 0% 18%;
+    --secondary: 0 0% 15%;
     --secondary-foreground: 25 30% 51%;
-    --muted: 0 0% 18%;
-    --muted-foreground: 0 0% 70%;
-    --accent: 0 0% 18%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 75%;
+    --accent: 0 0% 15%;
     --accent-foreground: 36 33% 96%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
     --ring: 25 30% 51%;
   }
 }
@@ -60,11 +59,11 @@
 }
 
 .fade-in {
-  animation: fadeIn 1s ease-out forwards;
+  animation: fadeIn 1.2s ease-out forwards;
 }
 
 .slide-up {
-  animation: slideUp 0.8s ease-out forwards;
+  animation: slideUp 1s ease-out forwards;
 }
 
 @keyframes fadeIn {
@@ -73,12 +72,12 @@
 }
 
 @keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
+  from { transform: translateY(30px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 
 .glass-nav {
-  @apply backdrop-blur-md bg-background/70 border-b;
+  @apply backdrop-blur-xl bg-background/80 border-b shadow-sm;
 }
 
 .luxury-text-gradient {
