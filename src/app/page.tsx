@@ -41,44 +41,32 @@ export default function Home() {
     <div className="w-full">
       {/* Hero Section */}
       <section className="relative h-screen w-full overflow-hidden">
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.6] dark:brightness-[0.4]"
-        >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-resort-in-mexico-4475-large.mp4" type="video/mp4" />
-        </video>
+        <Image 
+          src="https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?q=80&w=1920&h=1080&auto=format&fit=crop"
+          alt="Cuatro Bacalar Hero"
+          fill
+          priority
+          className="object-cover brightness-[0.6] dark:brightness-[0.4]"
+          data-ai-hint="Bacalar aerial"
+        />
         
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
           <div className="fade-in space-y-8 flex flex-col items-center">
-            {/* Founder Image */}
-            <div className="relative w-32 h-40 md:w-40 md:h-52 mb-6 overflow-hidden shadow-2xl border-4 border-background/20 slide-up group">
-              <Image 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&h=1000&auto=format&fit=crop"
-                alt="Founder"
-                fill
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                data-ai-hint="professional man luxury"
-              />
-            </div>
-
-            <h2 className="text-sm uppercase tracking-[0.5em] mb-4 text-foreground/70 slide-up">{t("hero.subtitle")}</h2>
-            <h1 className="text-6xl md:text-9xl font-headline font-bold leading-tight slide-up text-foreground">
+            <h2 className="text-sm uppercase tracking-[0.5em] mb-4 text-white/80 slide-up">{t("hero.subtitle")}</h2>
+            <h1 className="text-6xl md:text-9xl font-headline font-bold leading-tight slide-up text-white">
               MIMOSA <span className="text-primary italic">Estates</span>
             </h1>
-            <p className="max-w-3xl mx-auto text-lg md:text-xl font-light text-foreground/80 leading-relaxed slide-up">
+            <p className="max-w-3xl mx-auto text-lg md:text-xl font-light text-white/90 leading-relaxed slide-up">
               {t("hero.description")}
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center slide-up pt-8">
               <Link href="/desarrollos">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-12 h-16 font-bold tracking-[0.2em] text-sm border-none transition-all hover:scale-105">
+                <Button size="lg" className="bg-primary text-background hover:bg-primary/90 rounded-full px-12 h-16 font-bold tracking-[0.2em] text-sm border-none transition-all hover:scale-105">
                   {t("hero.cta.primary")}
                 </Button>
               </Link>
               <Link href="/contacto">
-                <Button size="lg" variant="outline" className="text-foreground border-foreground hover:bg-foreground hover:text-background rounded-full px-12 h-16 font-bold tracking-[0.2em] text-sm transition-all hover:scale-105">
+                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-black rounded-full px-12 h-16 font-bold tracking-[0.2em] text-sm transition-all hover:scale-105">
                   {t("hero.cta.secondary")}
                 </Button>
               </Link>
@@ -87,7 +75,7 @@ export default function Home() {
         </div>
 
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-          <ChevronDown size={40} className="text-foreground" />
+          <ChevronDown size={40} className="text-white" />
         </div>
       </section>
 
