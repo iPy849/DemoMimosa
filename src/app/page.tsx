@@ -46,27 +46,30 @@ export default function Home() {
           alt="Cuatro Bacalar Hero"
           fill
           priority
-          className="object-cover brightness-[0.6] dark:brightness-[0.4]"
+          className="object-cover brightness-[0.9] dark:brightness-[0.4]"
           data-ai-hint="Bacalar aerial"
         />
         
+        {/* Navbar Contrast Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-transparent z-[5] h-32" />
+        
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
           <div className="fade-in space-y-8 flex flex-col items-center">
-            <h2 className="text-sm uppercase tracking-[0.5em] mb-4 text-white/80 slide-up">{t("hero.subtitle")}</h2>
-            <h1 className="text-6xl md:text-9xl font-headline font-bold leading-tight slide-up text-white">
+            <h2 className="text-sm uppercase tracking-[0.6em] mb-4 text-white/90 drop-shadow-md slide-up">{t("hero.subtitle")}</h2>
+            <h1 className="text-6xl md:text-9xl font-headline font-bold leading-tight slide-up text-white drop-shadow-2xl">
               MIMOSA <span className="text-primary italic">Estates</span>
             </h1>
-            <p className="max-w-3xl mx-auto text-lg md:text-xl font-light text-white/90 leading-relaxed slide-up">
+            <p className="max-w-3xl mx-auto text-lg md:text-2xl font-light text-white leading-relaxed slide-up drop-shadow-md">
               {t("hero.description")}
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center slide-up pt-8">
+            <div className="flex flex-col sm:flex-row gap-8 justify-center slide-up pt-12">
               <Link href="/desarrollos">
-                <Button size="lg" className="bg-primary text-background hover:bg-primary/90 rounded-full px-12 h-16 font-bold tracking-[0.2em] text-sm border-none transition-all hover:scale-105">
+                <Button size="lg" className="bg-primary text-background hover:bg-primary/90 rounded-full px-16 h-20 font-bold tracking-[0.3em] text-sm border-none shadow-2xl transition-all hover:scale-110">
                   {t("hero.cta.primary")}
                 </Button>
               </Link>
               <Link href="/contacto">
-                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-black rounded-full px-12 h-16 font-bold tracking-[0.2em] text-sm transition-all hover:scale-105">
+                <Button size="lg" variant="outline" className="text-white border-2 border-white/50 hover:border-white hover:bg-white/10 backdrop-blur-sm rounded-full px-16 h-20 font-bold tracking-[0.3em] text-sm transition-all hover:scale-110">
                   {t("hero.cta.secondary")}
                 </Button>
               </Link>
@@ -74,27 +77,27 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-          <ChevronDown size={40} className="text-white" />
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-80 z-10">
+          <ChevronDown size={48} className="text-white" />
         </div>
       </section>
 
       {/* Featured Developments */}
       <section className="py-32 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6 fade-in">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-6 fade-in">
             <div className="max-w-2xl">
               <span className="text-primary font-bold tracking-[0.4em] uppercase text-xs mb-4 block">{t("featured.subtitle")}</span>
-              <h2 className="text-4xl md:text-6xl font-headline font-bold">{t("featured.title")}</h2>
+              <h2 className="text-4xl md:text-7xl font-headline font-bold">{t("featured.title")}</h2>
             </div>
             <Link href="/desarrollos">
-              <Button variant="link" className="text-primary p-0 h-auto font-bold tracking-widest flex items-center gap-2 group">
-                {t("featured.cta")} <PlayCircle size={18} className="group-hover:translate-x-1 transition-transform" />
+              <Button variant="link" className="text-primary p-0 h-auto font-bold tracking-widest flex items-center gap-2 group text-base">
+                {t("featured.cta")} <PlayCircle size={24} className="group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 slide-up">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 slide-up">
             {featuredDevelopments.map((dev) => (
               <DevelopmentCard key={dev.id} {...dev} />
             ))}
@@ -105,7 +108,7 @@ export default function Home() {
       {/* About Section */}
       <section className="py-32 px-6 bg-secondary/30 relative overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-          <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl order-2 lg:order-1 slide-up">
+          <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl order-2 lg:order-1 slide-up border-[12px] border-background">
             <Image 
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&h=1000&auto=format&fit=crop" 
               alt="About Mimosa Estates" 
@@ -115,37 +118,37 @@ export default function Home() {
           </div>
           <div className="order-1 lg:order-2 fade-in">
             <span className="text-primary font-bold tracking-[0.4em] uppercase text-xs mb-6 block">{t("about.essence")}</span>
-            <h2 className="text-4xl md:text-6xl font-headline font-bold mb-10">{t("about.title")}</h2>
-            <p className="text-muted-foreground text-xl leading-relaxed mb-10 italic border-l-4 border-primary pl-8">
+            <h2 className="text-4xl md:text-7xl font-headline font-bold mb-12">{t("about.title")}</h2>
+            <p className="text-muted-foreground text-2xl leading-relaxed mb-12 italic border-l-8 border-primary pl-10">
               "{t("about.quote")}"
             </p>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mb-16">
               <div className="space-y-4">
-                <div className="bg-primary/10 w-12 h-12 flex items-center justify-center rounded-xl text-primary">
-                  <Star size={24} />
+                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-2xl text-primary">
+                  <Star size={32} />
                 </div>
-                <h4 className="font-bold text-lg">{t("about.pill1.title")}</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">{t("about.pill1.desc")}</p>
+                <h4 className="font-bold text-xl">{t("about.pill1.title")}</h4>
+                <p className="text-base text-muted-foreground leading-relaxed">{t("about.pill1.desc")}</p>
               </div>
               <div className="space-y-4">
-                <div className="bg-primary/10 w-12 h-12 flex items-center justify-center rounded-xl text-primary">
-                  <ShieldCheck size={24} />
+                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-2xl text-primary">
+                  <ShieldCheck size={32} />
                 </div>
-                <h4 className="font-bold text-lg">{t("about.pill2.title")}</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">{t("about.pill2.desc")}</p>
+                <h4 className="font-bold text-xl">{t("about.pill2.title")}</h4>
+                <p className="text-base text-muted-foreground leading-relaxed">{t("about.pill2.desc")}</p>
               </div>
               <div className="space-y-4">
-                <div className="bg-primary/10 w-12 h-12 flex items-center justify-center rounded-xl text-primary">
-                  <Gem size={24} />
+                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-2xl text-primary">
+                  <Gem size={32} />
                 </div>
-                <h4 className="font-bold text-lg">{t("about.pill3.title")}</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">{t("about.pill3.desc")}</p>
+                <h4 className="font-bold text-xl">{t("about.pill3.title")}</h4>
+                <p className="text-base text-muted-foreground leading-relaxed">{t("about.pill3.desc")}</p>
               </div>
             </div>
 
             <Link href="/nosotros">
-              <Button className="rounded-full px-12 h-14 bg-primary text-primary-foreground hover:scale-105 transition-all">{t("about.cta")}</Button>
+              <Button size="lg" className="rounded-full px-16 h-16 bg-primary text-primary-foreground hover:scale-105 transition-all text-sm tracking-widest font-bold">{t("about.cta")}</Button>
             </Link>
           </div>
         </div>
@@ -153,33 +156,33 @@ export default function Home() {
 
       {/* Contact Form Section */}
       <section className="py-32 px-6 bg-background" id="contact">
-        <div className="max-w-4xl mx-auto text-center mb-20 fade-in">
-          <span className="text-primary font-bold tracking-[0.4em] uppercase text-xs mb-4 block">{t("contact.subtitle")}</span>
-          <h2 className="text-4xl md:text-6xl font-headline font-bold mb-8">{t("contact.title")}</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("contact.desc")}</p>
+        <div className="max-w-4xl mx-auto text-center mb-24 fade-in">
+          <span className="text-primary font-bold tracking-[0.5em] uppercase text-xs mb-6 block">{t("contact.subtitle")}</span>
+          <h2 className="text-4xl md:text-7xl font-headline font-bold mb-10">{t("contact.title")}</h2>
+          <p className="text-muted-foreground text-xl max-w-2xl mx-auto leading-relaxed">{t("contact.desc")}</p>
         </div>
 
-        <div className="max-w-3xl mx-auto bg-card p-10 md:p-16 rounded-[2.5rem] shadow-2xl border border-border slide-up">
-          <form className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{t("contact.form.name")}</label>
-                <Input placeholder="..." className="rounded-xl bg-background border-border h-14" />
+        <div className="max-w-3xl mx-auto bg-card p-12 md:p-20 rounded-[3rem] shadow-2xl border border-border/50 slide-up">
+          <form className="space-y-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="space-y-3">
+                <label className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">{t("contact.form.name")}</label>
+                <Input placeholder="..." className="rounded-2xl bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
               </div>
-              <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{t("contact.form.email")}</label>
-                <Input type="email" placeholder="..." className="rounded-xl bg-background border-border h-14" />
+              <div className="space-y-3">
+                <label className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">{t("contact.form.email")}</label>
+                <Input type="email" placeholder="..." className="rounded-2xl bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
               </div>
             </div>
-            <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{t("contact.form.interest")}</label>
-              <Input placeholder="..." className="rounded-xl bg-background border-border h-14" />
+            <div className="space-y-3">
+              <label className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">{t("contact.form.interest")}</label>
+              <Input placeholder="..." className="rounded-2xl bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
             </div>
-            <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{t("contact.form.message")}</label>
-              <Textarea placeholder="..." className="min-h-[140px] rounded-xl bg-background border-border" />
+            <div className="space-y-3">
+              <label className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">{t("contact.form.message")}</label>
+              <Textarea placeholder="..." className="min-h-[160px] rounded-2xl bg-background border-border focus:ring-primary focus:border-primary text-lg" />
             </div>
-            <Button className="w-full h-16 rounded-full bg-primary text-primary-foreground font-bold tracking-[0.2em] text-sm hover:bg-primary/90 transition-all hover:scale-[1.02]">
+            <Button className="w-full h-20 rounded-full bg-primary text-primary-foreground font-bold tracking-[0.3em] text-sm hover:bg-primary/90 transition-all hover:scale-[1.03] shadow-xl shadow-primary/20">
               {t("contact.form.submit")}
             </Button>
           </form>
