@@ -31,7 +31,7 @@ export default function AboutPage() {
               </Link>
             </div>
           </div>
-          <div className="relative aspect-square rounded-[3rem] overflow-hidden border-[16px] border-primary/5 shadow-2xl slide-up">
+          <div className="relative aspect-square rounded-xl overflow-hidden border-[8px] border-primary/5 shadow-2xl slide-up">
             <Image 
               src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&h=1200&auto=format&fit=crop" 
               alt="Luxury Experience" 
@@ -55,7 +55,7 @@ export default function AboutPage() {
             { icon: <Map className="w-10 h-10"/>, title: t("about.pillar3.title"), desc: t("about.pillar3.desc") },
             { icon: <Heart className="w-10 h-10"/>, title: t("about.pillar4.title"), desc: t("about.pillar4.desc") }
           ].map((item, i) => (
-            <div key={i} className="bg-card p-12 rounded-[2rem] shadow-xl border border-border text-center hover:translate-y-[-15px] transition-all duration-500 group">
+            <div key={i} className="bg-card p-12 rounded-xl shadow-xl border border-border text-center hover:translate-y-[-10px] transition-all duration-500 group">
               <div className="text-primary mb-8 flex justify-center group-hover:scale-110 transition-transform">{item.icon}</div>
               <h3 className="font-headline font-bold text-2xl mb-6">{item.title}</h3>
               <p className="text-base text-muted-foreground leading-relaxed">{item.desc}</p>

@@ -82,7 +82,7 @@ export default function DevelopmentPage({ params }: { params: Promise<{ id: stri
 
             <div className="space-y-6 pt-10 border-t">
               <h3 className="font-headline font-bold text-2xl uppercase tracking-wider">{t("dev.location")}</h3>
-              <div className="aspect-video w-full rounded-3xl overflow-hidden border shadow-2xl">
+              <div className="aspect-video w-full rounded-xl overflow-hidden border shadow-2xl">
                 <iframe
                   src={data.mapUrl}
                   width="100%"
@@ -104,7 +104,7 @@ export default function DevelopmentPage({ params }: { params: Promise<{ id: stri
                 <CarouselContent>
                   {data.images.map((src, idx) => (
                     <CarouselItem key={idx}>
-                      <div className="relative aspect-[16/10] w-full rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-border/50">
+                      <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden shadow-lg border border-border/50">
                         <Image 
                           src={src} 
                           alt={`${data.title} slide ${idx + 1}`} 
@@ -127,7 +127,7 @@ export default function DevelopmentPage({ params }: { params: Promise<{ id: stri
                     onClick={() => api?.scrollTo(idx)}
                     className={cn(
                       "relative h-16 w-24 rounded-lg overflow-hidden transition-all border-2",
-                      current === idx ? "border-primary scale-110 shadow-lg" : "border-transparent opacity-50 hover:opacity-100"
+                      current === idx ? "border-primary scale-105 shadow-md" : "border-transparent opacity-50 hover:opacity-100"
                     )}
                   >
                     <Image src={src} alt="thumb" fill className="object-cover" />
@@ -137,7 +137,7 @@ export default function DevelopmentPage({ params }: { params: Promise<{ id: stri
             </div>
 
             {/* Virtual Tour Section */}
-            <div className="space-y-8 bg-card p-10 rounded-[2.5rem] shadow-2xl border border-border">
+            <div className="space-y-8 bg-card p-10 rounded-xl shadow-2xl border border-border">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="font-headline font-bold text-3xl mb-2">{t("dev.immersive")}</h3>
@@ -145,7 +145,7 @@ export default function DevelopmentPage({ params }: { params: Promise<{ id: stri
                 </div>
                 <span className="bg-primary/10 text-primary text-[10px] font-bold px-4 py-2 rounded-full border border-primary/20">{t("dev.explore")}</span>
               </div>
-              <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl bg-muted relative border-4 border-background">
+              <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-muted relative border-4 border-background">
                 <iframe
                   src={data.virtualTour}
                   width="100%"

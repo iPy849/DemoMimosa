@@ -19,7 +19,7 @@ export default function DevelopmentCard({ id, title, location, image, descriptio
   const { t } = useLanguage();
 
   return (
-    <Card className="overflow-hidden group border-border shadow-lg bg-card hover:shadow-2xl transition-all duration-500 rounded-2xl">
+    <Card className="overflow-hidden group border-border shadow-md bg-card hover:shadow-xl transition-all duration-500 rounded-xl">
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={image}

@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -108,7 +107,7 @@ export default function Home() {
       {/* About Section */}
       <section className="py-32 px-6 bg-secondary/30 relative overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-          <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl order-2 lg:order-1 slide-up border-[12px] border-background">
+          <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl order-2 lg:order-1 slide-up border-[8px] border-background">
             <Image 
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&h=1000&auto=format&fit=crop" 
               alt="About Mimosa Developments" 
@@ -125,21 +124,21 @@ export default function Home() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mb-16">
               <div className="space-y-4">
-                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-2xl text-primary">
+                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-xl text-primary">
                   <Star size={32} />
                 </div>
                 <h4 className="font-bold text-xl">{t("about.pillar1.title")}</h4>
                 <p className="text-base text-muted-foreground leading-relaxed">{t("about.pillar1.desc")}</p>
               </div>
               <div className="space-y-4">
-                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-2xl text-primary">
+                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-xl text-primary">
                   <ShieldCheck size={32} />
                 </div>
                 <h4 className="font-bold text-xl">{t("about.pillar2.title")}</h4>
                 <p className="text-base text-muted-foreground leading-relaxed">{t("about.pillar2.desc")}</p>
               </div>
               <div className="space-y-4">
-                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-2xl text-primary">
+                <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-xl text-primary">
                   <Gem size={32} />
                 </div>
                 <h4 className="font-bold text-xl">{t("about.pillar3.title")}</h4>
@@ -162,25 +161,25 @@ export default function Home() {
           <p className="text-muted-foreground text-xl max-w-2xl mx-auto leading-relaxed">{t("contact.desc")}</p>
         </div>
 
-        <div className="max-w-3xl mx-auto bg-card p-12 md:p-20 rounded-[3rem] shadow-2xl border border-border/50 slide-up">
+        <div className="max-w-3xl mx-auto bg-card p-12 md:p-20 rounded-xl shadow-2xl border border-border/50 slide-up">
           <form className="space-y-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               <div className="space-y-3">
                 <label className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">{t("contact.form.name")}</label>
-                <Input placeholder="..." className="rounded-2xl bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
+                <Input placeholder="..." className="rounded-xl bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
               </div>
               <div className="space-y-3">
                 <label className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">{t("contact.form.email")}</label>
-                <Input type="email" placeholder="..." className="rounded-2xl bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
+                <Input type="email" placeholder="..." className="rounded-xl bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
               </div>
             </div>
             <div className="space-y-3">
               <label className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">{t("contact.form.interest")}</label>
-              <Input placeholder="..." className="rounded-2xl bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
+              <Input placeholder="..." className="rounded-xl bg-background border-border h-16 focus:ring-primary focus:border-primary text-lg" />
             </div>
             <div className="space-y-3">
               <label className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">{t("contact.form.message")}</label>
-              <Textarea placeholder="..." className="min-h-[160px] rounded-2xl bg-background border-border focus:ring-primary focus:border-primary text-lg" />
+              <Textarea placeholder="..." className="min-h-[160px] rounded-xl bg-background border-border focus:ring-primary focus:border-primary text-lg" />
             </div>
             <Button className="w-full h-20 rounded-full bg-primary text-primary-foreground font-bold tracking-[0.3em] text-sm hover:bg-primary/90 transition-all hover:scale-[1.03] shadow-xl shadow-primary/20">
               {t("contact.form.submit")}

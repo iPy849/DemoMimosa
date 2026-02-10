@@ -23,7 +23,7 @@
     --border: 34 15% 85%;
     --input: 34 15% 85%;
     --ring: 34 19% 40%;
-    --radius: 2.5rem; /* High-end rounded corners */
+    --radius: 1rem; /* Reduced from 2.5rem for a more professional/architectural look */
   }
   .dark {
     --background: 0 0% 5%; /* Deep Black */

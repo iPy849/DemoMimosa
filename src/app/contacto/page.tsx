@@ -1,4 +1,3 @@
-
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,7 +22,7 @@ export default function ContactPage() {
 
           <div className="space-y-8">
             <div className="flex items-start gap-6">
-              <div className="p-4 bg-primary/10 text-primary rounded-2xl">
+              <div className="p-4 bg-primary/10 text-primary rounded-xl">
                 <Mail size={24} />
               </div>
               <div>
@@ -32,7 +31,7 @@ export default function ContactPage() {
               </div>
             </div>
             <div className="flex items-start gap-6">
-              <div className="p-4 bg-primary/10 text-primary rounded-2xl">
+              <div className="p-4 bg-primary/10 text-primary rounded-xl">
                 <Phone size={24} />
               </div>
               <div>
@@ -41,7 +40,7 @@ export default function ContactPage() {
               </div>
             </div>
             <div className="flex items-start gap-6">
-              <div className="p-4 bg-primary/10 text-primary rounded-2xl">
+              <div className="p-4 bg-primary/10 text-primary rounded-xl">
                 <MapPin size={24} />
               </div>
               <div>
@@ -50,7 +49,7 @@ export default function ContactPage() {
               </div>
             </div>
             <div className="flex items-start gap-6">
-              <div className="p-4 bg-primary/10 text-primary rounded-2xl">
+              <div className="p-4 bg-primary/10 text-primary rounded-xl">
                 <Clock size={24} />
               </div>
               <div>
@@ -61,25 +60,25 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="bg-card p-10 rounded-3xl shadow-2xl border border-border">
+        <div className="bg-card p-10 rounded-xl shadow-2xl border border-border">
           <form className="space-y-6">
             <div className="space-y-2">
               <label className="text-xs font-bold uppercase tracking-widest">Nombre Completo</label>
-              <Input placeholder="Tu nombre..." className="h-12 rounded-xl" />
+              <Input placeholder="Tu nombre..." className="h-12 rounded-lg" />
             </div>
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-bold uppercase tracking-widest">Email</label>
-                <Input type="email" placeholder="correo@ejemplo.com" className="h-12 rounded-xl" />
+                <Input type="email" placeholder="correo@ejemplo.com" className="h-12 rounded-lg" />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold uppercase tracking-widest">WhatsApp</label>
-                <Input placeholder="+52 ..." className="h-12 rounded-xl" />
+                <Input placeholder="+52 ..." className="h-12 rounded-lg" />
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-xs font-bold uppercase tracking-widest">Mensaje</label>
-              <Textarea placeholder="¿En qué desarrollo estás interesado?" className="min-h-[150px] rounded-xl" />
+              <Textarea placeholder="¿En qué desarrollo estás interesado?" className="min-h-[150px] rounded-lg" />
             </div>
             <Button className="w-full h-14 rounded-full bg-primary text-background font-bold tracking-widest text-sm hover:scale-105 transition-transform">
               ENVIAR SOLICITUD
