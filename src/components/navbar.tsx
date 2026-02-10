@@ -29,25 +29,24 @@ export default function Navbar() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-700 py-6 px-6 md:px-12",
         scrolled 
           ? "glass-nav py-3" 
-          : "bg-transparent text-white"
+          : "bg-transparent text-foreground"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-headline font-bold tracking-tight">
-          <span className={cn(scrolled ? "text-primary" : "text-white")}>MIMOSA</span>
-          <span className={cn(scrolled ? "text-foreground" : "text-white/80")}> ESTATES</span>
+          <span className="text-primary">MIMOSA</span>
+          <span className="text-foreground/80"> ESTATES</span>
         </Link>
 
-        {/* Navigation Links - Centered with 1rem (gap-4) */}
-        <div className="hidden md:flex items-center gap-4 lg:gap-8 absolute left-1/2 -translate-x-1/2">
+        {/* Navigation Links - Gap-4 is 1rem */}
+        <div className="hidden md:flex items-center gap-4 absolute left-1/2 -translate-x-1/2">
           {["Inicio", "Nosotros", "Desarrollos", "Blog", "Contacto"].map((item) => (
             <Link
               key={item}
               href={item === "Inicio" ? "/" : `/${item.toLowerCase()}`}
               className={cn(
-                "text-sm uppercase tracking-[0.2em] transition-all hover:text-primary",
-                scrolled ? "text-foreground font-medium" : "text-white/90"
+                "text-sm uppercase tracking-[0.2em] transition-all hover:text-primary text-foreground/90 font-normal"
               )}
             >
               {item}
@@ -58,10 +57,7 @@ export default function Navbar() {
         {/* Actions */}
         <div className="flex items-center gap-3">
           <button
-            className={cn(
-              "p-2 rounded-full border border-current flex items-center justify-center w-8 h-8 transition-opacity hover:opacity-70",
-              scrolled ? "text-foreground" : "text-white"
-            )}
+            className="p-2 rounded-full border border-current flex items-center justify-center w-8 h-8 transition-opacity hover:opacity-70 text-foreground"
             title="Language"
           >
             <span className="text-[10px] font-bold">ES</span>
@@ -71,19 +67,14 @@ export default function Navbar() {
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className={cn("rounded-full", scrolled ? "text-foreground" : "text-white hover:bg-white/10")}
+            className="rounded-full text-foreground hover:bg-accent"
           >
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </Button>
 
           <Link href="/contacto">
             <Button 
-              className={cn(
-                "hidden sm:flex items-center gap-2 rounded-full px-6 transition-all duration-500",
-                scrolled 
-                  ? "bg-primary text-white hover:bg-primary/90" 
-                  : "bg-white text-primary hover:bg-white/90"
-              )}
+              className="hidden sm:flex items-center gap-2 rounded-full px-6 transition-all duration-500 bg-primary text-primary-foreground hover:bg-primary/90"
             >
               <MessageSquare size={18} />
               <span className="text-xs tracking-widest font-bold">CONTACTO</span>

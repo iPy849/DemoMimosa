@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, User, ArrowRight } from "lucide-react";
@@ -26,13 +25,13 @@ const posts = [
 export default function BlogPage() {
   return (
     <div className="pt-24 pb-20">
-      <header className="bg-secondary/30 py-20 px-6 text-center">
+      <header className="bg-secondary/30 py-20 px-6 text-center fade-in">
         <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Inspiración</span>
         <h1 className="text-5xl md:text-7xl font-headline font-bold">Blog & Estilo de Vida</h1>
       </header>
 
       <section className="max-w-7xl mx-auto px-6 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 slide-up">
           {posts.map((post) => (
             <article key={post.id} className="group cursor-pointer">
               <div className="relative aspect-[16/9] rounded-2xl overflow-hidden mb-6 shadow-xl">

@@ -40,28 +40,28 @@ export default function Home() {
           muted 
           loop 
           playsInline
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.5]"
+          className="absolute inset-0 w-full h-full object-cover brightness-[0.6] dark:brightness-[0.4]"
         >
           <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-resort-in-mexico-4475-large.mp4" type="video/mp4" />
         </video>
         
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 text-white z-10">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
           <div className="fade-in space-y-8">
-            <h2 className="text-sm uppercase tracking-[0.5em] mb-4 text-white/70 slide-up">Boutique Real Estate</h2>
-            <h1 className="text-6xl md:text-9xl font-headline font-bold leading-tight slide-up">
+            <h2 className="text-sm uppercase tracking-[0.5em] mb-4 text-foreground/70 slide-up">Boutique Real Estate</h2>
+            <h1 className="text-6xl md:text-9xl font-headline font-bold leading-tight slide-up text-foreground">
               MIMOSA <span className="text-primary italic">Estates</span>
             </h1>
-            <p className="max-w-3xl mx-auto text-lg md:text-xl font-light text-white/80 leading-relaxed slide-up">
+            <p className="max-w-3xl mx-auto text-lg md:text-xl font-light text-foreground/80 leading-relaxed slide-up">
               Descubre una colección curada de los desarrollos más exclusivos del Caribe mexicano. Donde la sofisticación arquitectónica se une a la naturaleza virgen.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center slide-up pt-8">
               <Link href="/desarrollos">
-                <Button size="lg" className="bg-primary text-background hover:bg-primary/90 rounded-full px-12 h-16 font-bold tracking-[0.2em] text-sm border-none transition-all hover:scale-105">
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-12 h-16 font-bold tracking-[0.2em] text-sm border-none transition-all hover:scale-105">
                   VER DESARROLLOS
                 </Button>
               </Link>
               <Link href="/contacto">
-                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-black rounded-full px-12 h-16 font-bold tracking-[0.2em] text-sm transition-all hover:scale-105">
+                <Button size="lg" variant="outline" className="text-foreground border-foreground hover:bg-foreground hover:text-background rounded-full px-12 h-16 font-bold tracking-[0.2em] text-sm transition-all hover:scale-105">
                   CONTACTAR AGENTE
                 </Button>
               </Link>
@@ -70,7 +70,7 @@ export default function Home() {
         </div>
 
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-          <ChevronDown size={40} className="text-white" />
+          <ChevronDown size={40} className="text-foreground" />
         </div>
       </section>
 
@@ -140,7 +140,7 @@ export default function Home() {
             </div>
 
             <Link href="/nosotros">
-              <Button className="rounded-full px-12 h-14 bg-primary text-white hover:scale-105 transition-all">CONOCE NUESTRA HISTORIA</Button>
+              <Button className="rounded-full px-12 h-14 bg-primary text-primary-foreground hover:scale-105 transition-all">CONOCE NUESTRA HISTORIA</Button>
             </Link>
           </div>
         </div>
@@ -174,7 +174,7 @@ export default function Home() {
               <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Mensaje</label>
               <Textarea placeholder="Cuéntanos más sobre lo que buscas..." className="min-h-[140px] rounded-xl bg-background border-border" />
             </div>
-            <Button className="w-full h-16 rounded-full bg-primary text-background font-bold tracking-[0.2em] text-sm hover:bg-primary/90 transition-all hover:scale-[1.02]">
+            <Button className="w-full h-16 rounded-full bg-primary text-primary-foreground font-bold tracking-[0.2em] text-sm hover:bg-primary/90 transition-all hover:scale-[1.02]">
               ENVIAR SOLICITUD DE INFORMACIÓN
             </Button>
           </form>
