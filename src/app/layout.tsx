@@ -8,7 +8,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { LanguageProvider } from '@/components/language-context';
 
 export const metadata: Metadata = {
-  title: 'MIMOSA Estates | Real Estate Boutique',
+  title: 'MIMOSA Developments | Boutique Real Estate',
   description: 'Exclusividad y Prestigio en el Caribe. Desarrollos y propiedades de lujo.',
 };
 

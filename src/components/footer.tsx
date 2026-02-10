@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-border pb-12">
         <div className="md:col-span-1">
           <h2 className="text-2xl font-headline font-bold mb-4">
-            MIMOSA <span className="text-primary">ESTATES</span>
+            MIMOSA <span className="text-primary">DEVELOPMENTS</span>
           </h2>
           <p className="text-muted-foreground text-sm leading-relaxed mb-6">
             Definiendo el lujo inmobiliario en el Caribe. Proyectos exclusivos diseñados para un estilo de vida inigualable.
@@ -56,7 +56,7 @@ export default function Footer() {
           <ul className="space-y-4 text-sm text-muted-foreground">
             <li className="flex items-center gap-3">
               <Mail size={16} className="text-primary" />
-              info@mimosaestates.com
+              info@mimosadevelopments.com
             </li>
             <li className="flex items-center gap-3">
               <Phone size={16} className="text-primary" />
@@ -64,14 +64,14 @@ export default function Footer() {
             </li>
             <li className="flex items-start gap-3">
               <div className="w-4 h-4 mt-1 border border-primary rounded-full flex-shrink-0" />
-              Av. Luxury Estates 404, Zona Hotelera, Cancún, MX
+              Av. Luxury Developments 404, Zona Hotelera, Cancún, MX
             </li>
           </ul>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-muted-foreground gap-4">
-        <p>© {new Date().getFullYear()} MIMOSA Estates. {t("footer.rights")}</p>
+        <p>© {new Date().getFullYear()} MIMOSA Developments. {t("footer.rights")}</p>
         <div className="flex gap-8">
           <Link href="#" className="hover:text-primary">{t("footer.terms")}</Link>
           <Link href="#" className="hover:text-primary">{t("footer.privacy")}</Link>

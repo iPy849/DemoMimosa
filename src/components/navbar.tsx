@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -91,7 +90,7 @@ export default function Navbar() {
           <span className={cn(
             "transition-colors",
             scrolled ? "text-foreground/90" : "text-foreground"
-          )}> ESTATES</span>
+          )}> DEVELOPMENTS</span>
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -126,7 +125,7 @@ export default function Navbar() {
             <SheetContent side="right" className="w-full sm:w-[400px] bg-background border-l border-border flex flex-col p-0">
               <div className="flex flex-col h-full p-12 overflow-y-auto">
                 <Link href="/" onClick={() => setIsOpen(false)} className="text-2xl font-headline font-bold mb-16">
-                  <span className="text-primary">MIMOSA</span> ESTATES
+                  <span className="text-primary">MIMOSA</span> DEVELOPMENTS
                 </Link>
                 
                 <nav className="flex flex-col gap-10 flex-grow">
