@@ -40,17 +40,15 @@ export default function Home() {
     <div className="w-full">
       {/* Hero Section */}
       <section className="relative h-screen w-full overflow-hidden">
-        {/* Cinematic Video Background - Representing Cuatro Bacalar */}
+        {/* Cinematic Image Background - Reverted from video as requested */}
         <div className="absolute inset-0 z-0">
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline 
-            className="object-cover w-full h-full brightness-[0.7] dark:brightness-[0.4]"
-          >
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-resort-in-the-maldives-32981-large.mp4" type="video/mp4" />
-          </video>
+          <Image 
+            src="https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?q=80&w=1920&h=1080&auto=format&fit=crop" 
+            alt="Hero Background" 
+            fill 
+            className="object-cover brightness-[0.7] dark:brightness-[0.4]"
+            priority
+          />
         </div>
         
         {/* Navbar Contrast Overlay */}
@@ -72,7 +70,11 @@ export default function Home() {
                 </Button>
               </Link>
               <Link href="/contacto">
-                <Button size="lg" variant="outline" className="bg-transparent text-primary border-2 border-primary/60 hover:border-primary hover:bg-primary/10 backdrop-blur-md rounded-sm px-16 h-20 font-bold tracking-[0.3em] text-sm transition-all hover:scale-110">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="bg-transparent text-primary border-2 border-primary/60 hover:border-primary hover:bg-primary/10 backdrop-blur-md rounded-sm px-16 h-20 font-bold tracking-[0.3em] text-sm transition-all hover:scale-110"
+                >
                   {t("hero.cta.secondary")}
                 </Button>
               </Link>
