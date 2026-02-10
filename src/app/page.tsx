@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, PlayCircle, Star, ShieldCheck, Gem } from "lucide-react";
@@ -5,35 +7,38 @@ import { Button } from "@/components/ui/button";
 import DevelopmentCard from "@/components/development-card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-
-const featuredDevelopments = [
-  {
-    id: "cuatro-bacalar",
-    title: "Cuatro Bacalar",
-    location: "Bacalar, Quintana Roo",
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=800&h=600&auto=format&fit=crop",
-    description: "Una experiencia de vida única frente a la laguna de los siete colores."
-  },
-  {
-    id: "tulum-eco-resort",
-    title: "Tulum Eco Resort",
-    location: "Tulum, México",
-    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=800&h=600&auto=format&fit=crop",
-    description: "Lujo sustentable en el corazón de la selva maya."
-  },
-  {
-    id: "merida-luxury",
-    title: "Mérida Heritage",
-    location: "Mérida, Yucatán",
-    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=800&h=600&auto=format&fit=crop",
-    description: "Elegancia colonial combinada con modernidad absoluta."
-  }
-];
+import { useLanguage } from "@/components/language-context";
 
 export default function Home() {
+  const { t } = useLanguage();
+
+  const featuredDevelopments = [
+    {
+      id: "cuatro-bacalar",
+      title: "Cuatro Bacalar",
+      location: "Bacalar, Quintana Roo",
+      image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=800&h=600&auto=format&fit=crop",
+      description: "Una experiencia de vida única frente a la laguna de los siete colores."
+    },
+    {
+      id: "tulum-eco-resort",
+      title: "Tulum Eco Resort",
+      location: "Tulum, México",
+      image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=800&h=600&auto=format&fit=crop",
+      description: "Lujo sustentable en el corazón de la selva maya."
+    },
+    {
+      id: "merida-luxury",
+      title: "Mérida Heritage",
+      location: "Mérida, Yucatán",
+      image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=800&h=600&auto=format&fit=crop",
+      description: "Elegancia colonial combinada con modernidad absoluta."
+    }
+  ];
+
   return (
     <div className="w-full">
-      {/* Hero Section - Full Screen Video */}
+      {/* Hero Section */}
       <section className="relative h-screen w-full overflow-hidden">
         <video 
           autoPlay 
@@ -47,22 +52,22 @@ export default function Home() {
         
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
           <div className="fade-in space-y-8">
-            <h2 className="text-sm uppercase tracking-[0.5em] mb-4 text-foreground/70 slide-up">Boutique Real Estate</h2>
+            <h2 className="text-sm uppercase tracking-[0.5em] mb-4 text-foreground/70 slide-up">{t("hero.subtitle")}</h2>
             <h1 className="text-6xl md:text-9xl font-headline font-bold leading-tight slide-up text-foreground">
               MIMOSA <span className="text-primary italic">Estates</span>
             </h1>
             <p className="max-w-3xl mx-auto text-lg md:text-xl font-light text-foreground/80 leading-relaxed slide-up">
-              Descubre una colección curada de los desarrollos más exclusivos del Caribe mexicano. Donde la sofisticación arquitectónica se une a la naturaleza virgen.
+              {t("hero.description")}
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center slide-up pt-8">
               <Link href="/desarrollos">
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-12 h-16 font-bold tracking-[0.2em] text-sm border-none transition-all hover:scale-105">
-                  VER DESARROLLOS
+                  {t("hero.cta.primary")}
                 </Button>
               </Link>
               <Link href="/contacto">
                 <Button size="lg" variant="outline" className="text-foreground border-foreground hover:bg-foreground hover:text-background rounded-full px-12 h-16 font-bold tracking-[0.2em] text-sm transition-all hover:scale-105">
-                  CONTACTAR AGENTE
+                  {t("hero.cta.secondary")}
                 </Button>
               </Link>
             </div>
@@ -79,12 +84,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6 fade-in">
             <div className="max-w-2xl">
-              <span className="text-primary font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Portafolio Exclusivo</span>
-              <h2 className="text-4xl md:text-6xl font-headline font-bold">Desarrollos Destacados</h2>
+              <span className="text-primary font-bold tracking-[0.4em] uppercase text-xs mb-4 block">{t("featured.subtitle")}</span>
+              <h2 className="text-4xl md:text-6xl font-headline font-bold">{t("featured.title")}</h2>
             </div>
             <Link href="/desarrollos">
               <Button variant="link" className="text-primary p-0 h-auto font-bold tracking-widest flex items-center gap-2 group">
-                VER TODO EL PORTAFOLIO <PlayCircle size={18} className="group-hover:translate-x-1 transition-transform" />
+                {t("featured.cta")} <PlayCircle size={18} className="group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
@@ -97,7 +102,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section - Empresa Info */}
+      {/* About Section */}
       <section className="py-32 px-6 bg-secondary/30 relative overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl order-2 lg:order-1 slide-up">
@@ -109,10 +114,10 @@ export default function Home() {
             />
           </div>
           <div className="order-1 lg:order-2 fade-in">
-            <span className="text-primary font-bold tracking-[0.4em] uppercase text-xs mb-6 block">Nuestra Esencia</span>
-            <h2 className="text-4xl md:text-6xl font-headline font-bold mb-10">Redefiniendo el Lujo Inmobiliario</h2>
+            <span className="text-primary font-bold tracking-[0.4em] uppercase text-xs mb-6 block">{t("about.essence")}</span>
+            <h2 className="text-4xl md:text-6xl font-headline font-bold mb-10">{t("about.title")}</h2>
             <p className="text-muted-foreground text-xl leading-relaxed mb-10 italic border-l-4 border-primary pl-8">
-              "En MIMOSA Estates, no vendemos propiedades, entregamos legados. Cada proyecto en nuestro portafolio ha sido seleccionado por su diseño arquitectónico superior y ubicación estratégica."
+              "{t("about.quote")}"
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-12">
@@ -120,27 +125,27 @@ export default function Home() {
                 <div className="bg-primary/10 w-12 h-12 flex items-center justify-center rounded-xl text-primary">
                   <Star size={24} />
                 </div>
-                <h4 className="font-bold text-lg">Curaduría de Élite</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">Solo los desarrollos más prestigiosos entran en nuestro radar exclusivo.</p>
+                <h4 className="font-bold text-lg">{t("about.pill1.title")}</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("about.pill1.desc")}</p>
               </div>
               <div className="space-y-4">
                 <div className="bg-primary/10 w-12 h-12 flex items-center justify-center rounded-xl text-primary">
                   <ShieldCheck size={24} />
                 </div>
-                <h4 className="font-bold text-lg">Confianza Total</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">Transparencia legal y financiera absoluta en cada transacción.</p>
+                <h4 className="font-bold text-lg">{t("about.pill2.title")}</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("about.pill2.desc")}</p>
               </div>
               <div className="space-y-4">
                 <div className="bg-primary/10 w-12 h-12 flex items-center justify-center rounded-xl text-primary">
                   <Gem size={24} />
                 </div>
-                <h4 className="font-bold text-lg">Exclusividad</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">Acceso a preventas y oportunidades únicas "off-market" para nuestros clientes.</p>
+                <h4 className="font-bold text-lg">{t("about.pill3.title")}</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t("about.pill3.desc")}</p>
               </div>
             </div>
 
             <Link href="/nosotros">
-              <Button className="rounded-full px-12 h-14 bg-primary text-primary-foreground hover:scale-105 transition-all">CONOCE NUESTRA HISTORIA</Button>
+              <Button className="rounded-full px-12 h-14 bg-primary text-primary-foreground hover:scale-105 transition-all">{t("about.cta")}</Button>
             </Link>
           </div>
         </div>
@@ -149,33 +154,33 @@ export default function Home() {
       {/* Contact Form Section */}
       <section className="py-32 px-6 bg-background" id="contact">
         <div className="max-w-4xl mx-auto text-center mb-20 fade-in">
-          <span className="text-primary font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Hablemos</span>
-          <h2 className="text-4xl md:text-6xl font-headline font-bold mb-8">Inicia Tu Próxima Inversión</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Completa el formulario y un asesor especializado te contactará en menos de 24 horas para una sesión personalizada.</p>
+          <span className="text-primary font-bold tracking-[0.4em] uppercase text-xs mb-4 block">{t("contact.subtitle")}</span>
+          <h2 className="text-4xl md:text-6xl font-headline font-bold mb-8">{t("contact.title")}</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("contact.desc")}</p>
         </div>
 
         <div className="max-w-3xl mx-auto bg-card p-10 md:p-16 rounded-[2.5rem] shadow-2xl border border-border slide-up">
           <form className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Nombre Completo</label>
-                <Input placeholder="Tu nombre..." className="rounded-xl bg-background border-border h-14" />
+                <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{t("contact.form.name")}</label>
+                <Input placeholder="..." className="rounded-xl bg-background border-border h-14" />
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Correo Electrónico</label>
-                <Input type="email" placeholder="ejemplo@correo.com" className="rounded-xl bg-background border-border h-14" />
+                <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{t("contact.form.email")}</label>
+                <Input type="email" placeholder="..." className="rounded-xl bg-background border-border h-14" />
               </div>
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Desarrollo de Interés</label>
-              <Input placeholder="Selecciona un desarrollo..." className="rounded-xl bg-background border-border h-14" />
+              <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{t("contact.form.interest")}</label>
+              <Input placeholder="..." className="rounded-xl bg-background border-border h-14" />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Mensaje</label>
-              <Textarea placeholder="Cuéntanos más sobre lo que buscas..." className="min-h-[140px] rounded-xl bg-background border-border" />
+              <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{t("contact.form.message")}</label>
+              <Textarea placeholder="..." className="min-h-[140px] rounded-xl bg-background border-border" />
             </div>
             <Button className="w-full h-16 rounded-full bg-primary text-primary-foreground font-bold tracking-[0.2em] text-sm hover:bg-primary/90 transition-all hover:scale-[1.02]">
-              ENVIAR SOLICITUD DE INFORMACIÓN
+              {t("contact.form.submit")}
             </Button>
           </form>
         </div>

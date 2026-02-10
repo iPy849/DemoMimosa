@@ -1,4 +1,3 @@
-
 import type {Metadata} from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -6,6 +5,7 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import WhatsAppButton from '@/components/whatsapp-button';
 import { Toaster } from '@/components/ui/toaster';
+import { LanguageProvider } from '@/components/language-context';
 
 export const metadata: Metadata = {
   title: 'MIMOSA Estates | Real Estate Boutique',
@@ -25,15 +25,17 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased min-h-screen flex flex-col">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-          <Navbar />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-          <WhatsAppButton />
-          <Toaster />
-        </ThemeProvider>
+        <LanguageProvider>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+            <Navbar />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+            <WhatsAppButton />
+            <Toaster />
+          </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

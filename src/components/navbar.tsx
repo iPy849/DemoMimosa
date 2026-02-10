@@ -6,11 +6,13 @@ import { useTheme } from "next-themes";
 import { Moon, Sun, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "./language-context";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     setMounted(true);
@@ -22,6 +24,14 @@ export default function Navbar() {
   }, []);
 
   if (!mounted) return null;
+
+  const navItems = [
+    { label: t("nav.home"), href: "/" },
+    { label: t("nav.about"), href: "/nosotros" },
+    { label: t("nav.developments"), href: "/desarrollos" },
+    { label: t("nav.blog"), href: "/blog" },
+    { label: t("nav.contact"), href: "/contacto" },
+  ];
 
   return (
     <nav
@@ -39,17 +49,17 @@ export default function Navbar() {
           <span className="text-foreground/80"> ESTATES</span>
         </Link>
 
-        {/* Navigation Links - Gap-4 is 1rem */}
+        {/* Navigation Links */}
         <div className="hidden md:flex items-center gap-4 absolute left-1/2 -translate-x-1/2">
-          {["Inicio", "Nosotros", "Desarrollos", "Blog", "Contacto"].map((item) => (
+          {navItems.map((item) => (
             <Link
-              key={item}
-              href={item === "Inicio" ? "/" : `/${item.toLowerCase()}`}
+              key={item.href}
+              href={item.href}
               className={cn(
                 "text-sm uppercase tracking-[0.2em] transition-all hover:text-primary text-foreground/90 font-normal"
               )}
             >
-              {item}
+              {item.label}
             </Link>
           ))}
         </div>
@@ -57,10 +67,11 @@ export default function Navbar() {
         {/* Actions */}
         <div className="flex items-center gap-3">
           <button
+            onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
             className="p-2 rounded-full border border-current flex items-center justify-center w-8 h-8 transition-opacity hover:opacity-70 text-foreground"
-            title="Language"
+            title="Toggle Language"
           >
-            <span className="text-[10px] font-bold">ES</span>
+            <span className="text-[10px] font-bold">{language.toUpperCase()}</span>
           </button>
 
           <Button
@@ -77,7 +88,7 @@ export default function Navbar() {
               className="hidden sm:flex items-center gap-2 rounded-full px-6 transition-all duration-500 bg-primary text-primary-foreground hover:bg-primary/90"
             >
               <MessageSquare size={18} />
-              <span className="text-xs tracking-widest font-bold">CONTACTO</span>
+              <span className="text-xs tracking-widest font-bold">{t("nav.contact").toUpperCase()}</span>
             </Button>
           </Link>
         </div>
