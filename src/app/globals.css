@@ -4,13 +4,13 @@
 
 @layer base {
   :root {
-    --background: 36 33% 98%; /* Even lighter cream */
+    --background: 36 33% 98%; /* Bone White / Cream */
     --foreground: 0 0% 12%; 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 12%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 12%;
-    --primary: 34 19% 40%; /* Darker version of #BFAF9C for readability */
+    --primary: 34 19% 40%; /* Darkened Golden Beige for Light Mode Contrast */
     --primary-foreground: 36 33% 98%;
     --secondary: 34 19% 92%;
     --secondary-foreground: 34 19% 40%;
@@ -23,16 +23,16 @@
     --border: 34 15% 85%;
     --input: 34 15% 85%;
     --ring: 34 19% 40%;
-    --radius: 0.5rem;
+    --radius: 2.5rem; /* High-end rounded corners */
   }
   .dark {
-    --background: 0 0% 5%;
+    --background: 0 0% 5%; /* Deep Black */
     --foreground: 36 33% 98%;
     --card: 0 0% 8%;
     --card-foreground: 36 33% 98%;
     --popover: 0 0% 8%;
     --popover-foreground: 36 33% 98%;
-    --primary: 34 19% 75%; /* The original light #BFAF9C tone for dark mode */
+    --primary: 34 19% 75%; /* Original Golden Beige #BFAF9C */
     --primary-foreground: 0 0% 5%;
     --secondary: 0 0% 12%;
     --secondary-foreground: 34 19% 75%;
@@ -51,7 +51,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground transition-colors duration-500 font-body antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline;
@@ -59,11 +59,11 @@
 }
 
 .fade-in {
-  animation: fadeIn 1.2s ease-out forwards;
+  animation: fadeIn 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
 }
 
 .slide-up {
-  animation: slideUp 1s ease-out forwards;
+  animation: slideUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
 @keyframes fadeIn {
@@ -72,7 +72,7 @@
 }
 
 @keyframes slideUp {
-  from { transform: translateY(40px); opacity: 0; }
+  from { transform: translateY(30px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 
@@ -80,6 +80,6 @@
   @apply backdrop-blur-xl bg-background/90 border-b shadow-sm;
 }
 
-.luxury-text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#BFAF9C] to-[#D4AF37];
+.luxury-shadow {
+  shadow: 0 20px 50px rgba(0,0,0,0.05);
 }

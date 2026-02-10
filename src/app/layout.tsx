@@ -9,7 +9,7 @@ import { LanguageProvider } from '@/components/language-context';
 
 export const metadata: Metadata = {
   title: 'MIMOSA Estates | Real Estate Boutique',
-  description: 'Exclusivity and Prestige in the Caribbean. Luxury developments and properties.',
+  description: 'Exclusividad y Prestigio en el Caribe. Desarrollos y propiedades de lujo.',
 };
 
 export default function RootLayout({
@@ -22,9 +22,9 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased min-h-screen flex flex-col">
+      <body className="antialiased min-h-screen flex flex-col selection:bg-primary/20 selection:text-primary">
         <LanguageProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
             <Navbar />
