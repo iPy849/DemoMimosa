@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -68,7 +69,7 @@ export default function Home() {
                 </Button>
               </Link>
               <Link href="/contacto">
-                <Button size="lg" variant="outline" className="text-white border-2 border-white/40 hover:border-white hover:bg-white/10 backdrop-blur-md rounded-full px-16 h-20 font-bold tracking-[0.3em] text-sm transition-all hover:scale-110">
+                <Button size="lg" variant="outline" className="bg-transparent text-primary border-2 border-primary hover:bg-primary/10 backdrop-blur-md rounded-full px-16 h-20 font-bold tracking-[0.3em] text-sm transition-all hover:scale-110">
                   {t("hero.cta.secondary")}
                 </Button>
               </Link>
