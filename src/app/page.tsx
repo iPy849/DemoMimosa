@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -51,7 +52,18 @@ export default function Home() {
         </video>
         
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
-          <div className="fade-in space-y-8">
+          <div className="fade-in space-y-8 flex flex-col items-center">
+            {/* Founder Image */}
+            <div className="relative w-32 h-40 md:w-40 md:h-52 mb-6 overflow-hidden shadow-2xl border-4 border-background/20 slide-up group">
+              <Image 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&h=1000&auto=format&fit=crop"
+                alt="Founder"
+                fill
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                data-ai-hint="professional man luxury"
+              />
+            </div>
+
             <h2 className="text-sm uppercase tracking-[0.5em] mb-4 text-foreground/70 slide-up">{t("hero.subtitle")}</h2>
             <h1 className="text-6xl md:text-9xl font-headline font-bold leading-tight slide-up text-foreground">
               MIMOSA <span className="text-primary italic">Estates</span>
