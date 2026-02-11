@@ -21,7 +21,11 @@ const { dev, enDev } = Astro.props;
 const gallery = dev.gallery ?? [dev.image];
 ---
 
-<PageLayout title={`${dev.title} | MIMOSA`}>
+<PageLayout
+  title={`${dev.title} | MIMOSA Real Estate`}
+  description={dev.shortDescription ?? dev.description}
+  keywords={`desarrollo, ${dev.title}, ${dev.location}, lujo, inversion, caribe mexicano`}
+>
   <section class="pt-32 pb-24 px-6">
     <div class="max-w-7xl mx-auto">
       <!-- Back link -->

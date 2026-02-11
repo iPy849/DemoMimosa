@@ -7,7 +7,11 @@ import { getCollection } from 'astro:content';
 const esDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es');
 ---
 
-<PageLayout title="Desarrollos | MIMOSA Developments">
+<PageLayout
+  title="Desarrollos Exclusivos | MIMOSA Real Estate"
+  description="Explora nuestro portafolio exclusivo de desarrollos inmobiliarios de lujo en Bacalar, Tulum, Merida, Punta Mita, Cancun y Los Cabos."
+  keywords="desarrollos, portafolio, bacalar, tulum, merida, cancun, punta mita, los cabos, lujo, inversion inmobiliaria"
+>
   <section class="pt-32 pb-24 px-6">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16 reveal" data-reveal="fade">

@@ -9,7 +9,12 @@ import { getCollection } from 'astro:content';
 const featuredDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es' && data.featured === true);
 ---
 
-<PageLayout>
+<PageLayout
+  title="MIMOSA Real Estate | Boutique Real Estate en el Caribe Mexicano"
+  description="Descubre una coleccion curada de los desarrollos mas exclusivos del Caribe mexicano. Propiedades de lujo en Bacalar, Tulum, Merida, Cancun y mas."
+  keywords="real estate, bienes raices, lujo, caribe mexicano, bacalar, tulum, merida, desarrollos, inversion, propiedades exclusivas"
+  navTransparent={true}
+>
   <!-- Hero Section -->
   <section class="relative h-screen flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">

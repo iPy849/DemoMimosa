@@ -15,7 +15,11 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<PageLayout title={`${post.data.title} | MIMOSA Developments`}>
+<PageLayout
+  title={`${post.data.title} | MIMOSA Real Estate`}
+  description={post.data.excerpt}
+  keywords={`blog, ${post.data.title}, caribe mexicano, lujo, bienes raices`}
+>
   <section class="pt-32 pb-24 px-6">
     <div class="max-w-4xl mx-auto">
       <a href="/blog" class="inline-flex items-center gap-2 text-primary text-sm tracking-wider uppercase font-bold font-body hover:underline mb-8">

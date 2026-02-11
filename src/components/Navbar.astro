@@ -1,6 +1,12 @@
 ---
 import { t } from '../i18n/utils';
 
+interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
+
 const navItems = [
   { key: "nav.home", href: '/' },
   { key: "nav.about", href: '/about' },
@@ -10,7 +16,7 @@ const navItems = [
 ];
 ---
 
-<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 nav-transparent">
+<nav id="main-nav" class:list={["fixed top-0 left-0 right-0 z-50 transition-all duration-500", transparent ? "nav-transparent" : "glass-nav"]} data-transparent={transparent ? "true" : "false"}>
   <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
     <a href="/" class="flex flex-col items-start">
       <span class="text-2xl font-headline font-bold tracking-[0.15em] nav-text">MIMOSA</span>
@@ -82,15 +88,20 @@ const navItems = [
   function __initNav() {
     var nav = document.getElementById('main-nav');
 
+    var isTransparent = nav.getAttribute('data-transparent') === 'true';
+
     function updateNav() {
       if (!nav) return;
-      if (window.scrollY > 50) {
-        nav.classList.add('glass-nav');
-        nav.classList.remove('nav-transparent');
-      } else {
-        nav.classList.remove('glass-nav');
-        nav.classList.add('nav-transparent');
+      if (isTransparent) {
+        if (window.scrollY > 50) {
+          nav.classList.add('glass-nav');
+          nav.classList.remove('nav-transparent');
+        } else {
+          nav.classList.remove('glass-nav');
+          nav.classList.add('nav-transparent');
+        }
       }
+      // If not transparent, it always stays glass-nav (already set via class:list)
     }
     window.removeEventListener('scroll', updateNav);
     window.addEventListener('scroll', updateNav);

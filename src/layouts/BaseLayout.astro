@@ -6,15 +6,18 @@ import es from '../i18n/es.json';
 interface Props {
   title?: string;
   description?: string;
+  keywords?: string;
 }
 
 const {
-  title = 'MIMOSA Developments | Boutique Real Estate',
-  description = 'Exclusividad y Prestigio en el Caribe. Desarrollos y propiedades de lujo.',
+  title = 'MIMOSA Real Estate | Boutique Real Estate',
+  description = 'Exclusividad y Prestigio en el Caribe Mexicano. Desarrollos y propiedades de lujo en Bacalar, Tulum, Merida, Cancun y mas.',
+  keywords = 'real estate, bienes raices, lujo, caribe mexicano, desarrollos inmobiliarios, propiedades exclusivas',
 } = Astro.props;
 
 const enJSON = getEnJSON();
 const esJSON = JSON.stringify(es);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://mimosarealestate.com');
 ---
 
 <!doctype html>
@@ -23,6 +26,10 @@ const esJSON = JSON.stringify(es);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="MIMOSA Real Estate" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL.href} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Forum&display=swap" rel="stylesheet" />

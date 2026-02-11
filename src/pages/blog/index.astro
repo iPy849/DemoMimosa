@@ -7,7 +7,11 @@ const allPosts = await getCollection('blog', ({ data }) => data.lang === 'es');
 const posts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
-<PageLayout title="Blog | MIMOSA Developments">
+<PageLayout
+  title="Blog & Estilo de Vida | MIMOSA Real Estate"
+  description="Articulos sobre tendencias de diseno, oportunidades de inversion y estilo de vida en el Caribe Mexicano."
+  keywords="blog, estilo de vida, tendencias, diseno, inversion, caribe mexicano, bienes raices lujo"
+>
   <section class="pt-32 pb-24 px-6">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16 reveal" data-reveal="fade">
