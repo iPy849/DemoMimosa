@@ -3,7 +3,7 @@ import { t } from '../i18n/utils';
 ---
 
 <!-- Floating WhatsApp: icon-only circle + tooltip after 60s -->
-<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3" transition:persist>
   <!-- Message bubble (hidden initially, shown after 60s) -->
   <div
     id="wa-bubble"

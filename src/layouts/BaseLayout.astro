@@ -1,5 +1,6 @@
 ---
 import '../styles/globals.css';
+import { ViewTransitions } from 'astro:transitions';
 import { getEnJSON } from '../i18n/utils';
 import es from '../i18n/es.json';
 
@@ -27,6 +28,18 @@ const esJSON = JSON.stringify(es);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Forum&display=swap" rel="stylesheet" />
     <title>{title}</title>
+    <!-- Blocking: prevent FOUC by applying theme + lang BEFORE first paint -->
+    <script is:inline>
+      (function(){
+        var t = localStorage.getItem('theme');
+        if (!t) t = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+        if (t === 'dark') document.documentElement.classList.add('dark');
+        var l = localStorage.getItem('lang');
+        if (!l) { var b = navigator.language || 'es'; l = b.startsWith('en') ? 'en' : 'es'; }
+        document.documentElement.lang = l;
+      })();
+    </script>
+    <ViewTransitions />
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />
@@ -35,29 +48,10 @@ const esJSON = JSON.stringify(es);
       window.__enTranslations = JSON.parse(enJSON);
       window.__esTranslations = JSON.parse(esJSON);
 
-      // Theme initialization
-      (function() {
-        const theme = (() => {
-          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-            return localStorage.getItem('theme');
-          }
-          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        })();
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-      })();
+      function __applyLangAndReveal() {
+        var lang = document.documentElement.lang || 'es';
 
-      // Language: check stored preference first, then browser language, fallback to Spanish
-      (function() {
-        var storedLang = localStorage.getItem('lang');
-        var lang;
-        if (storedLang) {
-          lang = storedLang;
-        } else {
-          var browserLang = navigator.language || (navigator.languages && navigator.languages[0]) || 'es';
-          lang = browserLang.startsWith('en') ? 'en' : 'es';
-        }
-
-        document.documentElement.lang = lang;
+        // Apply translations if EN
         if (lang === 'en') {
           var en = window.__enTranslations;
           document.querySelectorAll('[data-t]').forEach(function(el) {
@@ -68,27 +62,31 @@ const esJSON = JSON.stringify(es);
           });
         }
 
-      // Update lang toggle buttons
-      var label = lang === 'es' ? 'ES' : 'EN';
-      document.querySelectorAll('#lang-toggle, #lang-toggle-mobile').forEach(function(btn) {
-        btn.textContent = label;
-      });
-    })();
-
-    // Scroll-reveal observer
-    (function() {
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            observer.unobserve(entry.target);
-          }
+        // Update lang toggle buttons
+        var label = lang === 'es' ? 'ES' : 'EN';
+        document.querySelectorAll('#lang-toggle, #lang-toggle-mobile').forEach(function(btn) {
+          btn.textContent = label;
         });
-      }, { threshold: 0.15 });
-      document.querySelectorAll('.reveal').forEach(function(el) {
-        observer.observe(el);
-      });
-    })();
+
+        // Scroll-reveal observer
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal:not(.revealed)').forEach(function(el) {
+          observer.observe(el);
+        });
+      }
+
+      // Run on first load
+      __applyLangAndReveal();
+
+      // Re-run after View Transition completes (Astro swaps the DOM)
+      document.addEventListener('astro:after-swap', __applyLangAndReveal);
     </script>
   </body>
 </html>
