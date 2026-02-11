@@ -1,22 +1,7 @@
-export const languages = {
-  es: 'Espanol',
-  en: 'English',
-} as const;
+export type Language = 'es' | 'en';
+export const defaultLang: Language = 'es';
 
-export const defaultLang = 'es' as const;
-export type Language = keyof typeof languages;
-
-// Route mapping: canonical ES routes -> EN equivalents
-const routeMap: Record<string, Record<Language, string>> = {
-  '/': { es: '/', en: '/en' },
-  '/nosotros': { es: '/nosotros', en: '/en/about' },
-  '/desarrollos': { es: '/desarrollos', en: '/en/developments' },
-  '/blog': { es: '/blog', en: '/en/blog' },
-  '/contacto': { es: '/contacto', en: '/en/contact' },
-  '/sitemap': { es: '/sitemap', en: '/en/sitemap' },
-};
-
-export const ui = {
+export const ui: Record<Language, Record<string, string>> = {
   es: {
     "nav.home": "Inicio",
     "nav.about": "Nosotros",
@@ -24,7 +9,6 @@ export const ui = {
     "nav.blog": "Blog",
     "nav.contact": "Contacto",
     "hero.subtitle": "Boutique Real Estate",
-    "hero.title": "MIMOSA Developments",
     "hero.description": "Descubre una coleccion curada de los desarrollos mas exclusivos del Caribe mexicano. Donde la sofisticacion arquitectonica se une a la naturaleza virgen.",
     "hero.cta.primary": "VER DESARROLLOS",
     "hero.cta.secondary": "CONTACTAR AGENTE",
@@ -53,21 +37,25 @@ export const ui = {
     "contact.desc": "Completa el formulario y un asesor especializado te contactara en menos de 24 horas para una sesion personalizada.",
     "contact.form.name": "Nombre Completo",
     "contact.form.email": "Correo Electronico",
-    "contact.form.whatsapp": "WhatsApp",
     "contact.form.interest": "Desarrollo de Interes",
     "contact.form.message": "Mensaje",
-    "contact.form.submit": "ENVIAR SOLICITUD DE INFORMACION",
+    "contact.form.submit": "ENVIAR SOLICITUD",
     "contact.form.success": "Su solicitud ha sido enviada exitosamente. Un asesor lo contactara pronto.",
     "contact.form.error": "Hubo un error al enviar su solicitud. Por favor intente de nuevo.",
+    "contact.page.how": "Como podemos ayudarte?",
+    "contact.page.desc": "Estamos aqui para asesorarte en tu proxima gran inversion.",
+    "contact.page.email": "Email",
+    "contact.page.phone": "Telefono",
+    "contact.page.office": "Oficina",
+    "contact.page.hours": "Horario",
+    "contact.page.hours.value": "Lun - Vie: 9:00 - 18:00",
     "footer.nav": "Navegacion",
-    "footer.explore": "Explorar",
     "footer.contact": "Contacto",
     "footer.rights": "Todos los derechos reservados.",
     "footer.terms": "Terminos y Condiciones",
     "footer.privacy": "Politica de Privacidad",
     "footer.brand_desc": "Definiendo el lujo inmobiliario en el Caribe. Proyectos exclusivos disenados para un estilo de vida inigualable.",
     "dev.back": "VOLVER A DESARROLLOS",
-    "dev.dossier": "SOLICITAR DOSSIER",
     "dev.location": "Ubicacion Estrategica",
     "dev.immersive": "Experiencia Inmersiva",
     "dev.360": "Recorrido Virtual 360",
@@ -75,23 +63,12 @@ export const ui = {
     "blog.subtitle": "Inspiracion",
     "blog.title": "Blog & Estilo de Vida",
     "blog.read_more": "LEER MAS",
+    "blog.back": "Volver al blog",
     "sitemap.title": "Mapa del Sitio",
     "sitemap.desc": "Explora todas las secciones de nuestro portal.",
     "sitemap.sec1": "Principales",
     "sitemap.sec2": "Desarrollos",
     "sitemap.sec3": "Legal",
-    "common.loading": "Cargando...",
-    "common.back": "Regresar",
-    "common.share": "Compartir:",
-    "common.contact_agent": "CONTACTAR AGENTE",
-    "contact.page.how": "Como podemos ayudarte?",
-    "contact.page.desc": "Estamos aqui para asesorarte en tu proxima gran inversion. Ya sea que busques una residencia vacacional o diversificar tu portafolio, nuestro equipo esta a tu disposicion.",
-    "contact.page.email": "Email",
-    "contact.page.phone": "Telefono",
-    "contact.page.office": "Oficina",
-    "contact.page.hours": "Horario",
-    "contact.page.hours.value": "Lun - Vie: 9:00 - 18:00",
-    "contact.page.submit": "ENVIAR SOLICITUD",
     "whatsapp.text": "En que podemos ayudarte?",
   },
   en: {
@@ -101,7 +78,6 @@ export const ui = {
     "nav.blog": "Blog",
     "nav.contact": "Contact",
     "hero.subtitle": "Boutique Real Estate",
-    "hero.title": "MIMOSA Developments",
     "hero.description": "Discover a curated collection of the most exclusive developments in the Mexican Caribbean. Where architectural sophistication meets virgin nature.",
     "hero.cta.primary": "VIEW DEVELOPMENTS",
     "hero.cta.secondary": "CONTACT AGENT",
@@ -130,21 +106,25 @@ export const ui = {
     "contact.desc": "Complete the form and a specialized advisor will contact you in less than 24 hours for a personalized session.",
     "contact.form.name": "Full Name",
     "contact.form.email": "Email Address",
-    "contact.form.whatsapp": "WhatsApp",
     "contact.form.interest": "Development of Interest",
     "contact.form.message": "Message",
-    "contact.form.submit": "SEND INFORMATION REQUEST",
+    "contact.form.submit": "SEND REQUEST",
     "contact.form.success": "Your request has been sent successfully. An advisor will contact you soon.",
     "contact.form.error": "There was an error sending your request. Please try again.",
+    "contact.page.how": "How can we help you?",
+    "contact.page.desc": "We are here to advise you on your next great investment.",
+    "contact.page.email": "Email",
+    "contact.page.phone": "Phone",
+    "contact.page.office": "Office",
+    "contact.page.hours": "Hours",
+    "contact.page.hours.value": "Mon - Fri: 9:00 - 18:00",
     "footer.nav": "Navigation",
-    "footer.explore": "Explore",
     "footer.contact": "Contact",
     "footer.rights": "All rights reserved.",
     "footer.terms": "Terms & Conditions",
     "footer.privacy": "Privacy Policy",
     "footer.brand_desc": "Defining luxury real estate in the Caribbean. Exclusive projects designed for an unparalleled lifestyle.",
     "dev.back": "BACK TO DEVELOPMENTS",
-    "dev.dossier": "REQUEST DOSSIER",
     "dev.location": "Strategic Location",
     "dev.immersive": "Immersive Experience",
     "dev.360": "360 Virtual Tour",
@@ -152,94 +132,22 @@ export const ui = {
     "blog.subtitle": "Inspiration",
     "blog.title": "Blog & Lifestyle",
     "blog.read_more": "READ MORE",
+    "blog.back": "Back to blog",
     "sitemap.title": "Sitemap",
     "sitemap.desc": "Explore all sections of our portal.",
     "sitemap.sec1": "Main",
     "sitemap.sec2": "Developments",
     "sitemap.sec3": "Legal",
-    "common.loading": "Loading...",
-    "common.back": "Go Back",
-    "common.share": "Share:",
-    "common.contact_agent": "CONTACT AGENT",
-    "contact.page.how": "How can we help you?",
-    "contact.page.desc": "We are here to advise you on your next great investment. Whether you are looking for a vacation residence or to diversify your portfolio, our team is at your disposal.",
-    "contact.page.email": "Email",
-    "contact.page.phone": "Phone",
-    "contact.page.office": "Office",
-    "contact.page.hours": "Hours",
-    "contact.page.hours.value": "Mon - Fri: 9:00 - 18:00",
-    "contact.page.submit": "SEND REQUEST",
     "whatsapp.text": "How can we help you?",
   },
-} as const;
+};
 
-export type TranslationKey = keyof typeof ui['es'];
-
-export function getLangFromUrl(url: URL): Language {
-  const [, lang] = url.pathname.split('/');
-  if (lang in languages) return lang as Language;
-  return defaultLang;
+/** Build-time: returns Spanish text, used as SSG default */
+export function t(key: string): string {
+  return ui.es[key] ?? key;
 }
 
-export function useTranslations(lang: Language) {
-  return function t(key: TranslationKey): string {
-    return ui[lang]?.[key] || ui[defaultLang][key] || key;
-  };
-}
-
-/**
- * Generates a localized path. For ES (default), paths stay as-is in Spanish.
- * For EN, translates the known route segments to English equivalents.
- */
-export function localePath(lang: Language, path: string): string {
-  const cleanPath = path.startsWith('/') ? path : `/${path}`;
-
-  if (lang === defaultLang) return cleanPath;
-
-  // Check direct route map match first
-  const mapped = routeMap[cleanPath];
-  if (mapped) return mapped[lang];
-
-  // Handle dynamic routes like /desarrollos/cuatro-bacalar -> /en/developments/cuatro-bacalar
-  if (cleanPath.startsWith('/desarrollos/')) {
-    const slug = cleanPath.replace('/desarrollos/', '');
-    return `/en/developments/${slug}`;
-  }
-  if (cleanPath.startsWith('/blog/')) {
-    const slug = cleanPath.replace('/blog/', '');
-    return `/en/blog/${slug}`;
-  }
-
-  return `/en${cleanPath}`;
-}
-
-/**
- * Get the alternate language URL for language toggle.
- */
-export function getAlternateLocaleUrl(url: URL, currentLang: Language): string {
-  const pathname = url.pathname;
-  const targetLang = currentLang === 'es' ? 'en' : 'es';
-
-  if (currentLang === 'es') {
-    // ES -> EN: translate routes
-    if (pathname === '/') return '/en';
-    if (pathname === '/nosotros') return '/en/about';
-    if (pathname === '/contacto') return '/en/contact';
-    if (pathname === '/sitemap') return '/en/sitemap';
-    if (pathname.startsWith('/desarrollos/')) return `/en/developments/${pathname.replace('/desarrollos/', '')}`;
-    if (pathname === '/desarrollos') return '/en/developments';
-    if (pathname.startsWith('/blog/')) return `/en/blog/${pathname.replace('/blog/', '')}`;
-    if (pathname === '/blog') return '/en/blog';
-    return `/en${pathname}`;
-  } else {
-    // EN -> ES: translate routes back
-    const p = pathname.replace(/^\/en\/?/, '/');
-    if (p === '/' || p === '') return '/';
-    if (p === '/about') return '/nosotros';
-    if (p === '/contact') return '/contacto';
-    if (p.startsWith('/developments/')) return `/desarrollos/${p.replace('/developments/', '')}`;
-    if (p === '/developments') return '/desarrollos';
-    // blog and sitemap are the same slug
-    return p;
-  }
+/** Serialized English translations for client-side hydration */
+export function getEnTranslationsJSON(): string {
+  return JSON.stringify(ui.en);
 }
