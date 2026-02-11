@@ -4,7 +4,7 @@ slug: "design-trends-2024"
 excerpt: "Discover how natural materials and home automation are redefining the concept of an exclusive home."
 date: "May 24, 2024"
 author: "Elena Rivera"
-image: "https://images.unsplash.com/photo-1616489953149-8f6f5986872a?q=80&w=800&h=500&auto=format&fit=crop"
+image: "/assets/images/blog-design-trends.jpg"
 lang: "en"
 pairId: "design-trends-2024"
 ---

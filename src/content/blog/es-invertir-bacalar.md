@@ -4,7 +4,7 @@ slug: "invertir-bacalar"
 excerpt: "Analizamos el crecimiento exponencial de la zona y por que el lujo descalzo es la tendencia ganadora."
 date: "12 Abril, 2024"
 author: "Marco Sanchez"
-image: "https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?q=80&w=800&h=500&auto=format&fit=crop"
+image: "/assets/images/blog-invest-bacalar.jpg"
 lang: "es"
 pairId: "invest-bacalar"
 ---

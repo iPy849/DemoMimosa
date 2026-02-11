@@ -4,7 +4,7 @@ slug: "tendencias-diseno-2024"
 excerpt: "Descubre como los materiales naturales y la domotica estan redefiniendo el concepto de hogar exclusivo."
 date: "24 Mayo, 2024"
 author: "Elena Rivera"
-image: "https://images.unsplash.com/photo-1616489953149-8f6f5986872a?q=80&w=800&h=500&auto=format&fit=crop"
+image: "/assets/images/blog-design-trends.jpg"
 lang: "es"
 pairId: "design-trends-2024"
 ---

@@ -4,7 +4,7 @@ slug: "invest-bacalar"
 excerpt: "We analyze the exponential growth of the area and why barefoot luxury is the winning trend."
 date: "April 12, 2024"
 author: "Marco Sanchez"
-image: "https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?q=80&w=800&h=500&auto=format&fit=crop"
+image: "/assets/images/blog-invest-bacalar.jpg"
 lang: "en"
 pairId: "invest-bacalar"
 ---
