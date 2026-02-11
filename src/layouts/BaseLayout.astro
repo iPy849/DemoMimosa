@@ -25,7 +25,7 @@ const esJSON = JSON.stringify(es);
     <meta name="description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Forum&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Forum&display=swap" rel="stylesheet" />
     <title>{title}</title>
     <!-- Blocking: prevent FOUC by applying theme + lang BEFORE first paint -->
     <script is:inline>
@@ -36,9 +36,10 @@ const esJSON = JSON.stringify(es);
         var l = localStorage.getItem('lang');
         if (!l) { var b = navigator.language || 'es'; l = b.startsWith('en') ? 'en' : 'es'; }
         document.documentElement.lang = l;
+        // Mark that JS is running so CSS can safely hide .reveal elements
+        document.documentElement.classList.add('js');
       })();
     </script>
-    <ViewTransitions />
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />
@@ -81,11 +82,8 @@ const esJSON = JSON.stringify(es);
         });
       }
 
-      // Run on first load
+      // Run on load
       __applyLangAndReveal();
-
-      // Re-run after View Transition completes (Astro swaps the DOM)
-      document.addEventListener('astro:after-swap', __applyLangAndReveal);
     </script>
   </body>
 </html>

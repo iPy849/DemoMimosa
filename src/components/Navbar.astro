@@ -10,7 +10,7 @@ const navItems = [
 ];
 ---
 
-<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 nav-transparent" transition:persist>
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 nav-transparent">
   <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
     <a href="/" class="flex flex-col items-start">
       <span class="text-2xl font-headline font-bold tracking-[0.15em] nav-text">MIMOSA</span>
@@ -157,8 +157,5 @@ const navItems = [
     });
   }
 
-  // Run on first load
   __initNav();
-  // Re-run after View Transition swap
-  document.addEventListener('astro:after-swap', __initNav);
 </script>
