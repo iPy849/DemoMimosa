@@ -19,20 +19,11 @@ const navItems = [
 
 <nav id="main-nav" class:list={["fixed top-0 left-0 right-0 z-50 transition-all duration-500", transparent ? "nav-transparent" : "glass-nav"]} data-transparent={transparent ? "true" : "false"}>
   <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
-    <!-- Logo: show light version on transparent (dark hero bg), dark version otherwise -->
+    <!-- Logo: dark logo for light mode, light logo for dark mode.
+         When nav-transparent (hero), always show light logo via CSS override. -->
     <a href="/" class="block shrink-0">
-      <!-- Dark logo (for glass-nav / solid backgrounds) -->
-      <img
-        src="/assets/logo-dark.svg"
-        alt="MIMOSA Real Estate"
-        class:list={["h-14 w-auto nav-logo-dark", transparent ? "hidden" : "block dark:hidden"]}
-      />
-      <!-- Light logo (for transparent nav over hero, or dark mode) -->
-      <img
-        src="/assets/logo-light.svg"
-        alt="MIMOSA Real Estate"
-        class:list={["h-14 w-auto nav-logo-light", transparent ? "block dark:block" : "hidden dark:block"]}
-      />
+      <img src="/assets/logo-dark.svg" alt="MIMOSA Real Estate" class="h-14 w-auto nav-logo-dark block dark:hidden" />
+      <img src="/assets/logo-light.svg" alt="MIMOSA Real Estate" class="h-14 w-auto nav-logo-light hidden dark:block" />
     </a>
 
     <!-- Desktop nav links -->
@@ -108,21 +99,13 @@ const navItems = [
     var isTransparent = nav.getAttribute('data-transparent') === 'true';
 
     function updateNav() {
-      if (!nav) return;
-      if (isTransparent) {
-        if (window.scrollY > 50) {
-          nav.classList.add('glass-nav');
-          nav.classList.remove('nav-transparent');
-          // Swap logos: show dark logo in light mode when scrolled
-          nav.querySelectorAll('.nav-logo-dark').forEach(function(el) { el.classList.remove('hidden'); el.classList.add('dark:hidden'); });
-          nav.querySelectorAll('.nav-logo-light').forEach(function(el) { el.classList.add('hidden'); el.classList.remove('dark:hidden'); el.classList.add('dark:block'); });
-        } else {
-          nav.classList.remove('glass-nav');
-          nav.classList.add('nav-transparent');
-          // Swap logos: show light logo on transparent hero
-          nav.querySelectorAll('.nav-logo-dark').forEach(function(el) { el.classList.add('hidden'); el.classList.remove('dark:hidden'); });
-          nav.querySelectorAll('.nav-logo-light').forEach(function(el) { el.classList.remove('hidden'); });
-        }
+      if (!nav || !isTransparent) return;
+      if (window.scrollY > 50) {
+        nav.classList.add('glass-nav');
+        nav.classList.remove('nav-transparent');
+      } else {
+        nav.classList.remove('glass-nav');
+        nav.classList.add('nav-transparent');
       }
     }
     window.removeEventListener('scroll', updateNav);

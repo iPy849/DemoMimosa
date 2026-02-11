@@ -168,4 +168,8 @@
   & .nav-text-muted { color: rgba(255, 255, 255, 0.7); }
   & .nav-link { color: rgba(255, 255, 255, 0.7); }
   & .nav-link:hover { color: #fff; }
+
+  /* Over the dark hero: always show light logo, hide dark logo */
+  & .nav-logo-dark { display: none !important; }
+  & .nav-logo-light { display: block !important; }
 }
