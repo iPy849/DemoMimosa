@@ -1,5 +1,6 @@
 ---
 import { t } from '../i18n/utils';
+import SocialLinks from './SocialLinks.astro';
 
 interface Props {
   transparent?: boolean;
@@ -18,11 +19,23 @@ const navItems = [
 
 <nav id="main-nav" class:list={["fixed top-0 left-0 right-0 z-50 transition-all duration-500", transparent ? "nav-transparent" : "glass-nav"]} data-transparent={transparent ? "true" : "false"}>
   <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
-    <a href="/" class="flex flex-col items-start">
-      <span class="text-2xl font-headline font-bold tracking-[0.15em] nav-text">MIMOSA</span>
-      <span class="text-[10px] tracking-[0.35em] uppercase nav-text-muted">REAL ESTATE</span>
+    <!-- Logo: show light version on transparent (dark hero bg), dark version otherwise -->
+    <a href="/" class="block shrink-0">
+      <!-- Dark logo (for glass-nav / solid backgrounds) -->
+      <img
+        src="/assets/logo-dark.svg"
+        alt="MIMOSA Real Estate"
+        class:list={["h-14 w-auto nav-logo-dark", transparent ? "hidden" : "block dark:hidden"]}
+      />
+      <!-- Light logo (for transparent nav over hero, or dark mode) -->
+      <img
+        src="/assets/logo-light.svg"
+        alt="MIMOSA Real Estate"
+        class:list={["h-14 w-auto nav-logo-light", transparent ? "block dark:block" : "hidden dark:block"]}
+      />
     </a>
 
+    <!-- Desktop nav links -->
     <div class="hidden lg:flex items-center gap-4">
       {navItems.map((item) => (
         <a href={item.href} class="text-sm uppercase tracking-[0.2em] nav-link transition-colors font-body">
@@ -31,63 +44,67 @@ const navItems = [
       ))}
     </div>
 
+    <!-- Desktop actions -->
     <div class="hidden lg:flex items-center gap-3">
-      <!-- Language toggle -->
       <button id="lang-toggle" class="rounded-full nav-text hover:bg-white/10 h-11 w-11 border-2 border-transparent hover:border-white/20 flex items-center justify-center text-xs font-bold font-body uppercase" aria-label="Toggle language">
         ES
       </button>
-
-      <!-- Theme toggle -->
       <button id="theme-toggle" class="rounded-full nav-text hover:bg-white/10 h-11 w-11 border-2 border-transparent hover:border-white/20 flex items-center justify-center" aria-label="Toggle theme">
         <svg class="dark:hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
         <svg class="hidden dark:block w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
       </button>
-
       <a href="/contact" class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-sm text-xs tracking-[0.15em] font-bold font-body hover:bg-primary/90 transition-colors">
         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
         <span data-t="nav.contact">{t("nav.contact").toUpperCase()}</span>
       </a>
     </div>
 
+    <!-- Mobile hamburger -->
     <button id="mobile-menu-toggle" class="lg:hidden nav-text p-2" aria-label="Open menu">
       <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
     </button>
   </div>
 </nav>
 
-<!-- Mobile menu -->
-<div id="mobile-menu" class="fixed inset-0 z-[60] bg-background hidden flex-col items-center justify-center">
-  <button id="mobile-menu-close" class="absolute top-6 right-6 text-foreground p-2" aria-label="Close menu">
-    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-  </button>
+<!-- Mobile slide-in menu (right side, 50% width) -->
+<div id="mobile-menu-overlay" class="fixed inset-0 z-[59] bg-black/40 hidden" aria-hidden="true"></div>
+<div id="mobile-menu" class="fixed top-0 right-0 bottom-0 z-[60] w-3/5 max-w-xs bg-background shadow-2xl translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+  <!-- Header -->
+  <div class="flex items-center justify-between px-5 h-20 border-b border-border">
+    <img src="/assets/logo-dark.svg" alt="MIMOSA Real Estate" class="h-10 w-auto dark:hidden" />
+    <img src="/assets/logo-light.svg" alt="MIMOSA Real Estate" class="h-10 w-auto hidden dark:block" />
+    <button id="mobile-menu-close" class="text-foreground p-2 -mr-2" aria-label="Close menu">
+      <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </div>
 
-  <a href="/" class="text-2xl font-headline font-bold mb-16 text-foreground">
-    MIMOSA REAL ESTATE
-  </a>
-
-  <div class="flex flex-col items-center gap-8">
+  <!-- Nav links -->
+  <nav class="flex-1 flex flex-col gap-1 px-5 py-6 overflow-y-auto">
     {navItems.map((item) => (
-      <a href={item.href} class="text-2xl uppercase tracking-[0.2em] font-light hover:text-primary transition-colors text-foreground font-body">
+      <a href={item.href} class="text-sm uppercase tracking-[0.2em] font-body text-foreground/80 hover:text-primary transition-colors py-3 border-b border-border/50">
         <span data-t={item.key}>{t(item.key)}</span>
       </a>
     ))}
-  </div>
+  </nav>
 
-  <div class="flex items-center gap-4 mt-12">
-    <button id="lang-toggle-mobile" class="rounded-full text-foreground hover:bg-accent h-11 w-11 border-2 border-transparent hover:border-primary/20 flex items-center justify-center text-xs font-bold font-body uppercase" aria-label="Toggle language">
-      ES
-    </button>
-    <button id="theme-toggle-mobile" class="rounded-full text-foreground hover:bg-accent h-11 w-11 border-2 border-transparent hover:border-primary/20 flex items-center justify-center" aria-label="Toggle theme">
-      <svg class="dark:hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-      <svg class="hidden dark:block w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-    </button>
+  <!-- Bottom section: toggles + social -->
+  <div class="px-5 py-6 border-t border-border flex flex-col gap-5">
+    <div class="flex items-center gap-3">
+      <button id="lang-toggle-mobile" class="rounded-full text-foreground hover:bg-accent/20 h-10 w-10 border border-border flex items-center justify-center text-xs font-bold font-body uppercase" aria-label="Toggle language">
+        ES
+      </button>
+      <button id="theme-toggle-mobile" class="rounded-full text-foreground hover:bg-accent/20 h-10 w-10 border border-border flex items-center justify-center" aria-label="Toggle theme">
+        <svg class="dark:hidden w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="hidden dark:block w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+      </button>
+    </div>
+    <SocialLinks class="text-foreground" iconClass="w-3.5 h-3.5" />
   </div>
 </div>
 
 <script is:inline>
   function __initNav() {
     var nav = document.getElementById('main-nav');
-
     var isTransparent = nav.getAttribute('data-transparent') === 'true';
 
     function updateNav() {
@@ -96,12 +113,17 @@ const navItems = [
         if (window.scrollY > 50) {
           nav.classList.add('glass-nav');
           nav.classList.remove('nav-transparent');
+          // Swap logos: show dark logo in light mode when scrolled
+          nav.querySelectorAll('.nav-logo-dark').forEach(function(el) { el.classList.remove('hidden'); el.classList.add('dark:hidden'); });
+          nav.querySelectorAll('.nav-logo-light').forEach(function(el) { el.classList.add('hidden'); el.classList.remove('dark:hidden'); el.classList.add('dark:block'); });
         } else {
           nav.classList.remove('glass-nav');
           nav.classList.add('nav-transparent');
+          // Swap logos: show light logo on transparent hero
+          nav.querySelectorAll('.nav-logo-dark').forEach(function(el) { el.classList.add('hidden'); el.classList.remove('dark:hidden'); });
+          nav.querySelectorAll('.nav-logo-light').forEach(function(el) { el.classList.remove('hidden'); });
         }
       }
-      // If not transparent, it always stays glass-nav (already set via class:list)
     }
     window.removeEventListener('scroll', updateNav);
     window.addEventListener('scroll', updateNav);
@@ -131,9 +153,11 @@ const navItems = [
       var translations = newLang === 'en' ? enData : esData;
       document.querySelectorAll('[data-t]').forEach(function(el) {
         var key = el.getAttribute('data-t');
-        if (key && translations[key]) {
-          el.textContent = translations[key];
-        }
+        if (key && translations[key]) el.textContent = translations[key];
+      });
+      document.querySelectorAll('[data-t-placeholder]').forEach(function(el) {
+        var key = el.getAttribute('data-t-placeholder');
+        if (key && translations[key]) el.setAttribute('placeholder', translations[key]);
       });
 
       var label = newLang === 'es' ? 'ES' : 'EN';
@@ -148,23 +172,30 @@ const navItems = [
     if (langBtn) langBtn.onclick = toggleLanguage;
     if (langBtnM) langBtnM.onclick = toggleLanguage;
 
-    // Mobile menu
+    // Mobile menu slide-in/out
     var mobileMenu = document.getElementById('mobile-menu');
+    var overlay = document.getElementById('mobile-menu-overlay');
     var menuOpen = document.getElementById('mobile-menu-toggle');
     var menuClose = document.getElementById('mobile-menu-close');
-    if (menuOpen) menuOpen.onclick = function() {
-      mobileMenu.classList.remove('hidden');
-      mobileMenu.classList.add('flex');
-    };
-    if (menuClose) menuClose.onclick = function() {
-      mobileMenu.classList.add('hidden');
-      mobileMenu.classList.remove('flex');
-    };
-    if (mobileMenu) mobileMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        mobileMenu.classList.add('hidden');
-        mobileMenu.classList.remove('flex');
-      });
+
+    function openMenu() {
+      overlay.classList.remove('hidden');
+      mobileMenu.classList.remove('translate-x-full');
+      mobileMenu.classList.add('translate-x-0');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.add('translate-x-full');
+      mobileMenu.classList.remove('translate-x-0');
+      overlay.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    if (menuOpen) menuOpen.onclick = openMenu;
+    if (menuClose) menuClose.onclick = closeMenu;
+    if (overlay) overlay.onclick = closeMenu;
+    if (mobileMenu) mobileMenu.querySelectorAll('a[href]').forEach(function(link) {
+      link.addEventListener('click', closeMenu);
     });
   }
 
