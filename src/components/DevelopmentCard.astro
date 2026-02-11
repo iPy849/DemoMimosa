@@ -1,5 +1,5 @@
 ---
-import { useTranslations, localePath, type Language } from '../i18n/utils';
+import { t } from '../i18n/utils';
 
 interface Props {
   id: string;
@@ -7,14 +7,12 @@ interface Props {
   location: string;
   image: string;
   description: string;
-  lang?: Language;
 }
 
-const { id, title, location, image, description, lang = 'es' } = Astro.props;
-const t = useTranslations(lang);
+const { id, title, location, image, description } = Astro.props;
 ---
 
-<a href={localePath(lang, `/desarrollos/${id}`)} class="group block">
+<a href={`/developments/${id}`} class="group block">
   <div class="bg-card rounded-lg overflow-hidden border border-border shadow-sm hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
     <div class="relative aspect-[4/3] overflow-hidden">
       <img
@@ -32,8 +30,8 @@ const t = useTranslations(lang);
       <h3 class="text-xl font-headline font-semibold mb-2 text-foreground">{title}</h3>
     </div>
     <div class="px-6 pb-6">
-      <span class="inline-flex items-center gap-2 text-primary text-sm font-bold tracking-wider uppercase font-body group-hover:gap-3 transition-all">
-        {t("nav.developments").toUpperCase()}
+      <span class="inline-flex items-center gap-2 text-primary text-sm font-bold tracking-wider uppercase font-body group-hover:gap-3 transition-all" data-t="dev.view">
+        {t("dev.view")}
         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </span>
     </div>

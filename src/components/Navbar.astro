@@ -1,28 +1,18 @@
 ---
-import { useTranslations, localePath, getAlternateLocaleUrl, type Language } from '../i18n/utils';
-
-interface Props {
-  lang?: Language;
-}
-
-const { lang = 'es' } = Astro.props;
-const t = useTranslations(lang);
+import { t } from '../i18n/utils';
 
 const navItems = [
-  { label: t("nav.home"), href: localePath(lang, '/') },
-  { label: t("nav.about"), href: localePath(lang, '/nosotros') },
-  { label: t("nav.developments"), href: localePath(lang, '/desarrollos') },
-  { label: t("nav.blog"), href: localePath(lang, '/blog') },
-  { label: t("nav.contact"), href: localePath(lang, '/contacto') },
+  { key: "nav.home", href: '/' },
+  { key: "nav.about", href: '/about' },
+  { key: "nav.developments", href: '/developments' },
+  { key: "nav.blog", href: '/blog' },
+  { key: "nav.contact", href: '/contact' },
 ];
-
-const langToggleHref = getAlternateLocaleUrl(Astro.url, lang);
-const langLabel = lang === 'es' ? 'EN' : 'ES';
 ---
 
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
   <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
-    <a href={localePath(lang, '/')} class="flex flex-col items-start">
+    <a href="/" class="flex flex-col items-start">
       <span class="text-2xl font-headline font-bold tracking-[0.15em] text-foreground">MIMOSA</span>
       <span class="text-[10px] tracking-[0.35em] uppercase text-muted-foreground">DEVELOPMENTS</span>
     </a>
@@ -30,24 +20,20 @@ const langLabel = lang === 'es' ? 'EN' : 'ES';
     <div class="hidden lg:flex items-center gap-4">
       {navItems.map((item) => (
         <a href={item.href} class="text-sm uppercase tracking-[0.2em] text-foreground/70 hover:text-foreground transition-colors font-body">
-          {item.label}
+          <span data-t={item.key}>{t(item.key)}</span>
         </a>
       ))}
     </div>
 
     <div class="hidden lg:flex items-center gap-3">
-      <a href={langToggleHref} class="p-2 rounded-full border-2 border-primary/30 flex items-center justify-center w-11 h-11 transition-all hover:border-primary hover:bg-primary/5 text-foreground text-xs font-bold font-body">
-        {langLabel}
-      </a>
-
       <button id="theme-toggle" class="rounded-full text-foreground hover:bg-accent h-11 w-11 border-2 border-transparent hover:border-primary/20 flex items-center justify-center" aria-label="Toggle theme">
         <svg class="dark:hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
         <svg class="hidden dark:block w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
       </button>
 
-      <a href={localePath(lang, '/contacto')} class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-sm text-xs tracking-[0.15em] font-bold font-body hover:bg-primary/90 transition-colors">
+      <a href="/contact" class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-sm text-xs tracking-[0.15em] font-bold font-body hover:bg-primary/90 transition-colors">
         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-        {t("nav.contact").toUpperCase()}
+        <span data-t="nav.contact">{t("nav.contact").toUpperCase()}</span>
       </a>
     </div>
 
@@ -62,22 +48,19 @@ const langLabel = lang === 'es' ? 'EN' : 'ES';
     <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
   </button>
 
-  <a href={localePath(lang, '/')} class="text-2xl font-headline font-bold mb-16 text-foreground">
+  <a href="/" class="text-2xl font-headline font-bold mb-16 text-foreground">
     MIMOSA DEVELOPMENTS
   </a>
 
   <div class="flex flex-col items-center gap-8">
     {navItems.map((item) => (
       <a href={item.href} class="text-2xl uppercase tracking-[0.2em] font-light hover:text-primary transition-colors text-foreground font-body">
-        {item.label}
+        <span data-t={item.key}>{t(item.key)}</span>
       </a>
     ))}
   </div>
 
   <div class="flex items-center gap-4 mt-12">
-    <a href={langToggleHref} class="p-2 rounded-full border-2 border-primary/30 flex items-center justify-center w-11 h-11 text-foreground text-xs font-bold font-body">
-      {langLabel}
-    </a>
     <button id="theme-toggle-mobile" class="rounded-full text-foreground hover:bg-accent h-11 w-11 border-2 border-transparent hover:border-primary/20 flex items-center justify-center" aria-label="Toggle theme">
       <svg class="dark:hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
       <svg class="hidden dark:block w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>

@@ -1,25 +1,22 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
-import { useTranslations, localePath, type Language } from '../../i18n/utils';
+import { t } from '../../i18n/utils';
 import { getCollection } from 'astro:content';
 
-const lang: Language = 'es';
-const t = useTranslations(lang);
-
-const allPosts = await getCollection('blog', ({ data }) => data.lang === lang);
+const allPosts = await getCollection('blog', ({ data }) => data.lang === 'es');
 const posts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
-<PageLayout lang={lang} title="Blog | MIMOSA Developments">
+<PageLayout title="Blog | MIMOSA Developments">
   <section class="pt-32 pb-24 px-6">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16">
-        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body">{t("blog.subtitle")}</p>
-        <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground">{t("blog.title")}</h1>
+        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="blog.subtitle">{t("blog.subtitle")}</p>
+        <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground" data-t="blog.title">{t("blog.title")}</h1>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         {posts.map((post) => (
-          <a href={localePath(lang, `/blog/${post.data.slug}`)} class="group block">
+          <a href={`/blog/${post.data.slug}`} class="group block">
             <article class="bg-card rounded-lg overflow-hidden border border-border hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
               <div class="relative aspect-[16/10] overflow-hidden">
                 <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
@@ -37,7 +34,7 @@ const posts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date
                 </div>
                 <h2 class="text-xl font-headline font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">{post.data.title}</h2>
                 <p class="text-muted-foreground font-body text-sm leading-relaxed mb-4">{post.data.excerpt}</p>
-                <span class="text-primary text-sm font-bold tracking-wider uppercase font-body inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+                <span class="text-primary text-sm font-bold tracking-wider uppercase font-body inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-t="blog.read_more">
                   {t("blog.read_more")}
                   <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </span>

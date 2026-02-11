@@ -1,25 +1,26 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
-import { useTranslations, localePath, type Language } from '../../i18n/utils';
+import { t } from '../../i18n/utils';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => data.lang === 'es');
-  return posts.map((post) => ({ params: { id: post.data.slug }, props: { post } }));
+  return posts.map((post) => ({
+    params: { id: post.data.slug },
+    props: { post },
+  }));
 }
 
-const lang: Language = 'es';
-const t = useTranslations(lang);
 const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<PageLayout lang={lang} title={`${post.data.title} | MIMOSA Developments`}>
+<PageLayout title={`${post.data.title} | MIMOSA Developments`}>
   <section class="pt-32 pb-24 px-6">
     <div class="max-w-4xl mx-auto">
-      <a href={localePath(lang, '/blog')} class="inline-flex items-center gap-2 text-primary text-sm tracking-wider uppercase font-bold font-body hover:underline mb-8">
+      <a href="/blog" class="inline-flex items-center gap-2 text-primary text-sm tracking-wider uppercase font-bold font-body hover:underline mb-8">
         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
-        {t("common.back")}
+        <span data-t="blog.back">{t("blog.back")}</span>
       </a>
       <div class="flex items-center gap-4 text-sm text-muted-foreground mb-4 font-body">
         <span class="flex items-center gap-1">
@@ -40,9 +41,9 @@ const { Content } = await render(post);
       </article>
       <div class="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row gap-4 items-center justify-between">
         <div class="flex items-center gap-3">
-          <span class="text-sm text-muted-foreground font-body">{t("common.share")}</span>
+          <span class="text-sm text-muted-foreground font-body" data-t="blog.share">{t("blog.share")}</span>
         </div>
-        <a href={localePath(lang, '/contacto')} class="inline-block bg-primary text-primary-foreground px-6 py-3 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors">{t("common.contact_agent")}</a>
+        <a href="/contact" class="inline-block bg-primary text-primary-foreground px-6 py-3 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors" data-t="blog.contact_agent">{t("blog.contact_agent")}</a>
       </div>
     </div>
   </section>

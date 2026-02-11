@@ -1,0 +1,22 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import DevelopmentCard from '../../components/DevelopmentCard.astro';
+import { t } from '../../i18n/utils';
+import { allDevelopments } from '../../data/developments';
+---
+
+<PageLayout title="Desarrollos | MIMOSA Developments">
+  <section class="pt-32 pb-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="featured.subtitle">{t("featured.subtitle")}</p>
+        <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground" data-t="nav.developments">{t("nav.developments")}</h1>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {allDevelopments.map((dev) => (
+          <DevelopmentCard id={dev.id} title={dev.title} location={dev.location} image={dev.image} description={dev.description.es} />
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>

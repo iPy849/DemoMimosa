@@ -1,21 +1,22 @@
 ---
 import '../styles/globals.css';
+import { getEnJSON } from '../i18n/utils';
 
 interface Props {
   title?: string;
   description?: string;
-  lang?: string;
 }
 
-const { 
-  title = 'MIMOSA Developments | Boutique Real Estate', 
+const {
+  title = 'MIMOSA Developments | Boutique Real Estate',
   description = 'Exclusividad y Prestigio en el Caribe. Desarrollos y propiedades de lujo.',
-  lang = 'es'
 } = Astro.props;
+
+const enTranslations = getEnJSON();
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,22 +28,37 @@ const {
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />
-    <script>
-      // Theme initialization - runs immediately to prevent flash
-      const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
-        }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
-        }
-        return 'light';
+    <script is:inline define:vars={{ enTranslations }}>
+      // Theme initialization
+      (function() {
+        const theme = (() => {
+          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+          }
+          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        })();
+        document.documentElement.classList.toggle('dark', theme === 'dark');
       })();
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+
+      // Language detection: detect browser language, fallback to Spanish
+      (function() {
+        const browserLang = navigator.language || navigator.languages?.[0] || 'es';
+        const isEnglish = browserLang.startsWith('en');
+        if (!isEnglish) return; // Already rendered in Spanish, nothing to do
+
+        document.documentElement.lang = 'en';
+        try {
+          const en = JSON.parse(enTranslations);
+          document.querySelectorAll('[data-t]').forEach(function(el) {
+            const key = el.getAttribute('data-t');
+            if (key && en[key]) {
+              el.textContent = en[key];
+            }
+          });
+        } catch(e) {
+          console.error('Translation error:', e);
+        }
+      })();
     </script>
   </body>
 </html>
