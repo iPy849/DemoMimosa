@@ -161,6 +161,12 @@
   & .nav-text-muted { color: var(--color-muted-foreground); }
   & .nav-link { color: color-mix(in oklch, var(--color-foreground) 70%, transparent); }
   & .nav-link:hover { color: var(--color-foreground); }
+
+  /* Light mode: dark logo. Dark mode: light logo. */
+  & .nav-logo-dark { display: block !important; }
+  & .nav-logo-light { display: none !important; }
+  .dark & .nav-logo-dark { display: none !important; }
+  .dark & .nav-logo-light { display: block !important; }
 }
 
 @utility nav-transparent {
