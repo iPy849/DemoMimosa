@@ -1,56 +1,35 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import DevelopmentCard from '../components/DevelopmentCard.astro';
-import { translations } from '../data/translations';
+import { useTranslations, localePath, type Language } from '../i18n/utils';
 import { featuredDevelopments } from '../data/developments';
 
-const lang = 'es';
-const t = (key: keyof typeof translations['es']) => translations[lang][key];
+const lang: Language = 'es';
+const t = useTranslations(lang);
 ---
 
 <PageLayout lang={lang}>
   <!-- Hero Section -->
   <section class="relative h-screen flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img
-        src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1920&h=1080&auto=format&fit=crop"
-        alt="Luxury Caribbean development"
-        class="w-full h-full object-cover"
-      />
+      <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1920&h=1080&auto=format&fit=crop" alt="Luxury Caribbean development" class="w-full h-full object-cover" />
       <div class="absolute inset-0 bg-black/50"></div>
     </div>
-
     <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/40 to-transparent z-10"></div>
-
     <div class="relative z-20 text-center max-w-4xl mx-auto px-6 fade-in">
-      <p class="text-white/80 text-sm tracking-[0.3em] uppercase mb-4 font-body">
-        {t("hero.subtitle")}
-      </p>
-      <h1 class="text-5xl md:text-7xl lg:text-8xl font-headline font-bold text-white tracking-wider mb-6 text-balance">
-        MIMOSA Developments
-      </h1>
-      <p class="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-body">
-        {t("hero.description")}
-      </p>
+      <p class="text-[#ffffffcc] text-sm tracking-[0.3em] uppercase mb-4 font-body">{t("hero.subtitle")}</p>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-headline font-bold text-[#fff] tracking-wider mb-6 text-balance">MIMOSA Developments</h1>
+      <p class="text-[#ffffffb3] text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-body">{t("hero.description")}</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="/desarrollos"
-          class="bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
-        >
-          {t("hero.cta.primary")}
-        </a>
-        <a
-          href="/contacto"
-          class="border border-white/40 text-white px-8 py-4 text-xs tracking-[0.2em] font-body hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2"
-        >
+        <a href={localePath(lang, '/desarrollos')} class="bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2">{t("hero.cta.primary")}</a>
+        <a href={localePath(lang, '/contacto')} class="border border-[#ffffff66] text-[#fff] px-8 py-4 text-xs tracking-[0.2em] font-body hover:bg-[#ffffff1a] transition-colors inline-flex items-center justify-center gap-2">
           <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
           {t("hero.cta.secondary")}
         </a>
       </div>
     </div>
-
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-      <svg class="w-6 h-6 text-white/60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="w-6 h-6 text-[#ffffff99]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
     </div>
   </section>
 
@@ -62,24 +41,11 @@ const t = (key: keyof typeof translations['es']) => translations[lang][key];
           <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body">{t("featured.subtitle")}</p>
           <h2 class="text-4xl md:text-5xl font-headline font-bold text-foreground">{t("featured.title")}</h2>
         </div>
-        <a
-          href="/desarrollos"
-          class="text-primary text-sm tracking-wider uppercase font-bold hover:underline font-body"
-        >
-          {t("featured.cta")}
-        </a>
+        <a href={localePath(lang, '/desarrollos')} class="text-primary text-sm tracking-wider uppercase font-bold hover:underline font-body">{t("featured.cta")}</a>
       </div>
-
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {featuredDevelopments.map((dev) => (
-          <DevelopmentCard
-            id={dev.id}
-            title={dev.title}
-            location={dev.location}
-            image={dev.image}
-            description={dev.description}
-            lang={lang}
-          />
+          <DevelopmentCard id={dev.id} title={dev.title} location={dev.location} image={dev.image} description={dev.description[lang]} lang={lang} />
         ))}
       </div>
     </div>
@@ -90,12 +56,7 @@ const t = (key: keyof typeof translations['es']) => translations[lang][key];
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div class="relative aspect-[4/3] rounded-lg overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&h=600&auto=format&fit=crop"
-            alt="Luxury property interior"
-            class="w-full h-full object-cover"
-            loading="lazy"
-          />
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&h=600&auto=format&fit=crop" alt="Luxury property interior" class="w-full h-full object-cover" loading="lazy" />
         </div>
         <div>
           <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body">{t("about.essence")}</p>
@@ -103,7 +64,6 @@ const t = (key: keyof typeof translations['es']) => translations[lang][key];
           <blockquote class="text-xl text-muted-foreground italic leading-relaxed mb-8 font-body border-l-2 border-primary pl-6">
             "{t("about.quote")}"
           </blockquote>
-
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
             <div class="text-center">
               <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -127,13 +87,7 @@ const t = (key: keyof typeof translations['es']) => translations[lang][key];
               <p class="text-sm text-muted-foreground mt-1 font-body">{t("about.pillar3.desc")}</p>
             </div>
           </div>
-
-          <a
-            href="/nosotros"
-            class="inline-block bg-primary text-primary-foreground px-8 py-3 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors"
-          >
-            {t("about.cta")}
-          </a>
+          <a href={localePath(lang, '/nosotros')} class="inline-block bg-primary text-primary-foreground px-8 py-3 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors">{t("about.cta")}</a>
         </div>
       </div>
     </div>
@@ -146,7 +100,6 @@ const t = (key: keyof typeof translations['es']) => translations[lang][key];
       <h2 class="text-4xl font-headline font-bold mb-4 text-foreground">{t("contact.title")}</h2>
       <p class="text-muted-foreground font-body">{t("contact.desc")}</p>
     </div>
-
     <form class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="flex flex-col gap-2">
         <label class="text-sm font-body text-foreground">{t("contact.form.name")}</label>
@@ -161,7 +114,7 @@ const t = (key: keyof typeof translations['es']) => translations[lang][key];
         <select class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring">
           <option>Cuatro Bacalar</option>
           <option>Tulum Eco Resort</option>
-          <option>Mérida Heritage</option>
+          <option>Merida Heritage</option>
         </select>
       </div>
       <div class="md:col-span-2 flex flex-col gap-2">
@@ -169,9 +122,7 @@ const t = (key: keyof typeof translations['es']) => translations[lang][key];
         <textarea rows="4" class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring resize-none"></textarea>
       </div>
       <div class="md:col-span-2">
-        <button type="submit" class="w-full bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors">
-          {t("contact.form.submit")}
-        </button>
+        <button type="submit" class="w-full bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors">{t("contact.form.submit")}</button>
       </div>
     </form>
   </section>

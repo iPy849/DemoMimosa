@@ -1,5 +1,5 @@
 ---
-import { translations, type Language } from '../data/translations';
+import { useTranslations, localePath, type Language } from '../i18n/utils';
 
 interface Props {
   id: string;
@@ -11,11 +11,10 @@ interface Props {
 }
 
 const { id, title, location, image, description, lang = 'es' } = Astro.props;
-const t = (key: keyof typeof translations['es']) => translations[lang][key] || key;
-const prefix = lang === 'en' ? '/en' : '';
+const t = useTranslations(lang);
 ---
 
-<a href={`${prefix}/desarrollos/${id}`} class="group block">
+<a href={localePath(lang, `/desarrollos/${id}`)} class="group block">
   <div class="bg-card rounded-lg overflow-hidden border border-border shadow-sm hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
     <div class="relative aspect-[4/3] overflow-hidden">
       <img
