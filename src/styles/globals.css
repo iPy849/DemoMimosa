@@ -91,4 +91,16 @@
   background-color: color-mix(in oklch, var(--color-background) 90%, transparent);
   border-bottom-width: 1px;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+
+  & .nav-text { color: var(--color-foreground); }
+  & .nav-text-muted { color: var(--color-muted-foreground); }
+  & .nav-link { color: color-mix(in oklch, var(--color-foreground) 70%, transparent); }
+  & .nav-link:hover { color: var(--color-foreground); }
+}
+
+@utility nav-transparent {
+  & .nav-text { color: #fff; }
+  & .nav-text-muted { color: rgba(255, 255, 255, 0.7); }
+  & .nav-link { color: rgba(255, 255, 255, 0.7); }
+  & .nav-link:hover { color: #fff; }
 }

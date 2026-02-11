@@ -9,7 +9,7 @@ const { variant = 'inline' } = Astro.props;
 const isCard = variant === 'card';
 ---
 
-<div class:list={[isCard && "bg-card rounded-lg border border-border p-8"]}>
+<div class:list={["max-w-[1000px] mx-auto", isCard && "bg-card rounded-lg border border-border p-8"]}>
   <form
     id="contact-form"
     class:list={[isCard ? "flex flex-col gap-6" : "max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6"]}

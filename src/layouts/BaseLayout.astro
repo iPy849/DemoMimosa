@@ -1,6 +1,7 @@
 ---
 import '../styles/globals.css';
 import { getEnJSON } from '../i18n/utils';
+import es from '../i18n/es.json';
 
 interface Props {
   title?: string;
@@ -12,7 +13,8 @@ const {
   description = 'Exclusividad y Prestigio en el Caribe. Desarrollos y propiedades de lujo.',
 } = Astro.props;
 
-const enTranslations = getEnJSON();
+const enJSON = getEnJSON();
+const esJSON = JSON.stringify(es);
 ---
 
 <!doctype html>
@@ -28,7 +30,11 @@ const enTranslations = getEnJSON();
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />
-    <script is:inline define:vars={{ enTranslations }}>
+    <script is:inline define:vars={{ enJSON, esJSON }}>
+      // Expose translations globally for the language toggle
+      window.__enTranslations = JSON.parse(enJSON);
+      window.__esTranslations = JSON.parse(esJSON);
+
       // Theme initialization
       (function() {
         const theme = (() => {
@@ -40,24 +46,33 @@ const enTranslations = getEnJSON();
         document.documentElement.classList.toggle('dark', theme === 'dark');
       })();
 
-      // Language detection: detect browser language, fallback to Spanish
+      // Language: check stored preference first, then browser language, fallback to Spanish
       (function() {
-        const browserLang = navigator.language || navigator.languages?.[0] || 'es';
-        const isEnglish = browserLang.startsWith('en');
-        if (!isEnglish) return; // Already rendered in Spanish, nothing to do
+        var storedLang = localStorage.getItem('lang');
+        var lang;
+        if (storedLang) {
+          lang = storedLang;
+        } else {
+          var browserLang = navigator.language || (navigator.languages && navigator.languages[0]) || 'es';
+          lang = browserLang.startsWith('en') ? 'en' : 'es';
+        }
 
-        document.documentElement.lang = 'en';
-        try {
-          const en = JSON.parse(enTranslations);
+        document.documentElement.lang = lang;
+        if (lang === 'en') {
+          var en = window.__enTranslations;
           document.querySelectorAll('[data-t]').forEach(function(el) {
-            const key = el.getAttribute('data-t');
+            var key = el.getAttribute('data-t');
             if (key && en[key]) {
               el.textContent = en[key];
             }
           });
-        } catch(e) {
-          console.error('Translation error:', e);
         }
+
+        // Update lang toggle buttons
+        var label = lang === 'es' ? 'ES' : 'EN';
+        document.querySelectorAll('#lang-toggle, #lang-toggle-mobile').forEach(function(btn) {
+          btn.textContent = label;
+        });
       })();
     </script>
   </body>
