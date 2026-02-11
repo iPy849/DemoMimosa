@@ -1,0 +1,94 @@
+---
+import { translations, type Language } from '../data/translations';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = (key: keyof typeof translations['es']) => translations[lang][key] || key;
+const prefix = lang === 'en' ? '/en' : '';
+---
+
+<footer class="bg-card border-t border-border">
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <!-- Brand -->
+      <div class="lg:col-span-1">
+        <a href={`${prefix}/`} class="inline-block mb-4">
+          <span class="text-2xl font-headline font-bold tracking-[0.15em] text-foreground">MIMOSA DEVELOPMENTS</span>
+        </a>
+        <p class="text-muted-foreground text-sm leading-relaxed font-body">
+          {lang === 'es'
+            ? 'Definiendo el lujo inmobiliario en el Caribe. Proyectos exclusivos diseñados para un estilo de vida inigualable.'
+            : 'Defining luxury real estate in the Caribbean. Exclusive projects designed for an unparalleled lifestyle.'}
+        </p>
+        <div class="flex gap-3 mt-6">
+          <a href="#" class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors" aria-label="Instagram">
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors" aria-label="Facebook">
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors" aria-label="LinkedIn">
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h4 class="font-headline font-semibold mb-4 text-foreground">{t("footer.nav")}</h4>
+        <ul class="space-y-2 font-body">
+          <li><a href={`${prefix}/`} class="text-muted-foreground hover:text-primary transition-colors text-sm">{t("nav.home")}</a></li>
+          <li><a href={`${prefix}/nosotros`} class="text-muted-foreground hover:text-primary transition-colors text-sm">{t("nav.about")}</a></li>
+          <li><a href={`${prefix}/desarrollos`} class="text-muted-foreground hover:text-primary transition-colors text-sm">{t("nav.developments")}</a></li>
+          <li><a href={`${prefix}/blog`} class="text-muted-foreground hover:text-primary transition-colors text-sm">{t("nav.blog")}</a></li>
+          <li><a href={`${prefix}/contacto`} class="text-muted-foreground hover:text-primary transition-colors text-sm">{t("nav.contact")}</a></li>
+        </ul>
+      </div>
+
+      <!-- Explore -->
+      <div>
+        <h4 class="font-headline font-semibold mb-4 text-foreground">{t("footer.explore")}</h4>
+        <ul class="space-y-2 font-body">
+          <li><a href={`${prefix}/desarrollos/cuatro-bacalar`} class="text-muted-foreground hover:text-primary transition-colors text-sm">Cuatro Bacalar</a></li>
+          <li><a href={`${prefix}/desarrollos/tulum-eco-resort`} class="text-muted-foreground hover:text-primary transition-colors text-sm">Tulum Eco Resort</a></li>
+          <li><a href={`${prefix}/desarrollos/merida-luxury`} class="text-muted-foreground hover:text-primary transition-colors text-sm">Mérida Mansion</a></li>
+          <li><a href={`${prefix}/sitemap`} class="text-muted-foreground hover:text-primary transition-colors text-sm">{t("sitemap.title")}</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="font-headline font-semibold mb-4 text-foreground">{t("footer.contact")}</h4>
+        <ul class="space-y-3 font-body">
+          <li class="flex items-center gap-2 text-muted-foreground text-sm">
+            <svg class="w-4 h-4 text-primary flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            info@mimosadevelopments.com
+          </li>
+          <li class="flex items-center gap-2 text-muted-foreground text-sm">
+            <svg class="w-4 h-4 text-primary flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +52 (998) 123 4567
+          </li>
+          <li class="flex items-start gap-2 text-muted-foreground text-sm">
+            <svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Av. Luxury Developments 404, Zona Hotelera, Cancún, MX
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-border">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-muted-foreground font-body">
+        &copy; {new Date().getFullYear()} MIMOSA Developments. {t("footer.rights")}
+      </p>
+      <div class="flex gap-6 font-body">
+        <a href="#" class="text-sm text-muted-foreground hover:text-primary transition-colors">{t("footer.terms")}</a>
+        <a href="#" class="text-sm text-muted-foreground hover:text-primary transition-colors">{t("footer.privacy")}</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,24 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import type { Language } from '../data/translations';
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: Language;
+}
+
+const { title, description, lang = 'es' } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+  <Navbar lang={lang} />
+  <main class="flex-1">
+    <slot />
+  </main>
+  <Footer lang={lang} />
+  <WhatsAppButton lang={lang} />
+</BaseLayout>

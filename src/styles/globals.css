@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 36 33% 98%;
+    --foreground: 0 0% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 12%;
+    --primary: 34 19% 40%;
+    --primary-foreground: 36 33% 98%;
+    --secondary: 34 19% 92%;
+    --secondary-foreground: 34 19% 40%;
+    --muted: 34 10% 88%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 34 19% 90%;
+    --accent-foreground: 34 19% 40%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 34 15% 85%;
+    --input: 34 15% 85%;
+    --ring: 34 19% 40%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 36 33% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 36 33% 98%;
+    --primary: 34 19% 75%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 34 19% 75%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 0 0% 12%;
+    --accent-foreground: 36 33% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 34 19% 75%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-500 font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+}
+
+.slide-up {
+  animation: slideUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.glass-nav {
+  @apply backdrop-blur-xl bg-background/90 border-b shadow-sm;
+}

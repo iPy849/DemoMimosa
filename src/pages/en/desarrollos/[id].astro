@@ -1,0 +1,93 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro';
+import { translations } from '../../../data/translations';
+import { developmentDetails } from '../../../data/developments';
+
+export function getStaticPaths() {
+  return Object.keys(developmentDetails).map((id) => ({
+    params: { id },
+  }));
+}
+
+const { id } = Astro.params;
+const lang = 'en';
+const t = (key: keyof typeof translations['es']) => translations[lang][key];
+const data = developmentDetails[id as string] || developmentDetails["cuatro-bacalar"];
+---
+
+<PageLayout lang={lang} title={`${data.title} | MIMOSA Developments`}>
+  <section class="pt-32 pb-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <a href="/en/desarrollos" class="inline-flex items-center gap-2 text-primary text-sm tracking-wider uppercase font-bold font-body hover:underline mb-8">
+        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        {t("dev.back")}
+      </a>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="lg:sticky lg:top-28 lg:self-start">
+          <div class="flex items-center gap-2 text-primary text-sm mb-3 font-body">
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            {data.location}
+          </div>
+          <h1 class="text-4xl md:text-5xl font-headline font-bold mb-6 text-foreground">{data.title}</h1>
+          <p class="text-muted-foreground font-body leading-relaxed mb-8 text-lg">{data.descriptionEn}</p>
+
+          <div class="grid grid-cols-2 gap-3 mb-8">
+            {data.amenitiesEn.map((item) => (
+              <div class="flex items-center gap-2 text-sm font-body text-foreground">
+                <svg class="w-4 h-4 text-primary flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                {item}
+              </div>
+            ))}
+          </div>
+
+          <div class="rounded-lg overflow-hidden border border-border">
+            <h3 class="text-lg font-headline font-semibold p-4 text-foreground">{t("dev.location")}</h3>
+            <iframe src={data.mapUrl} width="100%" height="300" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Development location"></iframe>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-8">
+          <div id="gallery-container" class="relative">
+            <div class="aspect-[3/2] rounded-lg overflow-hidden mb-4">
+              <img id="main-gallery-image" src={data.images[0]} alt={`${data.title} gallery`} class="w-full h-full object-cover transition-opacity duration-300" />
+            </div>
+            <div class="grid grid-cols-4 gap-2">
+              {data.images.map((src, idx) => (
+                <button class:list={["gallery-thumb relative aspect-[3/2] rounded-lg overflow-hidden border-2 transition-all cursor-pointer", idx === 0 ? "border-primary scale-105 shadow-md" : "border-transparent opacity-50 hover:opacity-100"]} data-src={src} data-index={idx}>
+                  <img src={src} alt={`${data.title} ${idx + 1}`} class="w-full h-full object-cover" loading="lazy" />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-border overflow-hidden">
+            <div class="p-6 bg-card">
+              <p class="text-primary text-sm tracking-[0.3em] uppercase mb-1 font-body">{t("dev.immersive")}</p>
+              <h3 class="text-2xl font-headline font-bold text-foreground mb-4">{t("dev.360")}</h3>
+              <a href={data.virtualTour} target="_blank" rel="noopener noreferrer" class="inline-block bg-primary text-primary-foreground px-6 py-3 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors mb-4">{t("dev.explore")}</a>
+            </div>
+            <iframe src={data.virtualTour} width="100%" height="400" style="border:0;" allowfullscreen loading="lazy" title="Virtual tour"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  const mainImage = document.getElementById('main-gallery-image') as HTMLImageElement;
+  const thumbs = document.querySelectorAll('.gallery-thumb');
+  thumbs.forEach((thumb) => {
+    thumb.addEventListener('click', () => {
+      const src = (thumb as HTMLElement).dataset.src;
+      if (src && mainImage) {
+        mainImage.style.opacity = '0';
+        setTimeout(() => { mainImage.src = src; mainImage.style.opacity = '1'; }, 150);
+      }
+      thumbs.forEach((t) => { t.classList.remove('border-primary', 'scale-105', 'shadow-md'); t.classList.add('border-transparent', 'opacity-50'); });
+      thumb.classList.add('border-primary', 'scale-105', 'shadow-md');
+      thumb.classList.remove('border-transparent', 'opacity-50');
+    });
+  });
+</script>
