@@ -19,7 +19,7 @@ const featuredDevelopments = await getCollection('developments', ({ data }) => d
     <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/40 to-transparent z-10"></div>
     <div class="relative z-20 text-center max-w-4xl mx-auto px-6 fade-in">
       <p class="text-[#ffffffcc] text-sm tracking-[0.3em] uppercase mb-4 font-body" data-t="hero.subtitle">{t("hero.subtitle")}</p>
-      <h1 class="text-5xl md:text-7xl lg:text-8xl font-headline font-bold text-[#fff] tracking-wider mb-6 text-balance">MIMOSA Developments</h1>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-headline font-bold text-[#fff] tracking-wider mb-6 text-balance">MIMOSA</h1>
       <p class="text-[#ffffffb3] text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-body" data-t="hero.description">{t("hero.description")}</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="/developments" class="bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2" data-t="hero.cta.primary">{t("hero.cta.primary")}</a>
@@ -37,16 +37,18 @@ const featuredDevelopments = await getCollection('developments', ({ data }) => d
   <!-- Featured Developments -->
   <section class="py-24 px-6">
     <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-4">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-4 reveal">
         <div>
           <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="featured.subtitle">{t("featured.subtitle")}</p>
           <h2 class="text-4xl md:text-5xl font-headline font-bold text-foreground" data-t="featured.title">{t("featured.title")}</h2>
         </div>
         <a href="/developments" class="text-primary text-sm tracking-wider uppercase font-bold hover:underline font-body" data-t="featured.cta">{t("featured.cta")}</a>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal-stagger">
         {featuredDevelopments.map((dev) => (
-          <DevelopmentCard id={dev.data.slug} title={dev.data.title} location={dev.data.location} image={dev.data.image} description={dev.data.shortDescription} />
+          <div class="reveal">
+            <DevelopmentCard id={dev.data.slug} title={dev.data.title} location={dev.data.location} image={dev.data.image} description={dev.data.shortDescription} />
+          </div>
         ))}
       </div>
     </div>
@@ -56,10 +58,10 @@ const featuredDevelopments = await getCollection('developments', ({ data }) => d
   <section class="py-24 bg-card">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div class="relative aspect-[4/3] rounded-lg overflow-hidden">
+        <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
           <img src={images.about.interior} alt="Luxury property interior" class="w-full h-full object-cover" loading="lazy" />
         </div>
-        <div>
+        <div class="reveal" data-reveal="right">
           <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="about.essence">{t("about.essence")}</p>
           <h2 class="text-4xl font-headline font-bold mb-6 text-foreground" data-t="about.title">{t("about.title")}</h2>
           <blockquote class="text-xl text-muted-foreground italic leading-relaxed mb-8 font-body border-l-2 border-primary pl-6">
@@ -96,11 +98,13 @@ const featuredDevelopments = await getCollection('developments', ({ data }) => d
 
   <!-- Contact Form Section -->
   <section class="py-24 px-6">
-    <div class="max-w-3xl mx-auto text-center mb-12">
+    <div class="max-w-3xl mx-auto text-center mb-12 reveal">
       <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="contact.subtitle">{t("contact.subtitle")}</p>
       <h2 class="text-4xl font-headline font-bold mb-4 text-foreground" data-t="contact.title">{t("contact.title")}</h2>
       <p class="text-muted-foreground font-body" data-t="contact.desc">{t("contact.desc")}</p>
     </div>
-    <ContactForm variant="inline" />
+    <div class="reveal">
+      <ContactForm variant="inline" />
+    </div>
   </section>
 </PageLayout>

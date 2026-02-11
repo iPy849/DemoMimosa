@@ -6,6 +6,7 @@ import { t } from '../i18n/utils';
   href="https://wa.me/529981234567"
   target="_blank"
   rel="noopener noreferrer"
+  id="wa-btn"
   class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#25D366] text-[#fff] px-5 py-3 rounded-full shadow-2xl hover:scale-105 transition-transform group"
   aria-label="WhatsApp"
 >
@@ -16,3 +17,16 @@ import { t } from '../i18n/utils';
     {t("whatsapp.text")}
   </span>
 </a>
+
+<script>
+  // Shake the WhatsApp button every 60 seconds
+  const waBtn = document.getElementById('wa-btn');
+  if (waBtn) {
+    setInterval(() => {
+      waBtn.classList.add('wa-shake');
+      waBtn.addEventListener('animationend', () => {
+        waBtn.classList.remove('wa-shake');
+      }, { once: true });
+    }, 60000);
+  }
+</script>
