@@ -127,6 +127,9 @@ const navItems = [
     document.querySelectorAll('#lang-toggle, #lang-toggle-mobile').forEach((btn) => {
       btn.textContent = label;
     });
+
+    // Dispatch custom event for page-specific language switching (e.g. development details)
+    document.dispatchEvent(new CustomEvent('langChanged', { detail: { lang: newLang } }));
   }
   document.getElementById('lang-toggle')?.addEventListener('click', toggleLanguage);
   document.getElementById('lang-toggle-mobile')?.addEventListener('click', toggleLanguage);

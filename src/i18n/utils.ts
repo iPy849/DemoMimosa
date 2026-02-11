@@ -11,7 +11,10 @@ export function t(key: string): string {
   return translations.es[key] ?? key;
 }
 
-/** Returns the full English translations as a JSON string for client-side hydration. */
+/** Returns all translations as JSON strings for client-side hydration. */
+export function getEsJSON(): string {
+  return JSON.stringify(translations.es);
+}
 export function getEnJSON(): string {
   return JSON.stringify(translations.en);
 }

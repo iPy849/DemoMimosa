@@ -2,20 +2,26 @@
 import PageLayout from '../../layouts/PageLayout.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import { t } from '../../i18n/utils';
-import { allDevelopments, developmentDetails } from '../../data/developments';
+import { getCollection } from 'astro:content';
 
-export function getStaticPaths() {
-  return allDevelopments.map((dev) => ({ params: { id: dev.id } }));
+export async function getStaticPaths() {
+  const esDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es');
+  const enDevelopments = await getCollection('developments', ({ data }) => data.lang === 'en');
+
+  return esDevelopments.map((dev) => {
+    const enPair = enDevelopments.find((en) => en.data.pairId === dev.data.pairId);
+    return {
+      params: { id: dev.data.slug },
+      props: { dev: dev.data, enDev: enPair?.data ?? null },
+    };
+  });
 }
 
-const { id } = Astro.params;
-const detail = developmentDetails[id!];
-const dev = allDevelopments.find((d) => d.id === id);
-
-if (!dev) return Astro.redirect('/developments');
+const { dev, enDev } = Astro.props;
+const gallery = dev.gallery ?? [dev.image];
 ---
 
-<PageLayout title={`${dev.title} | MIMOSA Developments`}>
+<PageLayout title={`${dev.title} | MIMOSA`}>
   <section class="pt-32 pb-24 px-6">
     <div class="max-w-7xl mx-auto">
       <!-- Back link -->
@@ -25,96 +31,92 @@ if (!dev) return Astro.redirect('/developments');
       </a>
 
       <!-- Title -->
-      <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground mb-4">{dev.title}</h1>
+      <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground mb-4" data-t-dev="title">{dev.title}</h1>
       <div class="flex items-center gap-2 text-primary mb-10">
         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span class="font-body">{dev.location}</span>
+        <span class="font-body" data-t-dev="location">{dev.location}</span>
       </div>
 
-      {detail ? (
-        <>
-          <!-- Main row: Carousel (70%) + Sidebar (30%) -->
-          <div class="flex flex-col lg:flex-row gap-8 mb-12">
-            <!-- Carousel column -->
-            <div class="lg:w-[70%] flex flex-col gap-4">
-              <!-- Main image -->
-              <div class="relative aspect-[16/10] rounded-lg overflow-hidden bg-card">
-                {detail.images.map((img, i) => (
-                  <img
-                    src={img}
-                    alt={`${dev.title} - ${i + 1}`}
-                    class:list={["carousel-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-500", i === 0 ? "opacity-100" : "opacity-0"]}
-                    data-slide={i}
-                    loading={i === 0 ? "eager" : "lazy"}
-                  />
-                ))}
-                <!-- Prev/Next buttons -->
+      <!-- Main row: Carousel (70%) + Sidebar (30%) -->
+      <div class="flex flex-col lg:flex-row gap-8 mb-12">
+        <!-- Carousel column -->
+        <div class="lg:w-[70%] flex flex-col gap-4">
+          <!-- Main image -->
+          <div class="relative aspect-[16/10] rounded-lg overflow-hidden bg-card">
+            {gallery.map((img: string, i: number) => (
+              <img
+                src={img}
+                alt={`${dev.title} - ${i + 1}`}
+                class:list={["carousel-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-500", i === 0 ? "opacity-100" : "opacity-0"]}
+                data-slide={i}
+                loading={i === 0 ? "eager" : "lazy"}
+              />
+            ))}
+            {gallery.length > 1 && (
+              <>
                 <button id="carousel-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors" aria-label="Previous">
                   <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                 </button>
                 <button id="carousel-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors" aria-label="Next">
                   <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                 </button>
-              </div>
-              <!-- Thumbnails -->
-              <div class="flex gap-3 overflow-x-auto pb-1">
-                {detail.images.map((img, i) => (
-                  <button
-                    class:list={["carousel-thumb shrink-0 w-20 h-16 rounded-md overflow-hidden border-2 transition-all cursor-pointer", i === 0 ? "border-primary" : "border-transparent opacity-60 hover:opacity-100"]}
-                    data-thumb={i}
-                    aria-label={`View image ${i + 1}`}
-                  >
-                    <img src={img} alt={`Thumbnail ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <!-- Sidebar column (~30%): description + amenities -->
-            <div class="lg:w-[30%] flex flex-col gap-6">
-              <div>
-                <p class="text-muted-foreground leading-relaxed font-body" data-t-html="dev.desc">{detail.description.es}</p>
-              </div>
-              <div class="bg-card rounded-lg border border-border p-6 flex-1">
-                <h3 class="font-headline font-semibold text-foreground mb-4">Amenidades</h3>
-                <ul class="flex flex-col gap-3">
-                  {detail.amenities.es.map((amenity) => (
-                    <li class="flex items-center gap-2 text-muted-foreground font-body text-sm">
-                      <svg class="w-4 h-4 text-primary shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                      {amenity}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!-- Map + Virtual Tour row (50/50) -->
-          <div class="flex flex-col md:flex-row gap-8 mb-16">
-            {detail.mapUrl && (
-              <div class="md:w-1/2">
-                <h3 class="text-xl font-headline font-semibold text-foreground mb-4" data-t="dev.location">{t("dev.location")}</h3>
-                <div class="rounded-lg overflow-hidden border border-border aspect-[4/3]">
-                  <iframe src={detail.mapUrl} width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title={`Map - ${dev.title}`}></iframe>
-                </div>
-              </div>
-            )}
-            {detail.virtualTour && (
-              <div class="md:w-1/2">
-                <h3 class="text-xl font-headline font-semibold text-foreground mb-4" data-t="dev.360">{t("dev.360")}</h3>
-                <div class="rounded-lg overflow-hidden border border-border aspect-[4/3]">
-                  <iframe src={detail.virtualTour} width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" title={`Virtual Tour - ${dev.title}`}></iframe>
-                </div>
-              </div>
+              </>
             )}
           </div>
-        </>
-      ) : (
-        <div class="text-center py-16">
-          <p class="text-muted-foreground font-body text-lg">{dev.description.es}</p>
-          <div class="relative aspect-[2/1] rounded-lg overflow-hidden mt-8">
-            <img src={dev.image} alt={dev.title} class="w-full h-full object-cover" />
+          <!-- Thumbnails -->
+          {gallery.length > 1 && (
+            <div class="flex gap-3 overflow-x-auto pb-1">
+              {gallery.map((img: string, i: number) => (
+                <button
+                  class:list={["carousel-thumb shrink-0 w-20 h-16 rounded-md overflow-hidden border-2 transition-all cursor-pointer", i === 0 ? "border-primary" : "border-transparent opacity-60 hover:opacity-100"]}
+                  data-thumb={i}
+                  aria-label={`View image ${i + 1}`}
+                >
+                  <img src={img} alt={`Thumbnail ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <!-- Sidebar column (~30%): description + amenities -->
+        <div class="lg:w-[30%] flex flex-col gap-6">
+          <div>
+            <p class="text-muted-foreground leading-relaxed font-body" data-t-dev="description">{dev.description}</p>
           </div>
+          <div class="bg-card rounded-lg border border-border p-6 flex-1">
+            <h3 class="font-headline font-semibold text-foreground mb-4" data-t-dev="amenities-title">Amenidades</h3>
+            <ul class="flex flex-col gap-3" id="amenities-list">
+              {dev.amenities.map((amenity: string, i: number) => (
+                <li class="flex items-center gap-2 text-muted-foreground font-body text-sm" data-amenity-index={i}>
+                  <svg class="w-4 h-4 text-primary shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>{amenity}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map + Virtual Tour row (50/50) -->
+      {(dev.mapUrl || dev.virtualTour) && (
+        <div class="flex flex-col md:flex-row gap-8 mb-16">
+          {dev.mapUrl && (
+            <div class="md:w-1/2">
+              <h3 class="text-xl font-headline font-semibold text-foreground mb-4" data-t="dev.location">{t("dev.location")}</h3>
+              <div class="rounded-lg overflow-hidden border border-border aspect-[4/3]">
+                <iframe src={dev.mapUrl} width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title={`Map - ${dev.title}`}></iframe>
+              </div>
+            </div>
+          )}
+          {dev.virtualTour && (
+            <div class="md:w-1/2">
+              <h3 class="text-xl font-headline font-semibold text-foreground mb-4" data-t="dev.360">{t("dev.360")}</h3>
+              <div class="rounded-lg overflow-hidden border border-border aspect-[4/3]">
+                <iframe src={dev.virtualTour} width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" title={`Virtual Tour - ${dev.title}`}></iframe>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -127,13 +129,22 @@ if (!dev) return Astro.redirect('/developments');
   </section>
 </PageLayout>
 
+<!-- Embed EN development data for client-side translation -->
+{enDev && (
+  <script define:vars={{ enDev: JSON.stringify(enDev), esDev: JSON.stringify(dev) }}>
+    window.__enDevData = JSON.parse(enDev);
+    window.__esDevData = JSON.parse(esDev);
+  </script>
+)}
+
 <script>
+  // Carousel logic
   let currentSlide = 0;
-  const slides = document.querySelectorAll('.carousel-slide') as NodeListOf<HTMLImageElement>;
-  const thumbs = document.querySelectorAll('.carousel-thumb') as NodeListOf<HTMLButtonElement>;
+  const slides = document.querySelectorAll('.carousel-slide');
+  const thumbs = document.querySelectorAll('.carousel-thumb');
   const total = slides.length;
 
-  function goToSlide(index: number) {
+  function goToSlide(index) {
     currentSlide = ((index % total) + total) % total;
     slides.forEach((s, i) => {
       s.classList.toggle('opacity-100', i === currentSlide);
@@ -151,4 +162,41 @@ if (!dev) return Astro.redirect('/developments');
   thumbs.forEach((thumb, i) => {
     thumb.addEventListener('click', () => goToSlide(i));
   });
+
+  // Development-specific language switching
+  // This extends the global lang toggle in BaseLayout by also swapping development content
+  const origToggle = document.getElementById('lang-toggle');
+  const origToggleMobile = document.getElementById('lang-toggle-mobile');
+
+  function swapDevContent() {
+    const lang = document.documentElement.lang;
+    const data = lang === 'en' ? window.__enDevData : window.__esDevData;
+    if (!data) return;
+
+    document.querySelectorAll('[data-t-dev]').forEach((el) => {
+      const field = el.getAttribute('data-t-dev');
+      if (field === 'amenities-title') {
+        el.textContent = lang === 'en' ? 'Amenities' : 'Amenidades';
+      } else if (field && data[field]) {
+        el.textContent = data[field];
+      }
+    });
+
+    // Swap amenities list
+    if (data.amenities) {
+      document.querySelectorAll('[data-amenity-index]').forEach((el) => {
+        const idx = parseInt(el.getAttribute('data-amenity-index') ?? '0');
+        const span = el.querySelector('span');
+        if (span && data.amenities[idx]) {
+          span.textContent = data.amenities[idx];
+        }
+      });
+    }
+  }
+
+  // Listen for lang change event dispatched from Navbar
+  document.addEventListener('langChanged', swapDevContent);
+
+  // Also run on initial load in case browser language was EN
+  swapDevContent();
 </script>

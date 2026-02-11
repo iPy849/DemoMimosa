@@ -3,8 +3,10 @@ import PageLayout from '../layouts/PageLayout.astro';
 import DevelopmentCard from '../components/DevelopmentCard.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { t } from '../i18n/utils';
-import { featuredDevelopments } from '../data/developments';
 import { images } from '../data/images';
+import { getCollection } from 'astro:content';
+
+const featuredDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es' && data.featured === true);
 ---
 
 <PageLayout>
@@ -44,7 +46,7 @@ import { images } from '../data/images';
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {featuredDevelopments.map((dev) => (
-          <DevelopmentCard id={dev.id} title={dev.title} location={dev.location} image={dev.image} description={dev.description.es} />
+          <DevelopmentCard id={dev.data.slug} title={dev.data.title} location={dev.data.location} image={dev.data.image} description={dev.data.shortDescription} />
         ))}
       </div>
     </div>

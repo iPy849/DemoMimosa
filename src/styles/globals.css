@@ -89,7 +89,6 @@
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   background-color: color-mix(in oklch, var(--color-background) 90%, transparent);
-  border-bottom-width: 1px;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
 
   & .nav-text { color: var(--color-foreground); }

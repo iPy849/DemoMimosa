@@ -1,7 +1,9 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import { t } from '../i18n/utils';
-import { allDevelopments } from '../data/developments';
+import { getCollection } from 'astro:content';
+
+const esDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es');
 
 const sections = [
   {
@@ -16,9 +18,9 @@ const sections = [
   },
   {
     titleKey: "sitemap.sec2",
-    links: allDevelopments.map((dev) => ({
-      name: dev.title,
-      href: `/developments/${dev.id}`,
+    links: esDevelopments.map((dev) => ({
+      name: dev.data.title,
+      href: `/developments/${dev.data.slug}`,
     })),
   },
   {
