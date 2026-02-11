@@ -1,5 +1,6 @@
 ---
 title: "2024 Interior Design Trends for Luxury Residences"
+slug: "design-trends-2024"
 excerpt: "Discover how natural materials and home automation are redefining the concept of an exclusive home."
 date: "May 24, 2024"
 author: "Elena Rivera"

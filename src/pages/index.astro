@@ -1,6 +1,7 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import DevelopmentCard from '../components/DevelopmentCard.astro';
+import ContactForm from '../components/ContactForm.astro';
 import { useTranslations, localePath, type Language } from '../i18n/utils';
 import { featuredDevelopments } from '../data/developments';
 
@@ -100,30 +101,6 @@ const t = useTranslations(lang);
       <h2 class="text-4xl font-headline font-bold mb-4 text-foreground">{t("contact.title")}</h2>
       <p class="text-muted-foreground font-body">{t("contact.desc")}</p>
     </div>
-    <form class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="flex flex-col gap-2">
-        <label class="text-sm font-body text-foreground">{t("contact.form.name")}</label>
-        <input type="text" class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring" />
-      </div>
-      <div class="flex flex-col gap-2">
-        <label class="text-sm font-body text-foreground">{t("contact.form.email")}</label>
-        <input type="email" class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring" />
-      </div>
-      <div class="md:col-span-2 flex flex-col gap-2">
-        <label class="text-sm font-body text-foreground">{t("contact.form.interest")}</label>
-        <select class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring">
-          <option>Cuatro Bacalar</option>
-          <option>Tulum Eco Resort</option>
-          <option>Merida Heritage</option>
-        </select>
-      </div>
-      <div class="md:col-span-2 flex flex-col gap-2">
-        <label class="text-sm font-body text-foreground">{t("contact.form.message")}</label>
-        <textarea rows="4" class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring resize-none"></textarea>
-      </div>
-      <div class="md:col-span-2">
-        <button type="submit" class="w-full bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors">{t("contact.form.submit")}</button>
-      </div>
-    </form>
+    <ContactForm lang={lang} variant="inline" />
   </section>
 </PageLayout>

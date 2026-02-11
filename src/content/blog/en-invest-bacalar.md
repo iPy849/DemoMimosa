@@ -1,5 +1,6 @@
 ---
 title: "Why Investing in Bacalar is the Smartest Decision Today"
+slug: "invest-bacalar"
 excerpt: "We analyze the exponential growth of the area and why barefoot luxury is the winning trend."
 date: "April 12, 2024"
 author: "Marco Sanchez"

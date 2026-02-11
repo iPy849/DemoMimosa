@@ -1,8 +1,10 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import vercel from '@astrojs/vercel';
 
 export default defineConfig({
-  output: 'static',
+  output: 'hybrid',
+  adapter: vercel(),
   integrations: [
     tailwind(),
   ],
@@ -11,10 +13,6 @@ export default defineConfig({
     locales: ['es', 'en'],
     routing: {
       prefixDefaultLocale: false,
-      fallbackType: 'rewrite',
-    },
-    fallback: {
-      en: 'es',
     },
   },
 });

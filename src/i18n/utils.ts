@@ -6,6 +6,16 @@ export const languages = {
 export const defaultLang = 'es' as const;
 export type Language = keyof typeof languages;
 
+// Route mapping: canonical ES routes -> EN equivalents
+const routeMap: Record<string, Record<Language, string>> = {
+  '/': { es: '/', en: '/en' },
+  '/nosotros': { es: '/nosotros', en: '/en/about' },
+  '/desarrollos': { es: '/desarrollos', en: '/en/developments' },
+  '/blog': { es: '/blog', en: '/en/blog' },
+  '/contacto': { es: '/contacto', en: '/en/contact' },
+  '/sitemap': { es: '/sitemap', en: '/en/sitemap' },
+};
+
 export const ui = {
   es: {
     "nav.home": "Inicio",
@@ -47,6 +57,8 @@ export const ui = {
     "contact.form.interest": "Desarrollo de Interes",
     "contact.form.message": "Mensaje",
     "contact.form.submit": "ENVIAR SOLICITUD DE INFORMACION",
+    "contact.form.success": "Su solicitud ha sido enviada exitosamente. Un asesor lo contactara pronto.",
+    "contact.form.error": "Hubo un error al enviar su solicitud. Por favor intente de nuevo.",
     "footer.nav": "Navegacion",
     "footer.explore": "Explorar",
     "footer.contact": "Contacto",
@@ -122,6 +134,8 @@ export const ui = {
     "contact.form.interest": "Development of Interest",
     "contact.form.message": "Message",
     "contact.form.submit": "SEND INFORMATION REQUEST",
+    "contact.form.success": "Your request has been sent successfully. An advisor will contact you soon.",
+    "contact.form.error": "There was an error sending your request. Please try again.",
     "footer.nav": "Navigation",
     "footer.explore": "Explore",
     "footer.contact": "Contact",
@@ -161,55 +175,71 @@ export const ui = {
 
 export type TranslationKey = keyof typeof ui['es'];
 
-/**
- * Get the language from a URL path, using Astro's i18n routing convention.
- * Default locale (es) has no prefix, English uses /en/ prefix.
- */
 export function getLangFromUrl(url: URL): Language {
   const [, lang] = url.pathname.split('/');
   if (lang in languages) return lang as Language;
   return defaultLang;
 }
 
-/**
- * Returns a translation function for the given language.
- */
 export function useTranslations(lang: Language) {
   return function t(key: TranslationKey): string {
-    return ui[lang][key] || ui[defaultLang][key] || key;
+    return ui[lang]?.[key] || ui[defaultLang][key] || key;
   };
 }
 
 /**
- * Returns the path prefix for the given language.
- */
-export function getPathPrefix(lang: Language): string {
-  return lang === defaultLang ? '' : `/${lang}`;
-}
-
-/**
- * Generates the localized path for a given route.
+ * Generates a localized path. For ES (default), paths stay as-is in Spanish.
+ * For EN, translates the known route segments to English equivalents.
  */
 export function localePath(lang: Language, path: string): string {
-  const prefix = getPathPrefix(lang);
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
-  if (cleanPath === '/') return prefix || '/';
-  return `${prefix}${cleanPath}`;
+
+  if (lang === defaultLang) return cleanPath;
+
+  // Check direct route map match first
+  const mapped = routeMap[cleanPath];
+  if (mapped) return mapped[lang];
+
+  // Handle dynamic routes like /desarrollos/cuatro-bacalar -> /en/developments/cuatro-bacalar
+  if (cleanPath.startsWith('/desarrollos/')) {
+    const slug = cleanPath.replace('/desarrollos/', '');
+    return `/en/developments/${slug}`;
+  }
+  if (cleanPath.startsWith('/blog/')) {
+    const slug = cleanPath.replace('/blog/', '');
+    return `/en/blog/${slug}`;
+  }
+
+  return `/en${cleanPath}`;
 }
 
 /**
- * Get the alternate language toggle href.
+ * Get the alternate language URL for language toggle.
  */
 export function getAlternateLocaleUrl(url: URL, currentLang: Language): string {
-  const targetLang = currentLang === 'es' ? 'en' : 'es';
   const pathname = url.pathname;
+  const targetLang = currentLang === 'es' ? 'en' : 'es';
 
   if (currentLang === 'es') {
-    // Add /en prefix
-    return `/en${pathname === '/' ? '' : pathname}` || '/en';
+    // ES -> EN: translate routes
+    if (pathname === '/') return '/en';
+    if (pathname === '/nosotros') return '/en/about';
+    if (pathname === '/contacto') return '/en/contact';
+    if (pathname === '/sitemap') return '/en/sitemap';
+    if (pathname.startsWith('/desarrollos/')) return `/en/developments/${pathname.replace('/desarrollos/', '')}`;
+    if (pathname === '/desarrollos') return '/en/developments';
+    if (pathname.startsWith('/blog/')) return `/en/blog/${pathname.replace('/blog/', '')}`;
+    if (pathname === '/blog') return '/en/blog';
+    return `/en${pathname}`;
   } else {
-    // Remove /en prefix
-    const stripped = pathname.replace(/^\/en\/?/, '/');
-    return stripped || '/';
+    // EN -> ES: translate routes back
+    const p = pathname.replace(/^\/en\/?/, '/');
+    if (p === '/' || p === '') return '/';
+    if (p === '/about') return '/nosotros';
+    if (p === '/contact') return '/contacto';
+    if (p.startsWith('/developments/')) return `/desarrollos/${p.replace('/developments/', '')}`;
+    if (p === '/developments') return '/desarrollos';
+    // blog and sitemap are the same slug
+    return p;
   }
 }

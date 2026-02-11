@@ -1,5 +1,6 @@
 ---
 title: "Tendencias de Diseno Interior 2024 para Residencias de Lujo"
+slug: "tendencias-diseno-2024"
 excerpt: "Descubre como los materiales naturales y la domotica estan redefiniendo el concepto de hogar exclusivo."
 date: "24 Mayo, 2024"
 author: "Elena Rivera"

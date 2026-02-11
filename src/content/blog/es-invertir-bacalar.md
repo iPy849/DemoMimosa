@@ -1,5 +1,6 @@
 ---
 title: "Por que invertir en Bacalar es la decision mas inteligente hoy"
+slug: "invertir-bacalar"
 excerpt: "Analizamos el crecimiento exponencial de la zona y por que el lujo descalzo es la tendencia ganadora."
 date: "12 Abril, 2024"
 author: "Marco Sanchez"

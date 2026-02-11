@@ -1,0 +1,144 @@
+---
+import { useTranslations, type Language } from '../i18n/utils';
+
+interface Props {
+  lang?: Language;
+  variant?: 'inline' | 'card';
+}
+
+const { lang = 'es', variant = 'inline' } = Astro.props;
+const t = useTranslations(lang);
+const isCard = variant === 'card';
+---
+
+<div class:list={[isCard && "bg-card rounded-lg border border-border p-8"]}>
+  <form
+    id="contact-form"
+    class:list={[isCard ? "flex flex-col gap-6" : "max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6"]}
+    data-lang={lang}
+  >
+    <div class:list={["flex flex-col gap-2", !isCard && ""]}>
+      <label class="text-sm font-body text-foreground">{t("contact.form.name")}</label>
+      <input
+        type="text"
+        name="name"
+        required
+        class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring"
+      />
+    </div>
+
+    {isCard ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-body text-foreground">{t("contact.form.email")}</label>
+          <input
+            type="email"
+            name="email"
+            required
+            class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring"
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-body text-foreground">{t("contact.form.whatsapp")}</label>
+          <input
+            type="tel"
+            name="whatsapp"
+            class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring"
+          />
+        </div>
+      </div>
+    ) : (
+      <div class="flex flex-col gap-2">
+        <label class="text-sm font-body text-foreground">{t("contact.form.email")}</label>
+        <input
+          type="email"
+          name="email"
+          required
+          class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring"
+        />
+      </div>
+    )}
+
+    {!isCard && (
+      <div class="md:col-span-2 flex flex-col gap-2">
+        <label class="text-sm font-body text-foreground">{t("contact.form.interest")}</label>
+        <select
+          name="interest"
+          class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring"
+        >
+          <option>Cuatro Bacalar</option>
+          <option>Tulum Eco Resort</option>
+          <option>Merida Heritage</option>
+        </select>
+      </div>
+    )}
+
+    <div class:list={["flex flex-col gap-2", !isCard && "md:col-span-2"]}>
+      <label class="text-sm font-body text-foreground">{t("contact.form.message")}</label>
+      <textarea
+        name="message"
+        rows={isCard ? 5 : 4}
+        class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+      ></textarea>
+    </div>
+
+    <div class:list={[!isCard && "md:col-span-2"]}>
+      <button
+        type="submit"
+        id="contact-submit"
+        class="w-full bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {isCard ? t("contact.page.submit") : t("contact.form.submit")}
+      </button>
+    </div>
+
+    <div id="form-message" class:list={["hidden text-sm font-body text-center", !isCard && "md:col-span-2"]}></div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('contact-submit') as HTMLButtonElement;
+  const messageEl = document.getElementById('form-message') as HTMLDivElement;
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const lang = form.dataset.lang || 'es';
+      submitBtn.disabled = true;
+      submitBtn.textContent = lang === 'es' ? 'Enviando...' : 'Sending...';
+      messageEl.classList.add('hidden');
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        if (res.ok) {
+          messageEl.textContent = lang === 'es'
+            ? 'Su solicitud ha sido enviada exitosamente. Un asesor lo contactara pronto.'
+            : 'Your request has been sent successfully. An advisor will contact you soon.';
+          messageEl.classList.remove('hidden', 'text-red-500');
+          messageEl.classList.add('text-green-600');
+          form.reset();
+        } else {
+          throw new Error('Server error');
+        }
+      } catch {
+        messageEl.textContent = lang === 'es'
+          ? 'Hubo un error al enviar su solicitud. Por favor intente de nuevo.'
+          : 'There was an error sending your request. Please try again.';
+        messageEl.classList.remove('hidden', 'text-green-600');
+        messageEl.classList.add('text-red-500');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = lang === 'es' ? 'ENVIAR SOLICITUD' : 'SEND REQUEST';
+      }
+    });
+  }
+</script>
