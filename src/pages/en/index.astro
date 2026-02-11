@@ -1,0 +1,129 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import DevelopmentCard from '../../components/DevelopmentCard.astro';
+import { useTranslations, localePath, type Language } from '../../i18n/utils';
+import { featuredDevelopments } from '../../data/developments';
+
+const lang: Language = 'en';
+const t = useTranslations(lang);
+---
+
+<PageLayout lang={lang}>
+  <!-- Hero Section -->
+  <section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1920&h=1080&auto=format&fit=crop" alt="Luxury Caribbean development" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-black/50"></div>
+    </div>
+    <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/40 to-transparent z-10"></div>
+    <div class="relative z-20 text-center max-w-4xl mx-auto px-6 fade-in">
+      <p class="text-[#ffffffcc] text-sm tracking-[0.3em] uppercase mb-4 font-body">{t("hero.subtitle")}</p>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-headline font-bold text-[#fff] tracking-wider mb-6 text-balance">MIMOSA Developments</h1>
+      <p class="text-[#ffffffb3] text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-body">{t("hero.description")}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={localePath(lang, '/desarrollos')} class="bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2">{t("hero.cta.primary")}</a>
+        <a href={localePath(lang, '/contacto')} class="border border-[#ffffff66] text-[#fff] px-8 py-4 text-xs tracking-[0.2em] font-body hover:bg-[#ffffff1a] transition-colors inline-flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+          {t("hero.cta.secondary")}
+        </a>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+      <svg class="w-6 h-6 text-[#ffffff99]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+  </section>
+
+  <!-- Featured Developments -->
+  <section class="py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-4">
+        <div>
+          <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body">{t("featured.subtitle")}</p>
+          <h2 class="text-4xl md:text-5xl font-headline font-bold text-foreground">{t("featured.title")}</h2>
+        </div>
+        <a href={localePath(lang, '/desarrollos')} class="text-primary text-sm tracking-wider uppercase font-bold hover:underline font-body">{t("featured.cta")}</a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {featuredDevelopments.map((dev) => (
+          <DevelopmentCard id={dev.id} title={dev.title} location={dev.location} image={dev.image} description={dev.description[lang]} lang={lang} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="py-24 bg-card">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="relative aspect-[4/3] rounded-lg overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&h=600&auto=format&fit=crop" alt="Luxury property interior" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div>
+          <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body">{t("about.essence")}</p>
+          <h2 class="text-4xl font-headline font-bold mb-6 text-foreground">{t("about.title")}</h2>
+          <blockquote class="text-xl text-muted-foreground italic leading-relaxed mb-8 font-body border-l-2 border-primary pl-6">
+            "{t("about.quote")}"
+          </blockquote>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+            <div class="text-center">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg class="w-6 h-6 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <h4 class="font-headline font-semibold text-foreground">{t("about.pillar1.title")}</h4>
+              <p class="text-sm text-muted-foreground mt-1 font-body">{t("about.pillar1.desc")}</p>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg class="w-6 h-6 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+              </div>
+              <h4 class="font-headline font-semibold text-foreground">{t("about.pillar2.title")}</h4>
+              <p class="text-sm text-muted-foreground mt-1 font-body">{t("about.pillar2.desc")}</p>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg class="w-6 h-6 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>
+              </div>
+              <h4 class="font-headline font-semibold text-foreground">{t("about.pillar3.title")}</h4>
+              <p class="text-sm text-muted-foreground mt-1 font-body">{t("about.pillar3.desc")}</p>
+            </div>
+          </div>
+          <a href={localePath(lang, '/nosotros')} class="inline-block bg-primary text-primary-foreground px-8 py-3 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors">{t("about.cta")}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section class="py-24 px-6">
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body">{t("contact.subtitle")}</p>
+      <h2 class="text-4xl font-headline font-bold mb-4 text-foreground">{t("contact.title")}</h2>
+      <p class="text-muted-foreground font-body">{t("contact.desc")}</p>
+    </div>
+    <form class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="flex flex-col gap-2">
+        <label class="text-sm font-body text-foreground">{t("contact.form.name")}</label>
+        <input type="text" class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label class="text-sm font-body text-foreground">{t("contact.form.email")}</label>
+        <input type="email" class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring" />
+      </div>
+      <div class="md:col-span-2 flex flex-col gap-2">
+        <label class="text-sm font-body text-foreground">{t("contact.form.interest")}</label>
+        <select class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring">
+          <option>Cuatro Bacalar</option>
+          <option>Tulum Eco Resort</option>
+          <option>Merida Heritage</option>
+        </select>
+      </div>
+      <div class="md:col-span-2 flex flex-col gap-2">
+        <label class="text-sm font-body text-foreground">{t("contact.form.message")}</label>
+        <textarea rows="4" class="bg-background border border-input rounded-md px-4 py-3 text-foreground font-body focus:outline-none focus:ring-2 focus:ring-ring resize-none"></textarea>
+      </div>
+      <div class="md:col-span-2">
+        <button type="submit" class="w-full bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors">{t("contact.form.submit")}</button>
+      </div>
+    </form>
+  </section>
+</PageLayout>
