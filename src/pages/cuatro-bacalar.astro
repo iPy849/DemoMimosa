@@ -9,12 +9,7 @@ const dev = esDevelopments.find((d) => d.data.slug === 'cuatro-bacalar')?.data;
 
 if (!dev) throw new Error('Cuatro Bacalar development not found');
 
-const housePlans = [
-  { name: 'Casa 1', image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-069-d9zIbWHcBoXzw6FbMPOtPFqsyONS3f.png', sold: true },
-  { name: 'Casa 2', image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-079-7bucbtXWBnwmaczpe8MWz74xibgQnL.png', sold: false },
-  { name: 'Casa 3', image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-071-GFFD8M9CQRnircZmP0uHwPQkMgyxIV.png', sold: false },
-  { name: 'Casa 4', image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-073-L22xfkad7IT9hksFGvZXG0tEoqQXMb.png', sold: false },
-];
+const housePlanImage = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-079-7bucbtXWBnwmaczpe8MWz74xibgQnL.png';
 
 const plantaBajaImage = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-075-SVZnZ9pqSt9SzjzS5yuaUvMEwvpDye.png';
 const plantaAltaImage = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-077-2nrAn8XhnOLwDC1fsAzeW4DiSWZUr5.png';
@@ -37,7 +32,7 @@ const amenityIcons: Record<string, string> = {
   description={dev.shortDescription ?? dev.description}
   keywords={`cuatro bacalar, ${dev.title}, ${dev.location}, lujo, inversion, caribe mexicano, laguna bacalar`}
 >
-  <!-- Section 1: Text & Amenities -->
+  <!-- Section 1: Text, Amenities, and Gallery -->
   <section class="pt-32 pb-16 px-6 bg-gradient-to-b from-muted/30 to-background">
     <div class="max-w-7xl mx-auto">
       <!-- Title -->
@@ -50,166 +45,161 @@ const amenityIcons: Record<string, string> = {
         <p class="text-xl text-muted-foreground font-body leading-relaxed max-w-3xl mx-auto">{dev.shortDescription}</p>
       </div>
 
-      <div class="grid lg:grid-cols-2 gap-12 items-start">
-        <!-- Description -->
-        <div class="space-y-6">
-          <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground">Una Experiencia Unica</h2>
-          <p class="text-lg text-muted-foreground font-body leading-relaxed">{dev.description}</p>
-          <div class="pt-4">
-            <a href="#contact" class="inline-flex items-center gap-2 text-primary font-body font-bold text-sm tracking-wider uppercase hover:gap-4 transition-all">
-              <span>AGENDA UNA VISITA</span>
-              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Amenities 3x2 Grid -->
-        <div class="bg-card rounded-2xl border border-border p-8 shadow-lg">
-          <h3 class="text-2xl font-headline font-bold text-foreground mb-8">Amenidades Exclusivas</h3>
-          <div class="grid grid-cols-3 gap-4">
-            {dev.amenities.map((amenity: string) => (
-              <div class="group flex flex-col items-center gap-3 p-4 rounded-xl bg-background hover:bg-primary/5 transition-all duration-300">
-                <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
-                  <svg class="w-6 h-6 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <Fragment set:html={amenityIcons[amenity] || '<path d="M20 6 9 17l-5-5"/>'} />
-                  </svg>
-                </div>
-                <span class="text-foreground font-body font-medium text-xs text-center leading-tight">{amenity}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 2: Image Gallery with Thumbnails (compact) -->
-  <section class="py-12 px-6 bg-background">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-3xl font-headline font-bold text-foreground text-center mb-8">Galeria de Imagenes</h2>
-      
-      <div class="space-y-4">
-        <!-- Main Image -->
-        <div class="relative rounded-2xl overflow-hidden border border-border shadow-xl aspect-[21/9] bg-card">
-          {gallery.map((img: string, i: number) => (
-            <div
-              class:list={["gallery-slide absolute inset-0 transition-opacity duration-700", i === 0 ? "opacity-100" : "opacity-0"]}
-              data-slide={i}
-            >
-              <img src={img} alt={`${dev.title} - Imagen ${i + 1}`} class="w-full h-full object-cover" loading={i === 0 ? "eager" : "lazy"} />
+      <div class="grid lg:grid-cols-5 gap-8 items-start">
+        <!-- Left: Description + Amenities -->
+        <div class="lg:col-span-3 space-y-8">
+          <!-- Description -->
+          <div class="space-y-4">
+            <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground">Una Experiencia Unica</h2>
+            <p class="text-lg text-muted-foreground font-body leading-relaxed">{dev.description}</p>
+            <div class="pt-2">
+              <a href="#contact" class="inline-flex items-center gap-2 text-primary font-body font-bold text-sm tracking-wider uppercase hover:gap-4 transition-all">
+                <span>AGENDA UNA VISITA</span>
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
             </div>
-          ))}
-          {gallery.length > 1 && (
-            <>
-              <button id="gallery-prev" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/30 backdrop-blur-sm hover:bg-black/50 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Previous">
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-              </button>
-              <button id="gallery-next" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/30 backdrop-blur-sm hover:bg-black/50 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Next">
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-              </button>
-            </>
-          )}
+          </div>
+
+          <!-- Amenities 3x2 Grid (smaller) -->
+          <div>
+            <h3 class="text-xl font-headline font-bold text-foreground mb-4">Amenidades Exclusivas</h3>
+            <div class="grid grid-cols-3 gap-3">
+              {dev.amenities.map((amenity: string) => (
+                <div class="group flex flex-col items-center gap-2 p-3 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300">
+                  <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
+                    <svg class="w-5 h-5 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <Fragment set:html={amenityIcons[amenity] || '<path d="M20 6 9 17l-5-5"/>'} />
+                    </svg>
+                  </div>
+                  <span class="text-foreground font-body font-medium text-xs text-center leading-tight">{amenity}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <!-- Thumbnails Row -->
-        {gallery.length > 1 && (
-          <div class="flex gap-2 justify-center">
-            {gallery.map((img: string, i: number) => (
-              <button
-                class="gallery-thumb group relative w-16 h-12 rounded-lg overflow-hidden border-2 transition-all hover:scale-105"
-                data-thumb={i}
-                data-active={i === 0}
-              >
-                <img src={img} alt={`Miniatura ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
-              </button>
-            ))}
+        <!-- Right: Gallery (compact) -->
+        <div class="lg:col-span-2">
+          <div class="sticky top-24 space-y-3">
+            <!-- Main Image -->
+            <div class="relative rounded-xl overflow-hidden border border-border shadow-lg aspect-[4/3] bg-card group cursor-pointer">
+              {gallery.map((img: string, i: number) => (
+                <div
+                  class:list={["gallery-slide absolute inset-0 transition-opacity duration-700", i === 0 ? "opacity-100" : "opacity-0"]}
+                  data-slide={i}
+                  data-gallery-image={img}
+                >
+                  <img src={img} alt={`${dev.title} - Imagen ${i + 1}`} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading={i === 0 ? "eager" : "lazy"} />
+                </div>
+              ))}
+              {gallery.length > 1 && (
+                <>
+                  <button id="gallery-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 backdrop-blur-sm hover:bg-black/60 text-white rounded-full w-8 h-8 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Previous">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                  </button>
+                  <button id="gallery-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 backdrop-blur-sm hover:bg-black/60 text-white rounded-full w-8 h-8 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Next">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                  </button>
+                </>
+              )}
+            </div>
+
+            <!-- Thumbnails Grid -->
+            {gallery.length > 1 && (
+              <div class="grid grid-cols-4 gap-2">
+                {gallery.map((img: string, i: number) => (
+                  <button
+                    class="gallery-thumb group relative aspect-video rounded-md overflow-hidden border-2 transition-all hover:scale-105 cursor-pointer"
+                    data-thumb={i}
+                    data-active={i === 0}
+                  >
+                    <img src={img} alt={`Miniatura ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Section 3: Our Four Houses (cascading fan layout) -->
-  <section id="houses" class="py-16 px-6 bg-muted/30">
+  <!-- Section 2: Our Four Houses (staircase of images) -->
+  <section id="houses" class="py-16 px-6 bg-background">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16">
         <h2 class="text-4xl md:text-5xl font-headline font-bold text-foreground mb-4">Nuestras Cuatro Casas</h2>
         <p class="text-lg text-muted-foreground font-body max-w-2xl mx-auto">Cada residencia ha sido disenada para ofrecer privacidad, lujo y conexion con la naturaleza</p>
       </div>
 
-      <!-- Cascading Fan Layout -->
-      <div class="houses-fan relative flex items-end justify-center h-[420px] md:h-[500px] mb-16">
-        {housePlans.map((house, i) => (
+      <!-- Staircase Layout - 4 identical floor plan images -->
+      <div class="relative flex items-center justify-center min-h-[500px] md:min-h-[600px] mb-16 overflow-hidden">
+        {[0, 1, 2, 3].map((i) => (
           <div
             class:list={[
-              "house-card absolute rounded-2xl overflow-hidden border-2 shadow-2xl transition-all duration-500 cursor-pointer hover:z-50 hover:!scale-110",
-              house.sold ? "border-red-500/50" : "border-border hover:border-primary/50",
+              "house-stair absolute cursor-pointer transition-all duration-500 hover:z-50 hover:scale-105 hover:shadow-2xl",
+              i === 0 ? "z-10" : "",
+              i === 1 ? "z-20" : "",
+              i === 2 ? "z-30" : "",
+              i === 3 ? "z-40" : "",
             ]}
             style={`
-              width: 220px;
-              height: 340px;
-              left: calc(50% - 260px + ${i * 130}px);
-              z-index: ${10 + i};
-              transform: rotate(${-6 + i * 4}deg);
+              left: calc(50% - 300px + ${i * 140}px);
+              bottom: ${i * 60}px;
             `}
-            data-house-card={i}
+            data-house-index={i}
           >
-            <img src={house.image} alt={house.name} class="w-full h-full object-cover" loading="lazy" />
-            {house.sold && (
-              <div class="absolute inset-0 bg-red-900/70 flex flex-col items-center justify-center">
-                <svg class="w-12 h-12 text-white/80 mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
-                <span class="text-white font-headline font-bold text-lg">VENDIDA</span>
-              </div>
-            )}
-            <div class:list={["absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent", house.sold && "hidden"]}>
-              <p class="text-white font-headline font-bold text-sm">{house.name}</p>
-              <p class="text-white/70 text-xs font-body">Disponible</p>
+            <div class="relative rounded-xl overflow-hidden border-2 border-border shadow-xl w-[240px] md:w-[280px]">
+              <img src={housePlanImage} alt={`Casa ${i + 1} - Planta Baja`} class="w-full h-auto" loading="lazy" />
+              {i === 0 && (
+                <div class="absolute inset-0 bg-red-900/75 flex flex-col items-center justify-center">
+                  <svg class="w-12 h-12 text-white/90 mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+                  <span class="text-white font-headline font-bold text-lg">VENDIDA</span>
+                </div>
+              )}
+              {i !== 0 && (
+                <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
+                  <p class="text-white font-headline font-bold text-sm">Casa {i + 1}</p>
+                  <p class="text-white/80 text-xs font-body">Disponible</p>
+                </div>
+              )}
             </div>
           </div>
         ))}
       </div>
 
-      <!-- Floor Plans (Planta Baja + Planta Alta) & Blueprint Link -->
-      <div class="grid lg:grid-cols-2 gap-8 items-start mb-12">
-        <div class="group relative overflow-hidden rounded-2xl bg-card border border-border shadow-lg">
-          <div class="p-4 text-center border-b border-border bg-muted/30">
-            <h4 class="text-lg font-headline font-bold text-foreground">Planta Baja</h4>
+      <!-- Floor Plans Side by Side (no card) -->
+      <div class="max-w-5xl mx-auto mb-12">
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <div class="space-y-2">
+            <h4 class="text-xl font-headline font-bold text-foreground text-center mb-3">Planta Baja</h4>
+            <img src={plantaBajaImage} alt="Planta Baja" class="w-full h-auto rounded-xl shadow-lg border border-border cursor-pointer hover:shadow-2xl transition-shadow" data-lightbox-image={plantaBajaImage} loading="lazy" />
           </div>
-          <div class="p-4">
-            <img src={plantaBajaImage} alt="Planta Baja" class="w-full h-auto rounded-lg" loading="lazy" />
-          </div>
-        </div>
-        <div class="group relative overflow-hidden rounded-2xl bg-card border border-border shadow-lg">
-          <div class="p-4 text-center border-b border-border bg-muted/30">
-            <h4 class="text-lg font-headline font-bold text-foreground">Planta Alta</h4>
-          </div>
-          <div class="p-4">
-            <img src={plantaAltaImage} alt="Planta Alta" class="w-full h-auto rounded-lg" loading="lazy" />
+          <div class="space-y-2">
+            <h4 class="text-xl font-headline font-bold text-foreground text-center mb-3">Planta Alta</h4>
+            <img src={plantaAltaImage} alt="Planta Alta" class="w-full h-auto rounded-xl shadow-lg border border-border cursor-pointer hover:shadow-2xl transition-shadow" data-lightbox-image={plantaAltaImage} loading="lazy" />
           </div>
         </div>
-      </div>
 
-      <!-- Description below both floor plans -->
-      <div class="max-w-4xl mx-auto text-center mb-12">
-        <p class="text-muted-foreground font-body leading-relaxed text-lg">Cada casa cuenta con dos niveles, dos recamaras con bano completo, amplia sala-comedor con cocina integrada, alberca privada, estacionamiento techado y terraza con vista panoramica. Diseno arquitectonico contemporaneo con acabados de primer nivel y materiales locales sustentables.</p>
-      </div>
-
-      <!-- View Blueprint Button -->
-      <div class="text-center">
-        <button
-          id="view-floor-plan"
-          class="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold font-body text-sm tracking-wider uppercase transition-all hover:scale-105 shadow-lg hover:shadow-xl"
-        >
-          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-          <span>VER PLANOS ARQUITECTONICOS</span>
-        </button>
+        <!-- Single Description Below -->
+        <div class="text-center max-w-3xl mx-auto space-y-6">
+          <p class="text-muted-foreground font-body leading-relaxed text-lg">Cada casa cuenta con dos niveles, dos recamaras con bano completo, amplia sala-comedor con cocina integrada, alberca privada, estacionamiento techado y terraza con vista panoramica. Diseno arquitectonico contemporaneo con acabados de primer nivel y materiales locales sustentables.</p>
+          
+          <button
+            id="view-floor-plan"
+            class="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold font-body text-sm tracking-wider uppercase transition-all hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            <span>VER PLANOS ARQUITECTONICOS</span>
+          </button>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Section 4: Map & Virtual Tour -->
+  <!-- Section 3: Map & Virtual Tour -->
   {(dev.mapUrl || dev.virtualTour) && (
-    <section class="py-16 px-6 bg-background">
+    <section class="py-16 px-6 bg-muted/30">
       <div class="max-w-7xl mx-auto">
         <div class="grid md:grid-cols-2 gap-8">
           {dev.mapUrl && (
@@ -234,7 +224,7 @@ const amenityIcons: Record<string, string> = {
   )}
 
   <!-- Contact Form -->
-  <section id="contact" class="py-16 px-6 bg-muted/30">
+  <section id="contact" class="py-16 px-6 bg-background">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-4">Agenda Tu Visita</h2>
@@ -256,6 +246,16 @@ const amenityIcons: Record<string, string> = {
       <img src={floorPlanImage} alt="Planos Arquitectonicos Detallados" class="w-full h-auto rounded-2xl shadow-2xl" />
     </div>
   </div>
+
+  <!-- Image Lightbox Modal -->
+  <div id="lightbox-modal" class="hidden fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-6 cursor-pointer">
+    <div class="relative max-w-6xl max-h-full">
+      <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[90vh] object-contain rounded-lg" />
+      <button id="close-lightbox" class="absolute top-4 right-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center transition-all hover:scale-110">
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </div>
 </PageLayout>
 
 <style>
@@ -267,25 +267,15 @@ const amenityIcons: Record<string, string> = {
     border-color: hsl(var(--border));
   }
 
-  .house-card {
+  .house-stair {
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s, box-shadow 0.5s ease;
   }
-  .house-card:hover {
-    box-shadow: 0 25px 60px -12px rgba(0,0,0,0.4);
-  }
 
-  @media (max-width: 640px) {
-    .house-card {
-      width: 150px !important;
-      height: 240px !important;
-    }
-    .houses-fan {
-      height: 300px !important;
-    }
-    .house-card:nth-child(1) { left: calc(50% - 175px) !important; }
-    .house-card:nth-child(2) { left: calc(50% - 90px) !important; }
-    .house-card:nth-child(3) { left: calc(50% - 5px) !important; }
-    .house-card:nth-child(4) { left: calc(50% + 80px) !important; }
+  @media (max-width: 768px) {
+    .house-stair:nth-child(1) { left: calc(50% - 200px) !important; bottom: 0px !important; }
+    .house-stair:nth-child(2) { left: calc(50% - 100px) !important; bottom: 40px !important; }
+    .house-stair:nth-child(3) { left: calc(50% - 0px) !important; bottom: 80px !important; }
+    .house-stair:nth-child(4) { left: calc(50% + 100px) !important; bottom: 120px !important; }
   }
 </style>
 
@@ -311,24 +301,65 @@ const amenityIcons: Record<string, string> = {
   document.getElementById('gallery-next')?.addEventListener('click', () => goTo(currentSlide + 1));
   thumbs.forEach((t, i) => t.addEventListener('click', () => goTo(i)));
 
-  // House card click lightbox
-  document.querySelectorAll('[data-house-card]').forEach((el) => {
+  // Gallery main image click to open lightbox
+  slides.forEach((slide) => {
+    slide.addEventListener('click', () => {
+      const imgSrc = slide.getAttribute('data-gallery-image');
+      if (imgSrc) {
+        const lightbox = document.getElementById('lightbox-modal');
+        const lightboxImg = document.getElementById('lightbox-image') as HTMLImageElement;
+        if (lightbox && lightboxImg) {
+          lightboxImg.src = imgSrc;
+          lightbox.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    });
+  });
+
+  // Floor plan images lightbox
+  document.querySelectorAll('[data-lightbox-image]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const imgSrc = el.getAttribute('data-lightbox-image');
+      if (imgSrc) {
+        const lightbox = document.getElementById('lightbox-modal');
+        const lightboxImg = document.getElementById('lightbox-image') as HTMLImageElement;
+        if (lightbox && lightboxImg) {
+          lightboxImg.src = imgSrc;
+          lightbox.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    });
+  });
+
+  // House stair images lightbox
+  document.querySelectorAll('[data-house-index]').forEach((el) => {
     el.addEventListener('click', () => {
       const img = el.querySelector('img');
-      if (!img) return;
-      const modal = document.createElement('div');
-      modal.className = 'fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-6 cursor-pointer';
-      modal.innerHTML = `
-        <div class="relative max-w-5xl max-h-full">
-          <img src="${img.src}" alt="${img.alt}" class="max-w-full max-h-[90vh] object-contain rounded-lg" />
-          <button class="absolute top-4 right-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center transition-all hover:scale-110">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-          </button>
-        </div>
-      `;
-      modal.addEventListener('click', () => modal.remove());
-      document.body.appendChild(modal);
+      if (img) {
+        const lightbox = document.getElementById('lightbox-modal');
+        const lightboxImg = document.getElementById('lightbox-image') as HTMLImageElement;
+        if (lightbox && lightboxImg) {
+          lightboxImg.src = img.src;
+          lightbox.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        }
+      }
     });
+  });
+
+  // Close lightbox
+  const lightboxModal = document.getElementById('lightbox-modal');
+  document.getElementById('close-lightbox')?.addEventListener('click', () => {
+    lightboxModal?.classList.add('hidden');
+    document.body.style.overflow = '';
+  });
+  lightboxModal?.addEventListener('click', (e) => {
+    if (e.target === lightboxModal) {
+      lightboxModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
   });
 
   // Floor Plan Modal
