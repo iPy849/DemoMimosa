@@ -46,8 +46,8 @@ const amenityIcons: Record<string, string> = {
       </div>
 
       <div class="grid lg:grid-cols-5 gap-8 items-start">
-        <!-- Left: Description + Amenities -->
-        <div class="lg:col-span-3 space-y-8">
+        <!-- Left: Description + Amenities (40%) -->
+        <div class="lg:col-span-2 space-y-8">
           <!-- Description -->
           <div class="space-y-4">
             <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground">Una Experiencia Unica</h2>
@@ -78,8 +78,8 @@ const amenityIcons: Record<string, string> = {
           </div>
         </div>
 
-        <!-- Right: Gallery (compact) -->
-        <div class="lg:col-span-2">
+        <!-- Right: Gallery (60%) -->
+        <div class="lg:col-span-3">
           <div class="sticky top-24 space-y-3">
             <!-- Main Image -->
             <div class="relative rounded-xl overflow-hidden border border-border shadow-lg aspect-[4/3] bg-card group cursor-pointer">
@@ -132,35 +132,27 @@ const amenityIcons: Record<string, string> = {
         <p class="text-lg text-muted-foreground font-body max-w-2xl mx-auto">Cada residencia ha sido disenada para ofrecer privacidad, lujo y conexion con la naturaleza</p>
       </div>
 
-      <!-- Staircase Layout - 4 identical floor plan images -->
-      <div class="relative flex items-center justify-center min-h-[500px] md:min-h-[600px] mb-16 overflow-hidden">
+      <!-- Staircase Layout - 4 identical floor plan images rotated 90° -->
+      <div class="relative flex items-center justify-center min-h-[400px] md:min-h-[500px] mb-12">
         {[0, 1, 2, 3].map((i) => (
           <div
             class:list={[
-              "house-stair absolute cursor-pointer transition-all duration-500 hover:z-50 hover:scale-105 hover:shadow-2xl",
+              "house-stair absolute transition-all duration-500",
               i === 0 ? "z-10" : "",
               i === 1 ? "z-20" : "",
               i === 2 ? "z-30" : "",
               i === 3 ? "z-40" : "",
             ]}
             style={`
-              left: calc(50% - 300px + ${i * 140}px);
-              bottom: ${i * 60}px;
+              left: calc(50% - 240px + ${i * 120}px);
+              bottom: ${i * 50}px;
             `}
-            data-house-index={i}
           >
-            <div class="relative rounded-xl overflow-hidden border-2 border-border shadow-xl w-[240px] md:w-[280px]">
-              <img src={housePlanImage} alt={`Casa ${i + 1} - Planta Baja`} class="w-full h-auto" loading="lazy" />
+            <div class="relative w-[200px] md:w-[240px]">
+              <img src={housePlanImage} alt={`Planta Baja ${i + 1}`} class="w-full h-auto rotate-90" loading="lazy" />
               {i === 0 && (
-                <div class="absolute inset-0 bg-red-900/75 flex flex-col items-center justify-center">
-                  <svg class="w-12 h-12 text-white/90 mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
-                  <span class="text-white font-headline font-bold text-lg">VENDIDA</span>
-                </div>
-              )}
-              {i !== 0 && (
-                <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
-                  <p class="text-white font-headline font-bold text-sm">Casa {i + 1}</p>
-                  <p class="text-white/80 text-xs font-body">Disponible</p>
+                <div class="absolute inset-0 bg-[#00355a]/80 rotate-90 flex items-center justify-center">
+                  <span class="text-white font-headline font-bold text-base -rotate-90">VENDIDA</span>
                 </div>
               )}
             </div>
@@ -168,16 +160,16 @@ const amenityIcons: Record<string, string> = {
         ))}
       </div>
 
-      <!-- Floor Plans Side by Side (no card) -->
+      <!-- Floor Plans Side by Side (no card, no interactivity) -->
       <div class="max-w-5xl mx-auto mb-12">
         <div class="grid md:grid-cols-2 gap-8 mb-8">
-          <div class="space-y-2">
-            <h4 class="text-xl font-headline font-bold text-foreground text-center mb-3">Planta Baja</h4>
-            <img src={plantaBajaImage} alt="Planta Baja" class="w-full h-auto rounded-xl shadow-lg border border-border cursor-pointer hover:shadow-2xl transition-shadow" data-lightbox-image={plantaBajaImage} loading="lazy" />
+          <div class="space-y-3">
+            <h4 class="text-xl font-headline font-bold text-foreground text-center">Planta Baja</h4>
+            <img src={plantaBajaImage} alt="Planta Baja" class="w-full h-auto" loading="lazy" />
           </div>
-          <div class="space-y-2">
-            <h4 class="text-xl font-headline font-bold text-foreground text-center mb-3">Planta Alta</h4>
-            <img src={plantaAltaImage} alt="Planta Alta" class="w-full h-auto rounded-xl shadow-lg border border-border cursor-pointer hover:shadow-2xl transition-shadow" data-lightbox-image={plantaAltaImage} loading="lazy" />
+          <div class="space-y-3">
+            <h4 class="text-xl font-headline font-bold text-foreground text-center">Planta Alta</h4>
+            <img src={plantaAltaImage} alt="Planta Alta" class="w-full h-auto" loading="lazy" />
           </div>
         </div>
 
@@ -267,15 +259,11 @@ const amenityIcons: Record<string, string> = {
     border-color: hsl(var(--border));
   }
 
-  .house-stair {
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s, box-shadow 0.5s ease;
-  }
-
   @media (max-width: 768px) {
-    .house-stair:nth-child(1) { left: calc(50% - 200px) !important; bottom: 0px !important; }
-    .house-stair:nth-child(2) { left: calc(50% - 100px) !important; bottom: 40px !important; }
-    .house-stair:nth-child(3) { left: calc(50% - 0px) !important; bottom: 80px !important; }
-    .house-stair:nth-child(4) { left: calc(50% + 100px) !important; bottom: 120px !important; }
+    .house-stair:nth-child(1) { left: calc(50% - 180px) !important; bottom: 0px !important; }
+    .house-stair:nth-child(2) { left: calc(50% - 80px) !important; bottom: 40px !important; }
+    .house-stair:nth-child(3) { left: calc(50% + 20px) !important; bottom: 80px !important; }
+    .house-stair:nth-child(4) { left: calc(50% + 120px) !important; bottom: 120px !important; }
   }
 </style>
 
@@ -310,38 +298,6 @@ const amenityIcons: Record<string, string> = {
         const lightboxImg = document.getElementById('lightbox-image') as HTMLImageElement;
         if (lightbox && lightboxImg) {
           lightboxImg.src = imgSrc;
-          lightbox.classList.remove('hidden');
-          document.body.style.overflow = 'hidden';
-        }
-      }
-    });
-  });
-
-  // Floor plan images lightbox
-  document.querySelectorAll('[data-lightbox-image]').forEach((el) => {
-    el.addEventListener('click', () => {
-      const imgSrc = el.getAttribute('data-lightbox-image');
-      if (imgSrc) {
-        const lightbox = document.getElementById('lightbox-modal');
-        const lightboxImg = document.getElementById('lightbox-image') as HTMLImageElement;
-        if (lightbox && lightboxImg) {
-          lightboxImg.src = imgSrc;
-          lightbox.classList.remove('hidden');
-          document.body.style.overflow = 'hidden';
-        }
-      }
-    });
-  });
-
-  // House stair images lightbox
-  document.querySelectorAll('[data-house-index]').forEach((el) => {
-    el.addEventListener('click', () => {
-      const img = el.querySelector('img');
-      if (img) {
-        const lightbox = document.getElementById('lightbox-modal');
-        const lightboxImg = document.getElementById('lightbox-image') as HTMLImageElement;
-        if (lightbox && lightboxImg) {
-          lightboxImg.src = img.src;
           lightbox.classList.remove('hidden');
           document.body.style.overflow = 'hidden';
         }
