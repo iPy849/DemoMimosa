@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import PageLayout from '../layouts/PageLayout.astro';
 import AnimatedCounter from '../components/AnimatedCounter.astro';
+import Icon from '../components/icons/Icon.astro';
 import { t } from '../i18n/utils';
 import { images } from '../data/images';
 ---
@@ -17,10 +19,9 @@ import { images } from '../data/images';
         <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="about.history_subtitle">{t("about.history_subtitle")}</p>
         <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground text-balance" data-t="about.history_title">{t("about.history_title")}</h1>
       </div>
-
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
         <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
-          <img src={images.about.interior} alt="MIMOSA Developments office" class="w-full h-full object-cover" loading="lazy" />
+          <Image src={images.about.interior} alt="MIMOSA Developments office" class="w-full h-full object-cover" width={800} height={600} loading="lazy" />
         </div>
         <div class="reveal" data-reveal="right">
           <p class="text-muted-foreground leading-relaxed mb-6 font-body" data-t="about.history_p1">{t("about.history_p1")}</p>
@@ -51,46 +52,23 @@ import { images } from '../data/images';
         <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="about.pillars_title">{t("about.pillars_title")}</p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 reveal-stagger">
-        <div class="group relative overflow-hidden p-8 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 reveal">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="relative z-10">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-              <svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        {[
+          { icon: 'star', titleKey: 'about.pillar1.title', descKey: 'about.pillar1.desc' },
+          { icon: 'shield', titleKey: 'about.pillar2.title', descKey: 'about.pillar2.desc' },
+          { icon: 'sun', titleKey: 'about.pillar3.title', descKey: 'about.pillar3.desc' },
+          { icon: 'heart', titleKey: 'about.pillar4.title', descKey: 'about.pillar4.desc' },
+        ].map((pillar) => (
+          <div class="group relative overflow-hidden p-8 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 reveal">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative z-10">
+              <div class="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
+                <Icon name={pillar.icon} class="w-8 h-8 text-primary" />
+              </div>
+              <h4 class="font-headline font-bold text-foreground mb-3 text-lg" data-t={pillar.titleKey}>{t(pillar.titleKey)}</h4>
+              <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t={pillar.descKey}>{t(pillar.descKey)}</p>
             </div>
-            <h4 class="font-headline font-bold text-foreground mb-3 text-lg" data-t="about.pillar1.title">{t("about.pillar1.title")}</h4>
-            <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t="about.pillar1.desc">{t("about.pillar1.desc")}</p>
           </div>
-        </div>
-        <div class="group relative overflow-hidden p-8 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 reveal">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="relative z-10">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-              <svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
-            </div>
-            <h4 class="font-headline font-bold text-foreground mb-3 text-lg" data-t="about.pillar2.title">{t("about.pillar2.title")}</h4>
-            <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t="about.pillar2.desc">{t("about.pillar2.desc")}</p>
-          </div>
-        </div>
-        <div class="group relative overflow-hidden p-8 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 reveal">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="relative z-10">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-              <svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-            </div>
-            <h4 class="font-headline font-bold text-foreground mb-3 text-lg" data-t="about.pillar3.title">{t("about.pillar3.title")}</h4>
-            <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t="about.pillar3.desc">{t("about.pillar3.desc")}</p>
-          </div>
-        </div>
-        <div class="group relative overflow-hidden p-8 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 reveal">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="relative z-10">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-              <svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-            </div>
-            <h4 class="font-headline font-bold text-foreground mb-3 text-lg" data-t="about.pillar4.title">{t("about.pillar4.title")}</h4>
-            <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t="about.pillar4.desc">{t("about.pillar4.desc")}</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
@@ -109,18 +87,12 @@ import { images } from '../data/images';
             <p class="text-primary text-sm tracking-[0.3em] uppercase mb-4 font-body" data-t="about.trajectory_title">{t("about.trajectory_title")}</p>
             <p class="text-muted-foreground leading-relaxed font-body mb-6" data-t="about.trajectory_desc">{t("about.trajectory_desc")}</p>
             <ul class="flex flex-col gap-3">
-              <li class="flex items-start gap-3 text-muted-foreground font-body text-sm">
-                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                <span data-t="about.trajectory_item1">{t("about.trajectory_item1")}</span>
-              </li>
-              <li class="flex items-start gap-3 text-muted-foreground font-body text-sm">
-                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                <span data-t="about.trajectory_item2">{t("about.trajectory_item2")}</span>
-              </li>
-              <li class="flex items-start gap-3 text-muted-foreground font-body text-sm">
-                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                <span data-t="about.trajectory_item3">{t("about.trajectory_item3")}</span>
-              </li>
+              {['about.trajectory_item1', 'about.trajectory_item2', 'about.trajectory_item3'].map((key) => (
+                <li class="flex items-start gap-3 text-muted-foreground font-body text-sm">
+                  <Icon name="check" class="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <span data-t={key}>{t(key)}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -136,8 +108,6 @@ import { images } from '../data/images';
         <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-6 text-balance" data-t="about.synergy_title">{t("about.synergy_title")}</h2>
         <p class="text-muted-foreground leading-relaxed font-body max-w-3xl mx-auto" data-t="about.synergy_desc">{t("about.synergy_desc")}</p>
       </div>
-
-      <!-- Constructor profile -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         <div class="bg-card rounded-lg border border-border p-8 reveal" data-reveal="left">
           <h3 class="text-2xl font-headline font-bold text-foreground mb-4" data-t="about.constructor_title">{t("about.constructor_title")}</h3>
@@ -154,32 +124,22 @@ import { images } from '../data/images';
           </div>
           <div class="bg-primary/5 rounded-lg p-6 text-center mb-6">
             <AnimatedCounter value={15} prefix="+" />
-            <p class="text-sm text-muted-foreground mt-2 font-body">años de experiencia</p>
+            <p class="text-sm text-muted-foreground mt-2 font-body">anos de experiencia</p>
           </div>
           <div class="bg-primary/5 rounded-lg p-6 text-center">
             <AnimatedCounter value={6000} prefix="MXN $" suffix="M" />
-            <p class="text-sm text-muted-foreground mt-2 font-body">en obras (últimos 5 años)</p>
+            <p class="text-sm text-muted-foreground mt-2 font-body">en obras (ultimos 5 anos)</p>
           </div>
         </div>
         <div class="flex flex-col gap-4 reveal" data-reveal="right">
-          <div class="bg-card rounded-lg border border-border p-6">
-            <div class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-primary shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
-              <p class="text-muted-foreground font-body text-sm leading-relaxed" data-t="about.constructor_exp1">{t("about.constructor_exp1")}</p>
+          {['about.constructor_exp1', 'about.constructor_exp2', 'about.constructor_exp3'].map((key) => (
+            <div class="bg-card rounded-lg border border-border p-6">
+              <div class="flex items-start gap-3">
+                <Icon name="building" class="w-5 h-5 text-primary shrink-0 mt-1" />
+                <p class="text-muted-foreground font-body text-sm leading-relaxed" data-t={key}>{t(key)}</p>
+              </div>
             </div>
-          </div>
-          <div class="bg-card rounded-lg border border-border p-6">
-            <div class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-primary shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
-              <p class="text-muted-foreground font-body text-sm leading-relaxed" data-t="about.constructor_exp2">{t("about.constructor_exp2")}</p>
-            </div>
-          </div>
-          <div class="bg-card rounded-lg border border-border p-6">
-            <div class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-primary shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
-              <p class="text-muted-foreground font-body text-sm leading-relaxed" data-t="about.constructor_exp3">{t("about.constructor_exp3")}</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

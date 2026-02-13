@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import PageLayout from '../layouts/PageLayout.astro';
 import DevelopmentCard from '../components/DevelopmentCard.astro';
 import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/icons/Icon.astro';
 import { t } from '../i18n/utils';
 import { images } from '../data/images';
 import { getCollection } from 'astro:content';
@@ -18,7 +20,7 @@ const featuredDevelopments = await getCollection('developments', ({ data }) => d
   <!-- Hero Section -->
   <section class="relative h-screen flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img src={images.hero.main} alt="Luxury Caribbean development" class="w-full h-full object-cover" />
+      <Image src={images.hero.main} alt="Luxury Caribbean development" class="w-full h-full object-cover" width={1920} height={1080} />
       <div class="absolute inset-0 bg-black/50"></div>
     </div>
     <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/40 to-transparent z-10"></div>
@@ -29,13 +31,13 @@ const featuredDevelopments = await getCollection('developments', ({ data }) => d
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="/developments" class="bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2" data-t="hero.cta.primary">{t("hero.cta.primary")}</a>
         <a href="/contact" class="border border-[#ffffff66] text-[#fff] px-8 py-4 text-xs tracking-[0.2em] font-body hover:bg-[#ffffff1a] transition-colors inline-flex items-center justify-center gap-2">
-          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+          <Icon name="play" class="w-4 h-4" />
           <span data-t="hero.cta.secondary">{t("hero.cta.secondary")}</span>
         </a>
       </div>
     </div>
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-      <svg class="w-6 h-6 text-[#ffffff99]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      <Icon name="chevron-down" class="w-6 h-6 text-[#ffffff99]" />
     </div>
   </section>
 
@@ -64,7 +66,7 @@ const featuredDevelopments = await getCollection('developments', ({ data }) => d
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
-          <img src={images.about.interior} alt="Luxury property interior" class="w-full h-full object-cover" loading="lazy" />
+          <Image src={images.about.interior} alt="Luxury property interior" class="w-full h-full object-cover" width={800} height={600} loading="lazy" />
         </div>
         <div class="reveal" data-reveal="right">
           <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="about.essence">{t("about.essence")}</p>
@@ -72,12 +74,12 @@ const featuredDevelopments = await getCollection('developments', ({ data }) => d
           <blockquote class="text-xl text-muted-foreground italic leading-relaxed mb-8 font-body border-l-2 border-primary pl-6">
             "<span data-t="about.quote">{t("about.quote")}</span>"
           </blockquote>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
             <div class="group relative overflow-hidden p-6 bg-background rounded-xl border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
               <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div class="relative z-10 text-center">
                 <div class="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-                  <svg class="w-7 h-7 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <Icon name="star" class="w-7 h-7 text-primary" />
                 </div>
                 <h4 class="font-headline font-bold text-foreground mb-2" data-t="about.pillar1.title">{t("about.pillar1.title")}</h4>
                 <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t="about.pillar1.desc">{t("about.pillar1.desc")}</p>
@@ -87,7 +89,7 @@ const featuredDevelopments = await getCollection('developments', ({ data }) => d
               <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div class="relative z-10 text-center">
                 <div class="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-                  <svg class="w-7 h-7 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+                  <Icon name="shield" class="w-7 h-7 text-primary" />
                 </div>
                 <h4 class="font-headline font-bold text-foreground mb-2" data-t="about.pillar2.title">{t("about.pillar2.title")}</h4>
                 <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t="about.pillar2.desc">{t("about.pillar2.desc")}</p>
@@ -97,7 +99,7 @@ const featuredDevelopments = await getCollection('developments', ({ data }) => d
               <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div class="relative z-10 text-center">
                 <div class="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-                  <svg class="w-7 h-7 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                  <Icon name="sun" class="w-7 h-7 text-primary" />
                 </div>
                 <h4 class="font-headline font-bold text-foreground mb-2" data-t="about.pillar3.title">{t("about.pillar3.title")}</h4>
                 <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t="about.pillar3.desc">{t("about.pillar3.desc")}</p>

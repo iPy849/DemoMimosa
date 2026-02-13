@@ -1,5 +1,6 @@
 ---
 import { t } from '../i18n/utils';
+import Icon from './icons/Icon.astro';
 
 interface Props {
   variant?: 'inline' | 'card';
@@ -22,36 +23,33 @@ const textareaClass = "w-full bg-foreground/5 border border-foreground/15 rounde
     <div class="flex flex-col gap-2">
       <label class="text-sm font-semibold font-body text-foreground" data-t="contact.form.name">{t("contact.form.name")}</label>
       <div class="relative">
-        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground/50 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"><Icon name="user" class="w-5 h-5 text-muted-foreground/50" /></div>
         <input type="text" name="name" required class={inputClass} placeholder={t("contact.form.name.placeholder")} data-t-placeholder="contact.form.name.placeholder" />
       </div>
     </div>
 
     {isCard ? (
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Email -->
         <div class="flex flex-col gap-2">
           <label class="text-sm font-semibold font-body text-foreground" data-t="contact.form.email">{t("contact.form.email")}</label>
           <div class="relative">
-            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground/50 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"><Icon name="mail" class="w-5 h-5 text-muted-foreground/50" /></div>
             <input type="email" name="email" required class={inputClass} placeholder={t("contact.form.email.placeholder")} data-t-placeholder="contact.form.email.placeholder" />
           </div>
         </div>
-        <!-- WhatsApp -->
         <div class="flex flex-col gap-2">
           <label class="text-sm font-semibold font-body text-foreground" data-t="contact.form.whatsapp">{t("contact.form.whatsapp")}</label>
           <div class="relative">
-            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground/50 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"><Icon name="phone" class="w-5 h-5 text-muted-foreground/50" /></div>
             <input type="tel" name="whatsapp" class={inputClass} placeholder={t("contact.form.whatsapp.placeholder")} data-t-placeholder="contact.form.whatsapp.placeholder" />
           </div>
         </div>
       </div>
     ) : (
-      <!-- Email (inline variant) -->
       <div class="flex flex-col gap-2">
         <label class="text-sm font-semibold font-body text-foreground" data-t="contact.form.email">{t("contact.form.email")}</label>
         <div class="relative">
-          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground/50 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"><Icon name="mail" class="w-5 h-5 text-muted-foreground/50" /></div>
           <input type="email" name="email" required class={inputClass} placeholder={t("contact.form.email.placeholder")} data-t-placeholder="contact.form.email.placeholder" />
         </div>
       </div>
@@ -61,28 +59,26 @@ const textareaClass = "w-full bg-foreground/5 border border-foreground/15 rounde
       <div class="md:col-span-2 flex flex-col gap-2">
         <label class="text-sm font-semibold font-body text-foreground" data-t="contact.form.interest">{t("contact.form.interest")}</label>
         <div class="relative">
-          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground/50 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"><Icon name="home" class="w-5 h-5 text-muted-foreground/50" /></div>
           <select name="interest" class={selectClass}>
             <option value="" disabled selected data-t="contact.form.interest.placeholder">{t("contact.form.interest.placeholder")}</option>
             <option>Cuatro Bacalar</option>
             <option>Tulum Eco Resort</option>
             <option>Merida Heritage</option>
           </select>
-          <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/50 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"><Icon name="chevron-down" class="w-4 h-4 text-muted-foreground/50" /></div>
         </div>
       </div>
     )}
 
-    <!-- Message -->
     <div class:list={["flex flex-col gap-2", !isCard && "md:col-span-2"]}>
       <label class="text-sm font-semibold font-body text-foreground" data-t="contact.form.message">{t("contact.form.message")}</label>
       <div class="relative">
-        <svg class="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground/50 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+        <div class="absolute left-3 top-3.5 pointer-events-none"><Icon name="message-circle" class="w-5 h-5 text-muted-foreground/50" /></div>
         <textarea name="message" rows={isCard ? 5 : 4} class={textareaClass} placeholder={t("contact.form.message.placeholder")} data-t-placeholder="contact.form.message.placeholder"></textarea>
       </div>
     </div>
 
-    <!-- Submit -->
     <div class:list={[!isCard && "md:col-span-2"]}>
       <button
         type="submit"
@@ -90,7 +86,7 @@ const textareaClass = "w-full bg-foreground/5 border border-foreground/15 rounde
         class="w-full bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed rounded-md flex items-center justify-center gap-2"
         data-t={isCard ? "contact.page.submit" : "contact.form.submit"}
       >
-        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+        <Icon name="send" class="w-4 h-4" />
         {isCard ? t("contact.page.submit") : t("contact.form.submit")}
       </button>
     </div>
@@ -132,7 +128,6 @@ const textareaClass = "w-full bg-foreground/5 border border-foreground/15 rounde
       submitBtn.innerHTML = originalHTML;
     });
 
-    // Handle placeholder language switching
     document.addEventListener('langChanged', function() {
       var lang = document.documentElement.lang || 'es';
       var translations = lang === 'en' ? window.__enTranslations : window.__esTranslations;
@@ -144,5 +139,3 @@ const textareaClass = "w-full bg-foreground/5 border border-foreground/15 rounde
     });
   }
 </script>
-</content>
-</invoke>
