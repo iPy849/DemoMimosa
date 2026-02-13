@@ -64,4 +64,8 @@ export const images = {
     plantaAlta,
     floorPlanDetail,
   },
+  logos: {
+    dark: '/assets/logo-dark.svg',
+    light: '/assets/logo-light.svg',
+  },
 } as const;

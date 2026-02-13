@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import { t } from '../i18n/utils';
 import { images } from '../data/images';
 import Icon from './icons/Icon.astro';
@@ -11,8 +10,8 @@ import SocialLinks from './SocialLinks.astro';
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
       <div class="lg:col-span-1">
         <a href="/" class="inline-block mb-4">
-          <Image src={images.logos.dark} alt="MIMOSA Real Estate" class="h-12 w-auto dark:hidden" width={140} height={48} />
-          <Image src={images.logos.light} alt="MIMOSA Real Estate" class="h-12 w-auto hidden dark:block" width={140} height={48} />
+          <img src={images.logos.dark} alt="MIMOSA Real Estate" class="h-12 w-auto dark:hidden" />
+          <img src={images.logos.light} alt="MIMOSA Real Estate" class="h-12 w-auto hidden dark:block" />
         </a>
         <p class="text-muted-foreground text-sm leading-relaxed font-body" data-t="footer.brand_desc">{t("footer.brand_desc")}</p>
         <SocialLinks class="mt-6 text-muted-foreground" />
