@@ -18,14 +18,10 @@ const houseImages = [
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-075-SVZnZ9pqSt9SzjzS5yuaUvMEwvpDye.png',
 ];
 
-const gallery = dev.gallery ?? [dev.image];
+const sitePlanImage = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-BMkZltVvLr8CDdi7se2K0q9ggCr0WE.png';
+const floorPlanImage = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-CwKzZOrW3jps97UnXis5UQFS0yzAzS.png';
 
-const houses = [
-  { id: 1, name: 'Casa 1', available: false },
-  { id: 2, name: 'Casa 2', available: true },
-  { id: 3, name: 'Casa 3', available: true },
-  { id: 4, name: 'Casa 4', available: true },
-];
+const gallery = dev.gallery ?? [dev.image];
 
 const amenityIcons = {
   'Beach Club Privado': '<path d="M12 2c-4.97 0-9 4.03-9 9 0 4.97 4.03 9 9 9s9-4.03 9-9c0-4.97-4.03-9-9-9zm-1.5 14.5v-3h3v3h-3z"/><path d="M7 8h10v2H7z"/>',
@@ -42,66 +38,22 @@ const amenityIcons = {
   description={dev.shortDescription ?? dev.description}
   keywords={`cuatro bacalar, ${dev.title}, ${dev.location}, lujo, inversion, caribe mexicano, laguna bacalar`}
 >
-  <!-- Hero Section with Carousel -->
-  <section class="relative h-screen">
-    <div class="absolute inset-0">
-      {gallery.map((img: string, i: number) => (
-        <div
-          class:list={["hero-slide absolute inset-0 transition-opacity duration-1000", i === 0 ? "opacity-100" : "opacity-0"]}
-          data-slide={i}
-        >
-          <img
-            src={img}
-            alt={`${dev.title} - ${i + 1}`}
-            class="w-full h-full object-cover"
-            loading={i === 0 ? "eager" : "lazy"}
-          />
-          <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
-        </div>
-      ))}
-    </div>
-
-    <!-- Carousel Controls -->
-    {gallery.length > 1 && (
-      <>
-        <button id="hero-prev" class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-14 h-14 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Previous">
-          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <button id="hero-next" class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-14 h-14 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Next">
-          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-        </button>
-      </>
-    )}
-
-    <!-- Hero Content -->
-    <div class="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
-      <div class="max-w-4xl mx-auto space-y-6 animate-fade-in">
-        <div class="flex items-center justify-center gap-2 text-white/90 mb-2">
-          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-          <p class="text-sm tracking-[0.3em] uppercase font-body">{dev.location}</p>
-        </div>
-        <h1 class="text-5xl md:text-7xl font-headline font-bold text-white mb-4 drop-shadow-2xl">{dev.title}</h1>
-        <p class="text-xl md:text-2xl text-white/90 font-body leading-relaxed max-w-2xl mx-auto drop-shadow-lg">{dev.shortDescription}</p>
-        <a
-          href="#houses"
-          class="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full font-bold font-body text-sm tracking-wider uppercase transition-all hover:scale-105 mt-6 shadow-2xl"
-        >
-          <span>DESCUBRE LAS CASAS</span>
-          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5"/><path d="M7 6l5 5 5-5"/></svg>
-        </a>
+  <!-- Header with Title -->
+  <section class="pt-32 pb-16 px-6 bg-gradient-to-b from-muted/30 to-background">
+    <div class="max-w-7xl mx-auto text-center">
+      <div class="flex items-center justify-center gap-2 text-muted-foreground mb-4">
+        <svg class="w-5 h-5 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <p class="text-sm tracking-[0.3em] uppercase font-body">{dev.location}</p>
       </div>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-      <svg class="w-6 h-6 text-white/60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+      <h1 class="text-5xl md:text-6xl font-headline font-bold text-foreground mb-6">{dev.title}</h1>
+      <p class="text-xl text-muted-foreground font-body leading-relaxed max-w-3xl mx-auto">{dev.shortDescription}</p>
     </div>
   </section>
 
   <!-- Description & Amenities Section -->
-  <section class="py-24 px-6 bg-background">
+  <section class="py-16 px-6 bg-background">
     <div class="max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-2 gap-16 items-start">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
         <!-- Description -->
         <div class="space-y-6">
           <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground">Una Experiencia Única</h2>
@@ -114,18 +66,18 @@ const amenityIcons = {
           </div>
         </div>
 
-        <!-- Amenities with Icons -->
+        <!-- Amenities 3x2 Grid -->
         <div class="bg-card rounded-2xl border border-border p-8 shadow-lg">
-          <h3 class="text-2xl font-headline font-bold text-foreground mb-6">Amenidades Exclusivas</h3>
-          <div class="grid grid-cols-1 gap-4">
+          <h3 class="text-2xl font-headline font-bold text-foreground mb-8">Amenidades Exclusivas</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {dev.amenities.map((amenity: string) => (
-              <div class="group flex items-center gap-4 p-4 rounded-xl bg-background hover:bg-primary/5 transition-all duration-300 hover:translate-x-2">
-                <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+              <div class="group flex items-center gap-3 p-4 rounded-xl bg-background hover:bg-primary/5 transition-all duration-300 hover:translate-x-1">
+                <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
                   <svg class="w-6 h-6 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <Fragment set:html={amenityIcons[amenity as keyof typeof amenityIcons] || '<path d="M20 6 9 17l-5-5"/>'} />
                   </svg>
                 </div>
-                <span class="text-foreground font-body font-medium">{amenity}</span>
+                <span class="text-foreground font-body font-medium text-sm">{amenity}</span>
               </div>
             ))}
           </div>
@@ -134,60 +86,99 @@ const amenityIcons = {
     </div>
   </section>
 
-  <!-- Houses Availability Section -->
-  <section id="houses" class="py-24 px-6 bg-muted/30">
+  <!-- Houses & Floor Plan Section -->
+  <section id="houses" class="py-16 px-6 bg-muted/30">
     <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16">
+      <div class="text-center mb-12">
         <h2 class="text-4xl md:text-5xl font-headline font-bold text-foreground mb-4">Nuestras Cuatro Casas</h2>
         <p class="text-lg text-muted-foreground font-body max-w-2xl mx-auto">Cada residencia ha sido diseñada para ofrecer privacidad, lujo y conexión con la naturaleza</p>
       </div>
 
-      <!-- Houses Status Grid -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-        {houses.map((house) => (
-          <div class={`group relative overflow-hidden rounded-2xl border-2 transition-all duration-500 ${house.available ? 'border-primary/30 bg-card hover:border-primary hover:shadow-xl hover:-translate-y-2' : 'border-muted bg-muted cursor-not-allowed'}`}>
-            <div class="aspect-square p-8 flex flex-col items-center justify-center text-center">
-              <div class={`w-20 h-20 rounded-2xl mb-4 flex items-center justify-center ${house.available ? 'bg-primary/10 group-hover:bg-primary/20' : 'bg-foreground/90'} transition-colors`}>
-                <svg class={`w-10 h-10 ${house.available ? 'text-primary' : 'text-background'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-                </svg>
-              </div>
-              <h3 class={`text-xl font-headline font-bold mb-2 ${house.available ? 'text-foreground' : 'text-foreground/50'}`}>{house.name}</h3>
-              {house.available ? (
-                <span class="inline-flex items-center gap-2 text-sm font-body font-bold text-primary">
-                  <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-                  Disponible
-                </span>
-              ) : (
-                <span class="inline-flex items-center gap-2 text-sm font-body font-bold text-foreground/70">
-                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                  Vendida
-                </span>
-              )}
-            </div>
-            {!house.available && (
-              <div class="absolute inset-0 bg-foreground/5 backdrop-blur-[2px]"></div>
-            )}
+      <div class="grid lg:grid-cols-2 gap-8 items-center mb-16">
+        <!-- Site Plan Image -->
+        <div class="group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-500 shadow-xl hover:shadow-2xl">
+          <img
+            src={sitePlanImage}
+            alt="Plano del Sitio - Cuatro Bacalar"
+            class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700"
+            loading="eager"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+            <p class="text-white font-body font-bold text-sm tracking-wider uppercase">Vista General del Desarrollo</p>
+            <p class="text-white/80 text-xs mt-1">U1 (Vendida) • U2, U3, U4 (Disponibles)</p>
           </div>
-        ))}
+        </div>
+
+        <!-- Floor Plan with Button -->
+        <div class="space-y-6">
+          <div class="bg-card rounded-2xl border border-border p-8 space-y-6 shadow-lg">
+            <div class="flex items-start gap-4">
+              <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-7 h-7 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              </div>
+              <div>
+                <h3 class="text-2xl font-headline font-bold text-foreground mb-2">Planos Arquitectónicos</h3>
+                <p class="text-muted-foreground font-body leading-relaxed">Diseño de dos niveles con amplias áreas sociales, alberca privada, estacionamiento y espacios verdes.</p>
+              </div>
+            </div>
+            
+            <button
+              id="view-floor-plan"
+              class="w-full group relative overflow-hidden bg-primary hover:bg-primary/90 text-white px-6 py-4 rounded-xl font-bold font-body text-sm tracking-wider uppercase transition-all hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
+            >
+              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span>VER PLANOS DETALLADOS</span>
+            </button>
+
+            <div class="grid grid-cols-2 gap-4 pt-4 border-t border-border">
+              <div class="text-center p-4 bg-background rounded-lg">
+                <p class="text-2xl font-headline font-bold text-primary mb-1">2</p>
+                <p class="text-sm text-muted-foreground font-body">Niveles</p>
+              </div>
+              <div class="text-center p-4 bg-background rounded-lg">
+                <p class="text-2xl font-headline font-bold text-primary mb-1">2</p>
+                <p class="text-sm text-muted-foreground font-body">Recámaras</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Availability Legend -->
+          <div class="bg-card rounded-xl border border-border p-6 shadow-lg">
+            <h4 class="text-lg font-headline font-bold text-foreground mb-4">Disponibilidad</h4>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="w-4 h-4 bg-primary rounded-full animate-pulse"></div>
+                <span class="text-sm font-body text-muted-foreground"><strong class="text-foreground">3 Casas Disponibles</strong> (U2, U3, U4)</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-4 h-4 bg-foreground rounded-full"></div>
+                <span class="text-sm font-body text-muted-foreground"><strong class="text-foreground">1 Casa Vendida</strong> (U1)</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- House Floor Plans Gallery -->
-      <div class="space-y-4">
-        <h3 class="text-2xl font-headline font-bold text-foreground text-center mb-8">Planos y Diseños</h3>
+      <!-- House Images Gallery -->
+      <div class="space-y-6">
+        <h3 class="text-2xl font-headline font-bold text-foreground text-center">Diseños de las Casas</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {houseImages.map((img, i) => (
             <div class="group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer" data-house-img={i}>
               <div class="aspect-[4/3] relative">
                 <img
                   src={img}
-                  alt={`Plano Casa ${i + 1}`}
+                  alt={`Vista ${i + 1}`}
                   class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   loading="lazy"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                  <p class="text-white font-body font-bold text-sm tracking-wider uppercase">Ver en detalle</p>
+                  <div class="flex items-center justify-between">
+                    <p class="text-white font-body font-bold text-sm tracking-wider uppercase">Vista {i + 1}</p>
+                    <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                  </div>
                 </div>
               </div>
             </div>
@@ -197,9 +188,68 @@ const amenityIcons = {
     </div>
   </section>
 
+  <!-- Image Carousel with Thumbnails -->
+  <section class="py-16 px-6 bg-background">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground text-center mb-12">Galería de Imágenes</h2>
+      
+      <div class="space-y-6">
+        <!-- Main Image Display -->
+        <div class="relative rounded-2xl overflow-hidden border border-border shadow-2xl aspect-[16/9] bg-card">
+          {gallery.map((img: string, i: number) => (
+            <div
+              class:list={["gallery-slide absolute inset-0 transition-opacity duration-700", i === 0 ? "opacity-100" : "opacity-0"]}
+              data-slide={i}
+            >
+              <img
+                src={img}
+                alt={`${dev.title} - Imagen ${i + 1}`}
+                class="w-full h-full object-cover"
+                loading={i === 0 ? "eager" : "lazy"}
+              />
+            </div>
+          ))}
+          
+          <!-- Navigation Arrows -->
+          {gallery.length > 1 && (
+            <>
+              <button id="gallery-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Previous">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              <button id="gallery-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Next">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </>
+          )}
+        </div>
+
+        <!-- Thumbnails -->
+        {gallery.length > 1 && (
+          <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+            {gallery.map((img: string, i: number) => (
+              <button
+                class="gallery-thumb group relative aspect-square rounded-lg overflow-hidden border-2 transition-all hover:scale-105 hover:shadow-lg"
+                data-thumb={i}
+                data-active={i === 0}
+              >
+                <img
+                  src={img}
+                  alt={`Miniatura ${i + 1}`}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
   <!-- Map & Virtual Tour -->
   {(dev.mapUrl || dev.virtualTour) && (
-    <section class="py-24 px-6 bg-background">
+    <section class="py-16 px-6 bg-muted/30">
       <div class="max-w-7xl mx-auto">
         <div class="grid md:grid-cols-2 gap-8">
           {dev.mapUrl && (
@@ -224,7 +274,7 @@ const amenityIcons = {
   )}
 
   <!-- Contact Form -->
-  <section id="contact" class="py-24 px-6 bg-muted/30">
+  <section id="contact" class="py-16 px-6 bg-background">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-4">Agenda Tu Visita</h2>
@@ -233,61 +283,75 @@ const amenityIcons = {
       <ContactForm variant="card" />
     </div>
   </section>
+
+  <!-- Floor Plan Modal -->
+  <div id="floor-plan-modal" class="hidden fixed inset-0 bg-black/95 z-50 p-6 overflow-auto">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-2xl font-headline font-bold text-white">Planos Arquitectónicos Detallados</h3>
+        <button id="close-floor-plan" class="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center transition-all hover:scale-110">
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <img
+        src={floorPlanImage}
+        alt="Planos Arquitectónicos Detallados"
+        class="w-full h-auto rounded-2xl shadow-2xl"
+      />
+    </div>
+  </div>
 </PageLayout>
 
 <style>
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .gallery-thumb[data-active="true"] {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
   }
 
-  .animate-fade-in {
-    animation: fade-in 1s ease-out;
+  .gallery-thumb[data-active="false"] {
+    border-color: hsl(var(--border));
   }
 </style>
 
 <script>
-  // Hero Carousel
-  let currentHeroSlide = 0;
-  const heroSlides = document.querySelectorAll('.hero-slide');
-  const totalHeroSlides = heroSlides.length;
+  // Gallery Carousel
+  let currentGallerySlide = 0;
+  const gallerySlides = document.querySelectorAll('.gallery-slide');
+  const galleryThumbs = document.querySelectorAll('.gallery-thumb');
+  const totalGallerySlides = gallerySlides.length;
 
-  function goToHeroSlide(index: number) {
-    currentHeroSlide = ((index % totalHeroSlides) + totalHeroSlides) % totalHeroSlides;
-    heroSlides.forEach((s, i) => {
-      s.classList.toggle('opacity-100', i === currentHeroSlide);
-      s.classList.toggle('opacity-0', i !== currentHeroSlide);
+  function goToGallerySlide(index: number) {
+    currentGallerySlide = ((index % totalGallerySlides) + totalGallerySlides) % totalGallerySlides;
+    
+    gallerySlides.forEach((s, i) => {
+      s.classList.toggle('opacity-100', i === currentGallerySlide);
+      s.classList.toggle('opacity-0', i !== currentGallerySlide);
+    });
+
+    galleryThumbs.forEach((t, i) => {
+      t.setAttribute('data-active', i === currentGallerySlide ? 'true' : 'false');
     });
   }
 
-  document.getElementById('hero-prev')?.addEventListener('click', () => goToHeroSlide(currentHeroSlide - 1));
-  document.getElementById('hero-next')?.addEventListener('click', () => goToHeroSlide(currentHeroSlide + 1));
+  document.getElementById('gallery-prev')?.addEventListener('click', () => goToGallerySlide(currentGallerySlide - 1));
+  document.getElementById('gallery-next')?.addEventListener('click', () => goToGallerySlide(currentGallerySlide + 1));
 
-  // Auto-advance carousel every 5 seconds
-  if (totalHeroSlides > 1) {
-    setInterval(() => {
-      goToHeroSlide(currentHeroSlide + 1);
-    }, 5000);
-  }
+  galleryThumbs.forEach((thumb, i) => {
+    thumb.addEventListener('click', () => goToGallerySlide(i));
+  });
 
-  // House images lightbox (simple modal)
+  // House images lightbox
   const houseImgElements = document.querySelectorAll('[data-house-img]');
   houseImgElements.forEach((el) => {
     el.addEventListener('click', () => {
       const img = el.querySelector('img');
       if (img) {
         const modal = document.createElement('div');
-        modal.className = 'fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-6 cursor-pointer';
+        modal.className = 'fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-6 cursor-pointer';
         modal.innerHTML = `
           <div class="relative max-w-6xl max-h-full">
             <img src="${img.src}" alt="${img.alt}" class="max-w-full max-h-[90vh] object-contain rounded-lg" />
-            <button class="absolute top-4 right-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all">
+            <button class="absolute top-4 right-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center transition-all hover:scale-110">
               <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             </button>
           </div>
@@ -296,5 +360,27 @@ const amenityIcons = {
         document.body.appendChild(modal);
       }
     });
+  });
+
+  // Floor Plan Modal
+  const floorPlanModal = document.getElementById('floor-plan-modal');
+  const viewFloorPlanBtn = document.getElementById('view-floor-plan');
+  const closeFloorPlanBtn = document.getElementById('close-floor-plan');
+
+  viewFloorPlanBtn?.addEventListener('click', () => {
+    floorPlanModal?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  });
+
+  closeFloorPlanBtn?.addEventListener('click', () => {
+    floorPlanModal?.classList.add('hidden');
+    document.body.style.overflow = '';
+  });
+
+  floorPlanModal?.addEventListener('click', (e) => {
+    if (e.target === floorPlanModal) {
+      floorPlanModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
   });
 </script>
