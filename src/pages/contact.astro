@@ -1,0 +1,104 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/icons/Icon.astro';
+import { t } from '../i18n/utils';
+---
+
+<PageLayout
+  title="Contacto | MIMOSA Real Estate"
+  description="Contacta con MIMOSA Real Estate para conocer nuestros desarrollos exclusivos en el Caribe Mexicano."
+  keywords="contacto, mimosa, real estate, caribe mexicano"
+>
+  <section class="pt-32 pb-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 reveal" data-reveal="fade">
+        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="contact.subtitle">{t("contact.subtitle")}</p>
+        <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground text-balance" data-t="contact.title">{t("contact.title")}</h1>
+      </div>
+
+      <!-- Main Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+        <!-- Left: Contact Form -->
+        <div class="lg:col-span-2 reveal" data-reveal="left">
+          <ContactForm variant="card" />
+        </div>
+
+        <!-- Right: Contact Information + Map -->
+        <div class="space-y-8 reveal" data-reveal="right">
+          <!-- Contact Info Card -->
+          <div class="bg-card rounded-2xl border border-border p-8 shadow-lg">
+            <h3 class="font-headline font-bold text-foreground text-xl mb-6">Informacion de Contacto</h3>
+            
+            <div class="space-y-5">
+              <!-- Email -->
+              <div class="flex items-start gap-4 group">
+                <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                  <Icon name="mail" class="w-5 h-5 text-primary" />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4 class="font-headline font-semibold text-foreground text-sm mb-1" data-t="contact.page.email">{t("contact.page.email")}</h4>
+                  <a href="mailto:info@mimosadevelopments.com" class="text-muted-foreground hover:text-primary font-body text-sm transition-colors break-all">
+                    info@mimosadevelopments.com
+                  </a>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="flex items-start gap-4 group">
+                <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                  <Icon name="phone" class="w-5 h-5 text-primary" />
+                </div>
+                <div class="flex-1">
+                  <h4 class="font-headline font-semibold text-foreground text-sm mb-1" data-t="contact.page.phone">{t("contact.page.phone")}</h4>
+                  <a href="tel:+529981234567" class="text-muted-foreground hover:text-primary font-body text-sm transition-colors">
+                    +52 (998) 123 4567
+                  </a>
+                </div>
+              </div>
+
+              <!-- Office -->
+              <div class="flex items-start gap-4 group">
+                <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                  <Icon name="map-pin" class="w-5 h-5 text-primary" />
+                </div>
+                <div class="flex-1">
+                  <h4 class="font-headline font-semibold text-foreground text-sm mb-1" data-t="contact.page.office">{t("contact.page.office")}</h4>
+                  <p class="text-muted-foreground font-body text-sm leading-relaxed">
+                    Av. Luxury Developments 404<br>
+                    Zona Hotelera, Cancun, MX
+                  </p>
+                </div>
+              </div>
+
+              <!-- Hours -->
+              <div class="flex items-start gap-4 group">
+                <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                  <Icon name="clock" class="w-5 h-5 text-primary" />
+                </div>
+                <div class="flex-1">
+                  <h4 class="font-headline font-semibold text-foreground text-sm mb-1" data-t="contact.page.hours">{t("contact.page.hours")}</h4>
+                  <p class="text-muted-foreground font-body text-sm" data-t="contact.page.hours.value">{t("contact.page.hours.value")}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Card -->
+          <div class="relative h-[300px] rounded-2xl overflow-hidden border border-border shadow-xl">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119081.39191229856!2d-86.92844847149996!3d21.161907997724962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4c2b05aef653db%3A0xce32b73c625fcd8a!2sCanc%C3%BAn%2C%20Q.R.%2C%20Mexico!5e0!3m2!1sen!2sus!4v1647890123456!5m2!1sen!2sus"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              class="grayscale hover:grayscale-0 transition-all duration-700"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

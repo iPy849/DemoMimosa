@@ -1,6 +1,7 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import Icon from '../../components/icons/Icon.astro';
 import { t } from '../../i18n/utils';
 import { getCollection } from 'astro:content';
 
@@ -30,14 +31,14 @@ const gallery = dev.gallery ?? [dev.image];
     <div class="max-w-7xl mx-auto">
       <!-- Back link -->
       <a href="/developments" class="inline-flex items-center gap-2 text-primary text-sm tracking-wider uppercase font-bold font-body hover:underline mb-8">
-        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        <Icon name="arrow-left" class="w-4 h-4" />
         <span data-t="dev.back">{t("dev.back")}</span>
       </a>
 
       <!-- Title -->
       <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground mb-4" data-t-dev="title">{dev.title}</h1>
       <div class="flex items-center gap-2 text-primary mb-10">
-        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <Icon name="map-pin" class="w-5 h-5" />
         <span class="font-body" data-t-dev="location">{dev.location}</span>
       </div>
 
@@ -59,10 +60,10 @@ const gallery = dev.gallery ?? [dev.image];
             {gallery.length > 1 && (
               <>
                 <button id="carousel-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors" aria-label="Previous">
-                  <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                  <Icon name="chevron-left" class="w-5 h-5" />
                 </button>
                 <button id="carousel-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors" aria-label="Next">
-                  <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                  <Icon name="chevron-right" class="w-5 h-5" />
                 </button>
               </>
             )}
@@ -93,7 +94,7 @@ const gallery = dev.gallery ?? [dev.image];
             <ul class="flex flex-col gap-3" id="amenities-list">
               {dev.amenities.map((amenity: string, i: number) => (
                 <li class="flex items-center gap-2 text-muted-foreground font-body text-sm" data-amenity-index={i}>
-                  <svg class="w-4 h-4 text-primary shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  <Icon name="check" class="w-4 h-4 text-primary shrink-0" />
                   <span>{amenity}</span>
                 </li>
               ))}

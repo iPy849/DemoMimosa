@@ -1,6 +1,7 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import DevelopmentCard from '../../components/DevelopmentCard.astro';
+import Icon from '../../components/icons/Icon.astro';
 import { t } from '../../i18n/utils';
 import { getCollection } from 'astro:content';
 
@@ -42,7 +43,7 @@ const esDevelopments = await getCollection('developments', ({ data }) => data.la
                 <!-- Content Section -->
                 <div class={`lg:col-span-3 p-6 lg:p-8 flex flex-col justify-center ${isEven ? 'lg:order-last' : 'lg:order-first'}`}>
                   <div class="flex items-center gap-2 mb-2">
-                    <svg class="w-4 h-4 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <Icon name="map-pin" class="w-4 h-4 text-primary" />
                     <p class="text-xs text-muted-foreground font-body tracking-wider uppercase">{dev.data.location}</p>
                   </div>
                   
@@ -56,7 +57,7 @@ const esDevelopments = await getCollection('developments', ({ data }) => data.la
                   
                   <div class="flex items-center gap-2 text-primary font-body font-bold text-xs tracking-wider uppercase group-hover:gap-3 transition-all duration-300">
                     <span>{t("featured.cta")}</span>
-                    <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    <Icon name="arrow-right" class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" />
                   </div>
                 </div>
               </div>

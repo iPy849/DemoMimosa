@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import Icon from '../../components/icons/Icon.astro';
 import { t } from '../../i18n/utils';
 import { getCollection, render } from 'astro:content';
 
@@ -23,16 +24,16 @@ const { Content } = await render(post);
   <section class="pt-32 pb-24 px-6">
     <div class="max-w-4xl mx-auto">
       <a href="/blog" class="inline-flex items-center gap-2 text-primary text-sm tracking-wider uppercase font-bold font-body hover:underline mb-8">
-        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        <Icon name="arrow-left" class="w-4 h-4" />
         <span data-t="blog.back">{t("blog.back")}</span>
       </a>
       <div class="flex items-center gap-4 text-sm text-muted-foreground mb-4 font-body">
         <span class="flex items-center gap-1">
-          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+          <Icon name="calendar" class="w-4 h-4" />
           {post.data.date}
         </span>
         <span class="flex items-center gap-1">
-          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <Icon name="user" class="w-4 h-4" />
           {post.data.author}
         </span>
       </div>

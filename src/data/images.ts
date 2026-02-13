@@ -1,35 +1,67 @@
 /**
- * Centralized image configuration.
- * All image paths point to /assets/images/ in the public directory.
- * To replace an image, simply swap the file in public/assets/images/ keeping the same filename,
- * or update the path here.
+ * Centralized image configuration using ESM imports from src/assets/.
+ * Images imported this way are optimized by Astro's Image component.
+ * To replace an image, swap the file in src/assets/images/ keeping the same filename.
  */
+
+// Hero
+import heroMain from '@/assets/images/hero/hero-main.jpg';
+
+// About
+import aboutInterior from '@/assets/images/about/about-interior.jpg';
+
+// Developments
+import devCuatroBacalar from '@/assets/images/developments/dev-cuatro-bacalar.jpg';
+import devCuatroBacalar2 from '@/assets/images/developments/dev-cuatro-bacalar-2.jpg';
+import devCuatroBacalar3 from '@/assets/images/developments/dev-cuatro-bacalar-3.jpg';
+import devCuatroBacalar4 from '@/assets/images/developments/dev-cuatro-bacalar-4.jpg';
+import devTulumEcoResort from '@/assets/images/developments/dev-tulum-eco-resort.jpg';
+import devMeridaLuxury from '@/assets/images/developments/dev-merida-luxury.jpg';
+import devPuntaMita from '@/assets/images/developments/dev-punta-mita.jpg';
+import devCancunPenthouse from '@/assets/images/developments/dev-cancun-penthouse.jpg';
+import devLoscabosVillas from '@/assets/images/developments/dev-loscabos-villas.jpg';
+
+// Blog
+import blogDesignTrends from '@/assets/images/blog/blog-design-trends.jpg';
+import blogInvestBacalar from '@/assets/images/blog/blog-invest-bacalar.jpg';
+
+// Cuatro Bacalar specific
+import housePlan from '@/assets/images/cuatro-bacalar/house-plan.png';
+import plantaBaja from '@/assets/images/cuatro-bacalar/planta-baja.png';
+import plantaAlta from '@/assets/images/cuatro-bacalar/planta-alta.png';
+import floorPlanDetail from '@/assets/images/cuatro-bacalar/floor-plan-detail.png';
 
 export const images = {
   hero: {
-    main: '/assets/images/hero-main.jpg',
+    main: heroMain,
   },
   about: {
-    interior: '/assets/images/about-interior.jpg',
+    interior: aboutInterior,
   },
   developments: {
-    'cuatro-bacalar': '/assets/images/dev-cuatro-bacalar.jpg',
-    'tulum-eco-resort': '/assets/images/dev-tulum-eco-resort.jpg',
-    'merida-luxury': '/assets/images/dev-merida-luxury.jpg',
-    'punta-mita-estates': '/assets/images/dev-punta-mita.jpg',
-    'cancun-penthouse': '/assets/images/dev-cancun-penthouse.jpg',
-    'loscabos-villas': '/assets/images/dev-loscabos-villas.jpg',
+    'cuatro-bacalar': devCuatroBacalar,
+    'tulum-eco-resort': devTulumEcoResort,
+    'merida-luxury': devMeridaLuxury,
+    'punta-mita-estates': devPuntaMita,
+    'cancun-penthouse': devCancunPenthouse,
+    'loscabos-villas': devLoscabosVillas,
   },
   gallery: {
     'cuatro-bacalar': [
-      '/assets/images/dev-cuatro-bacalar.jpg',
-      '/assets/images/dev-cuatro-bacalar-2.jpg',
-      '/assets/images/dev-cuatro-bacalar-3.jpg',
-      '/assets/images/dev-cuatro-bacalar-4.jpg',
+      devCuatroBacalar,
+      devCuatroBacalar2,
+      devCuatroBacalar3,
+      devCuatroBacalar4,
     ],
   },
   blog: {
-    'design-trends': '/assets/images/blog-design-trends.jpg',
-    'invest-bacalar': '/assets/images/blog-invest-bacalar.jpg',
+    'design-trends': blogDesignTrends,
+    'invest-bacalar': blogInvestBacalar,
+  },
+  cuatroBacalar: {
+    housePlan,
+    plantaBaja,
+    plantaAlta,
+    floorPlanDetail,
   },
 } as const;

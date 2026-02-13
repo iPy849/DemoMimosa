@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import Icon from '../../components/icons/Icon.astro';
 import { t } from '../../i18n/utils';
 import { getCollection } from 'astro:content';
 
@@ -28,11 +29,11 @@ const posts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date
               <div class="p-6">
                 <div class="flex items-center gap-4 text-sm text-muted-foreground mb-3 font-body">
                   <span class="flex items-center gap-1">
-                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                    <Icon name="calendar" class="w-4 h-4" />
                     {post.data.date}
                   </span>
                   <span class="flex items-center gap-1">
-                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <Icon name="user" class="w-4 h-4" />
                     {post.data.author}
                   </span>
                 </div>
@@ -40,7 +41,7 @@ const posts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date
                 <p class="text-muted-foreground font-body text-sm leading-relaxed mb-4">{post.data.excerpt}</p>
                 <span class="text-primary text-sm font-bold tracking-wider uppercase font-body inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-t="blog.read_more">
                   {t("blog.read_more")}
-                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  <Icon name="arrow-right" class="w-4 h-4" />
                 </span>
               </div>
             </article>

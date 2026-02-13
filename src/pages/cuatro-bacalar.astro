@@ -1,7 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import PageLayout from '../layouts/PageLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/icons/Icon.astro';
 import { t } from '../i18n/utils';
+import { images } from '../data/images';
 import { getCollection } from 'astro:content';
 
 const esDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es');
@@ -9,11 +12,7 @@ const dev = esDevelopments.find((d) => d.data.slug === 'cuatro-bacalar')?.data;
 
 if (!dev) throw new Error('Cuatro Bacalar development not found');
 
-const housePlanImage = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-079-7bucbtXWBnwmaczpe8MWz74xibgQnL.png';
-
-const plantaBajaImage = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-075-SVZnZ9pqSt9SzjzS5yuaUvMEwvpDye.png';
-const plantaAltaImage = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-077-2nrAn8XhnOLwDC1fsAzeW4DiSWZUr5.png';
-const floorPlanImage = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-CwKzZOrW3jps97UnXis5UQFS0yzAzS.png';
+const { housePlan: housePlanImage, plantaBaja: plantaBajaImage, plantaAlta: plantaAltaImage, floorPlanDetail: floorPlanImage } = images.cuatroBacalar;
 
 const gallery = dev.gallery ?? [dev.image];
 
@@ -38,7 +37,7 @@ const amenityIcons: Record<string, string> = {
       <!-- Title -->
       <div class="text-center mb-16">
         <div class="flex items-center justify-center gap-2 text-muted-foreground mb-4">
-          <svg class="w-5 h-5 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <Icon name="map-pin" class="w-5 h-5 text-primary" />
           <p class="text-sm tracking-[0.3em] uppercase font-body">{dev.location}</p>
         </div>
         <h1 class="text-5xl md:text-6xl font-headline font-bold text-foreground mb-6 text-balance">{dev.title}</h1>

@@ -1,0 +1,35 @@
+---
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+interface Props {
+  name: string;
+  class?: string;
+  [key: string]: any;
+}
+
+const { name, class: className, ...rest } = Astro.props;
+
+const iconsDir = resolve(process.cwd(), 'src/assets/icons');
+const svgPath = resolve(iconsDir, `${name}.svg`);
+let svgContent = '';
+
+try {
+  svgContent = readFileSync(svgPath, 'utf-8');
+  // Inject class and extra attributes into the <svg> tag
+  if (className) {
+    svgContent = svgContent.replace('<svg ', `<svg class="${className}" `);
+  }
+  // Forward any extra attrs (e.g. aria-hidden)
+  const extraAttrs = Object.entries(rest)
+    .map(([k, v]) => `${k}="${v}"`)
+    .join(' ');
+  if (extraAttrs) {
+    svgContent = svgContent.replace('<svg ', `<svg ${extraAttrs} `);
+  }
+} catch {
+  console.error(`[Icon] SVG not found: ${name}`);
+}
+---
+
+<Fragment set:html={svgContent} />
