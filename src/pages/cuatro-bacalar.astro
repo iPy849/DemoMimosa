@@ -1,0 +1,300 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { t } from '../i18n/utils';
+import { getCollection } from 'astro:content';
+
+const esDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es');
+const dev = esDevelopments.find((d) => d.data.slug === 'cuatro-bacalar')?.data;
+
+if (!dev) throw new Error('Cuatro Bacalar development not found');
+
+const houseImages = [
+  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-069-d9zIbWHcBoXzw6FbMPOtPFqsyONS3f.png',
+  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-079-7bucbtXWBnwmaczpe8MWz74xibgQnL.png',
+  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-071-GFFD8M9CQRnircZmP0uHwPQkMgyxIV.png',
+  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-077-2nrAn8XhnOLwDC1fsAzeW4DiSWZUr5.png',
+  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-073-L22xfkad7IT9hksFGvZXG0tEoqQXMb.png',
+  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-075-SVZnZ9pqSt9SzjzS5yuaUvMEwvpDye.png',
+];
+
+const gallery = dev.gallery ?? [dev.image];
+
+const houses = [
+  { id: 1, name: 'Casa 1', available: false },
+  { id: 2, name: 'Casa 2', available: true },
+  { id: 3, name: 'Casa 3', available: true },
+  { id: 4, name: 'Casa 4', available: true },
+];
+
+const amenityIcons = {
+  'Beach Club Privado': '<path d="M12 2c-4.97 0-9 4.03-9 9 0 4.97 4.03 9 9 9s9-4.03 9-9c0-4.97-4.03-9-9-9zm-1.5 14.5v-3h3v3h-3z"/><path d="M7 8h10v2H7z"/>',
+  'Seguridad 24/7': '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>',
+  'Alberca Infinity': '<path d="M2 16h1c1 0 1.5-.5 2.5-.5S7 16 8 16s1.5-.5 2.5-.5 1.5.5 2.5.5 1.5-.5 2.5-.5 1.5.5 2.5.5 1.5-.5 2.5-.5 1.5.5 2.5.5h1"/><path d="M2 12h1c1 0 1.5-.5 2.5-.5S7 12 8 12s1.5-.5 2.5-.5 1.5.5 2.5.5 1.5-.5 2.5-.5 1.5.5 2.5.5 1.5-.5 2.5-.5 1.5.5 2.5.5h1"/>',
+  'Gimnasio': '<circle cx="12" cy="8" r="2"/><path d="M8.5 14a2.5 2.5 0 0 0-2.5 2.5V22h12v-5.5a2.5 2.5 0 0 0-2.5-2.5"/>',
+  'Restaurante Gourmet': '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
+  'Muelle Privado': '<path d="M6 19h12"/><path d="M12 19V3"/><path d="M3 7h18"/><path d="M6 7V3h12v4"/>',
+};
+---
+
+<PageLayout
+  title={`${dev.title} | MIMOSA Real Estate`}
+  description={dev.shortDescription ?? dev.description}
+  keywords={`cuatro bacalar, ${dev.title}, ${dev.location}, lujo, inversion, caribe mexicano, laguna bacalar`}
+>
+  <!-- Hero Section with Carousel -->
+  <section class="relative h-screen">
+    <div class="absolute inset-0">
+      {gallery.map((img: string, i: number) => (
+        <div
+          class:list={["hero-slide absolute inset-0 transition-opacity duration-1000", i === 0 ? "opacity-100" : "opacity-0"]}
+          data-slide={i}
+        >
+          <img
+            src={img}
+            alt={`${dev.title} - ${i + 1}`}
+            class="w-full h-full object-cover"
+            loading={i === 0 ? "eager" : "lazy"}
+          />
+          <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Carousel Controls -->
+    {gallery.length > 1 && (
+      <>
+        <button id="hero-prev" class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-14 h-14 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Previous">
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button id="hero-next" class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-14 h-14 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Next">
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </>
+    )}
+
+    <!-- Hero Content -->
+    <div class="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
+      <div class="max-w-4xl mx-auto space-y-6 animate-fade-in">
+        <div class="flex items-center justify-center gap-2 text-white/90 mb-2">
+          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <p class="text-sm tracking-[0.3em] uppercase font-body">{dev.location}</p>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-headline font-bold text-white mb-4 drop-shadow-2xl">{dev.title}</h1>
+        <p class="text-xl md:text-2xl text-white/90 font-body leading-relaxed max-w-2xl mx-auto drop-shadow-lg">{dev.shortDescription}</p>
+        <a
+          href="#houses"
+          class="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full font-bold font-body text-sm tracking-wider uppercase transition-all hover:scale-105 mt-6 shadow-2xl"
+        >
+          <span>DESCUBRE LAS CASAS</span>
+          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5"/><path d="M7 6l5 5 5-5"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6 text-white/60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- Description & Amenities Section -->
+  <section class="py-24 px-6 bg-background">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+        <!-- Description -->
+        <div class="space-y-6">
+          <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground">Una Experiencia Única</h2>
+          <p class="text-lg text-muted-foreground font-body leading-relaxed">{dev.description}</p>
+          <div class="pt-4">
+            <a href="#contact" class="inline-flex items-center gap-2 text-primary font-body font-bold text-sm tracking-wider uppercase hover:gap-4 transition-all">
+              <span>AGENDA UNA VISITA</span>
+              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Amenities with Icons -->
+        <div class="bg-card rounded-2xl border border-border p-8 shadow-lg">
+          <h3 class="text-2xl font-headline font-bold text-foreground mb-6">Amenidades Exclusivas</h3>
+          <div class="grid grid-cols-1 gap-4">
+            {dev.amenities.map((amenity: string) => (
+              <div class="group flex items-center gap-4 p-4 rounded-xl bg-background hover:bg-primary/5 transition-all duration-300 hover:translate-x-2">
+                <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                  <svg class="w-6 h-6 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <Fragment set:html={amenityIcons[amenity as keyof typeof amenityIcons] || '<path d="M20 6 9 17l-5-5"/>'} />
+                  </svg>
+                </div>
+                <span class="text-foreground font-body font-medium">{amenity}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Houses Availability Section -->
+  <section id="houses" class="py-24 px-6 bg-muted/30">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-headline font-bold text-foreground mb-4">Nuestras Cuatro Casas</h2>
+        <p class="text-lg text-muted-foreground font-body max-w-2xl mx-auto">Cada residencia ha sido diseñada para ofrecer privacidad, lujo y conexión con la naturaleza</p>
+      </div>
+
+      <!-- Houses Status Grid -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        {houses.map((house) => (
+          <div class={`group relative overflow-hidden rounded-2xl border-2 transition-all duration-500 ${house.available ? 'border-primary/30 bg-card hover:border-primary hover:shadow-xl hover:-translate-y-2' : 'border-muted bg-muted cursor-not-allowed'}`}>
+            <div class="aspect-square p-8 flex flex-col items-center justify-center text-center">
+              <div class={`w-20 h-20 rounded-2xl mb-4 flex items-center justify-center ${house.available ? 'bg-primary/10 group-hover:bg-primary/20' : 'bg-foreground/90'} transition-colors`}>
+                <svg class={`w-10 h-10 ${house.available ? 'text-primary' : 'text-background'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </div>
+              <h3 class={`text-xl font-headline font-bold mb-2 ${house.available ? 'text-foreground' : 'text-foreground/50'}`}>{house.name}</h3>
+              {house.available ? (
+                <span class="inline-flex items-center gap-2 text-sm font-body font-bold text-primary">
+                  <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                  Disponible
+                </span>
+              ) : (
+                <span class="inline-flex items-center gap-2 text-sm font-body font-bold text-foreground/70">
+                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  Vendida
+                </span>
+              )}
+            </div>
+            {!house.available && (
+              <div class="absolute inset-0 bg-foreground/5 backdrop-blur-[2px]"></div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <!-- House Floor Plans Gallery -->
+      <div class="space-y-4">
+        <h3 class="text-2xl font-headline font-bold text-foreground text-center mb-8">Planos y Diseños</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {houseImages.map((img, i) => (
+            <div class="group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer" data-house-img={i}>
+              <div class="aspect-[4/3] relative">
+                <img
+                  src={img}
+                  alt={`Plano Casa ${i + 1}`}
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                  <p class="text-white font-body font-bold text-sm tracking-wider uppercase">Ver en detalle</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map & Virtual Tour -->
+  {(dev.mapUrl || dev.virtualTour) && (
+    <section class="py-24 px-6 bg-background">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8">
+          {dev.mapUrl && (
+            <div class="space-y-4">
+              <h3 class="text-2xl font-headline font-bold text-foreground">Ubicación Estratégica</h3>
+              <div class="rounded-2xl overflow-hidden border border-border aspect-[4/3] shadow-xl hover:shadow-2xl transition-shadow">
+                <iframe src={dev.mapUrl} width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title={`Map - ${dev.title}`}></iframe>
+              </div>
+            </div>
+          )}
+          {dev.virtualTour && (
+            <div class="space-y-4">
+              <h3 class="text-2xl font-headline font-bold text-foreground">Recorrido Virtual 360°</h3>
+              <div class="rounded-2xl overflow-hidden border border-border aspect-[4/3] shadow-xl hover:shadow-2xl transition-shadow">
+                <iframe src={dev.virtualTour} width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" title={`Virtual Tour - ${dev.title}`}></iframe>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Contact Form -->
+  <section id="contact" class="py-24 px-6 bg-muted/30">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-4">Agenda Tu Visita</h2>
+        <p class="text-lg text-muted-foreground font-body">Descubre personalmente la exclusividad de Cuatro Bacalar</p>
+      </div>
+      <ContactForm variant="card" />
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out;
+  }
+</style>
+
+<script>
+  // Hero Carousel
+  let currentHeroSlide = 0;
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  const totalHeroSlides = heroSlides.length;
+
+  function goToHeroSlide(index: number) {
+    currentHeroSlide = ((index % totalHeroSlides) + totalHeroSlides) % totalHeroSlides;
+    heroSlides.forEach((s, i) => {
+      s.classList.toggle('opacity-100', i === currentHeroSlide);
+      s.classList.toggle('opacity-0', i !== currentHeroSlide);
+    });
+  }
+
+  document.getElementById('hero-prev')?.addEventListener('click', () => goToHeroSlide(currentHeroSlide - 1));
+  document.getElementById('hero-next')?.addEventListener('click', () => goToHeroSlide(currentHeroSlide + 1));
+
+  // Auto-advance carousel every 5 seconds
+  if (totalHeroSlides > 1) {
+    setInterval(() => {
+      goToHeroSlide(currentHeroSlide + 1);
+    }, 5000);
+  }
+
+  // House images lightbox (simple modal)
+  const houseImgElements = document.querySelectorAll('[data-house-img]');
+  houseImgElements.forEach((el) => {
+    el.addEventListener('click', () => {
+      const img = el.querySelector('img');
+      if (img) {
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-6 cursor-pointer';
+        modal.innerHTML = `
+          <div class="relative max-w-6xl max-h-full">
+            <img src="${img.src}" alt="${img.alt}" class="max-w-full max-h-[90vh] object-contain rounded-lg" />
+            <button class="absolute top-4 right-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all">
+              <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+          </div>
+        `;
+        modal.addEventListener('click', () => modal.remove());
+        document.body.appendChild(modal);
+      }
+    });
+  });
+</script>
