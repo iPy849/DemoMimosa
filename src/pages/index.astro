@@ -8,7 +8,12 @@ import { t } from '../i18n/utils';
 import { images } from '../data/images';
 import { getCollection } from 'astro:content';
 
-const featuredDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es' && data.featured === true);
+let featuredDevelopments: any[] = [];
+try {
+  featuredDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es' && data.featured === true);
+} catch (e) {
+  console.error('[v0] Content collection error:', e);
+}
 ---
 
 <PageLayout

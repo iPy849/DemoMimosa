@@ -7,10 +7,27 @@ import { t } from '../i18n/utils';
 import { images } from '../data/images';
 import { getCollection } from 'astro:content';
 
-const esDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es');
-const dev = esDevelopments.find((d) => d.data.slug === 'cuatro-bacalar')?.data;
+let dev: any;
+try {
+  const esDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es');
+  dev = esDevelopments.find((d) => d.data.slug === 'cuatro-bacalar')?.data;
+} catch (e) {
+  console.error('[v0] Content collection error:', e);
+}
 
-if (!dev) throw new Error('Cuatro Bacalar development not found');
+if (!dev) {
+  dev = {
+    title: 'Cuatro Bacalar',
+    location: 'Bacalar, Quintana Roo',
+    shortDescription: 'Una experiencia de vida unica frente a la laguna de los siete colores.',
+    description: 'Cuatro Bacalar es un desarrollo residencial de lujo disenado para armonizar con la belleza natural de la Laguna de los Siete Colores.',
+    amenities: ['Beach Club Privado', 'Seguridad 24/7', 'Alberca Infinity', 'Gimnasio', 'Restaurante Gourmet', 'Muelle Privado'],
+    image: '/assets/images/dev-cuatro-bacalar.jpg',
+    gallery: ['/assets/images/dev-cuatro-bacalar.jpg', '/assets/images/dev-cuatro-bacalar-2.jpg', '/assets/images/dev-cuatro-bacalar-3.jpg', '/assets/images/dev-cuatro-bacalar-4.jpg'],
+    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15082.4939223793!2d-88.3974443!3d18.6755455!2m3!1f0!2f0!3f0!3m2!1i1024!2i1024!2f1080!3m2!1m1!2zMTjCsDQwJzMyLjAiTiA4OMKwMjMnNTAuOCJX!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx',
+    virtualTour: 'https://kuula.co/share/hs7cq/collection/7Dgjf?logo=0&info=0&fs=1&vr=1&initload=0&thumbs=1',
+  };
+}
 
 const { housePlan: housePlanImage, plantaBaja: plantaBajaImage, plantaAlta: plantaAltaImage, floorPlanDetail: floorPlanImage } = images.cuatroBacalar;
 
@@ -54,7 +71,7 @@ const amenityIcons: Record<string, string> = {
             <div class="pt-2">
               <a href="#contact" class="inline-flex items-center gap-2 text-primary font-body font-bold text-sm tracking-wider uppercase hover:gap-4 transition-all">
                 <span>AGENDA UNA VISITA</span>
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <Icon name="arrow-right" class="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -94,10 +111,10 @@ const amenityIcons: Record<string, string> = {
               {gallery.length > 1 && (
                 <>
                   <button id="gallery-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 backdrop-blur-sm hover:bg-black/60 text-white rounded-full w-8 h-8 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Previous">
-                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    <Icon name="chevron-left" class="w-4 h-4" />
                   </button>
                   <button id="gallery-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 backdrop-blur-sm hover:bg-black/60 text-white rounded-full w-8 h-8 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Next">
-                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    <Icon name="chevron-right" class="w-4 h-4" />
                   </button>
                 </>
               )}
@@ -148,7 +165,7 @@ const amenityIcons: Record<string, string> = {
             `}
           >
             <div class="relative w-[200px] md:w-[240px]">
-              <img src={housePlanImage} alt={`Planta Baja ${i + 1}`} class="w-full h-auto rotate-90" loading="lazy" />
+              <Image src={housePlanImage} alt={`Planta Baja ${i + 1}`} class="w-full h-auto rotate-90" loading="lazy" />
               {i === 0 && (
                 <div class="absolute inset-0 bg-[#00355a]/80 rotate-90 flex items-center justify-center">
                   <span class="text-white font-headline font-bold text-base -rotate-90">VENDIDA</span>
@@ -164,11 +181,11 @@ const amenityIcons: Record<string, string> = {
         <div class="grid md:grid-cols-2 gap-8 mb-8">
           <div class="space-y-3">
             <h4 class="text-xl font-headline font-bold text-foreground text-center">Planta Baja</h4>
-            <img src={plantaBajaImage} alt="Planta Baja" class="w-full h-auto" loading="lazy" />
+            <Image src={plantaBajaImage} alt="Planta Baja" class="w-full h-auto" loading="lazy" />
           </div>
           <div class="space-y-3">
             <h4 class="text-xl font-headline font-bold text-foreground text-center">Planta Alta</h4>
-            <img src={plantaAltaImage} alt="Planta Alta" class="w-full h-auto" loading="lazy" />
+            <Image src={plantaAltaImage} alt="Planta Alta" class="w-full h-auto" loading="lazy" />
           </div>
         </div>
 
@@ -180,7 +197,7 @@ const amenityIcons: Record<string, string> = {
             id="view-floor-plan"
             class="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold font-body text-sm tracking-wider uppercase transition-all hover:scale-105 shadow-lg hover:shadow-xl"
           >
-            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            <Icon name="floor-plan" class="w-5 h-5" />
             <span>VER PLANOS ARQUITECTONICOS</span>
           </button>
         </div>
@@ -231,10 +248,10 @@ const amenityIcons: Record<string, string> = {
       <div class="flex items-center justify-between mb-6">
         <h3 class="text-2xl font-headline font-bold text-white">Planos Arquitectonicos Detallados</h3>
         <button id="close-floor-plan" class="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center transition-all hover:scale-110">
-          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          <Icon name="x" class="w-6 h-6" />
         </button>
       </div>
-      <img src={floorPlanImage} alt="Planos Arquitectonicos Detallados" class="w-full h-auto rounded-2xl shadow-2xl" />
+      <Image src={floorPlanImage} alt="Planos Arquitectonicos Detallados" class="w-full h-auto rounded-2xl shadow-2xl" />
     </div>
   </div>
 
@@ -243,7 +260,7 @@ const amenityIcons: Record<string, string> = {
     <div class="relative max-w-6xl max-h-full">
       <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[90vh] object-contain rounded-lg" />
       <button id="close-lightbox" class="absolute top-4 right-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center transition-all hover:scale-110">
-        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        <Icon name="x" class="w-6 h-6" />
       </button>
     </div>
   </div>
