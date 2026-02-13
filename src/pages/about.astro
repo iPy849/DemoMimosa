@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
+import AnimatedCounter from '../components/AnimatedCounter.astro';
 import { t } from '../i18n/utils';
 import { images } from '../data/images';
 ---
@@ -142,12 +143,22 @@ import { images } from '../data/images';
           <h3 class="text-2xl font-headline font-bold text-foreground mb-4" data-t="about.constructor_title">{t("about.constructor_title")}</h3>
           <p class="text-muted-foreground leading-relaxed font-body mb-6" data-t="about.constructor_desc">{t("about.constructor_desc")}</p>
           <div class="grid grid-cols-2 gap-4 mb-6">
-            <div class="bg-primary/5 rounded-lg p-4 text-center">
-              <p class="text-2xl font-headline font-bold text-primary" data-t="about.constructor_stat1">{t("about.constructor_stat1")}</p>
+            <div class="bg-primary/5 rounded-lg p-6 text-center">
+              <AnimatedCounter value={4000} prefix="+" />
+              <p class="text-sm text-muted-foreground mt-2 font-body">{t("about.constructor_stat1").replace('+4,000 ', '')}</p>
             </div>
-            <div class="bg-primary/5 rounded-lg p-4 text-center">
-              <p class="text-2xl font-headline font-bold text-primary" data-t="about.constructor_stat2">{t("about.constructor_stat2")}</p>
+            <div class="bg-primary/5 rounded-lg p-6 text-center">
+              <AnimatedCounter value={100000} prefix="+" />
+              <p class="text-sm text-muted-foreground mt-2 font-body">{t("about.constructor_stat2").replace('+100,000 m2 de ', '')}</p>
             </div>
+          </div>
+          <div class="bg-primary/5 rounded-lg p-6 text-center mb-6">
+            <AnimatedCounter value={15} prefix="+" />
+            <p class="text-sm text-muted-foreground mt-2 font-body">años de experiencia</p>
+          </div>
+          <div class="bg-primary/5 rounded-lg p-6 text-center">
+            <AnimatedCounter value={6000} prefix="MXN $" suffix="M" />
+            <p class="text-sm text-muted-foreground mt-2 font-body">en obras (últimos 5 años)</p>
           </div>
         </div>
         <div class="flex flex-col gap-4 reveal" data-reveal="right">

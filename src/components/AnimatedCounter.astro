@@ -1,0 +1,80 @@
+---
+interface Props {
+  value: number;
+  suffix?: string;
+  prefix?: string;
+  duration?: number;
+}
+
+const { value, suffix = '', prefix = '', duration = 2000 } = Astro.props;
+---
+
+<div class="animated-counter" data-target={value} data-duration={duration}>
+  <span class="counter-value text-3xl lg:text-4xl font-headline font-bold text-primary">
+    {prefix}0{suffix}
+  </span>
+</div>
+
+<script>
+  function initCounters() {
+    const counters = document.querySelectorAll('.animated-counter');
+    
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target as HTMLElement;
+          const valueSpan = counter.querySelector('.counter-value') as HTMLElement;
+          const target = parseInt(counter.dataset.target || '0');
+          const duration = parseInt(counter.dataset.duration || '2000');
+          
+          // Extract prefix and suffix from current text
+          const currentText = valueSpan.textContent || '';
+          const matches = currentText.match(/^([^\d]*)(\d+)(.*)$/);
+          const prefix = matches ? matches[1] : '';
+          const suffix = matches ? matches[3] : '';
+          
+          let startTime: number | null = null;
+          
+          function animate(currentTime: number) {
+            if (!startTime) startTime = currentTime;
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function for smooth animation
+            const easeOutQuad = (t: number) => t * (2 - t);
+            const easedProgress = easeOutQuad(progress);
+            
+            const current = Math.floor(easedProgress * target);
+            valueSpan.textContent = `${prefix}${current.toLocaleString()}${suffix}`;
+            
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              valueSpan.textContent = `${prefix}${target.toLocaleString()}${suffix}`;
+            }
+          }
+          
+          requestAnimationFrame(animate);
+          observer.unobserve(counter);
+        }
+      });
+    }, observerOptions);
+
+    counters.forEach(counter => observer.observe(counter));
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCounters);
+  } else {
+    initCounters();
+  }
+
+  // Reinitialize on navigation (for Astro view transitions)
+  document.addEventListener('astro:page-load', initCounters);
+</script>

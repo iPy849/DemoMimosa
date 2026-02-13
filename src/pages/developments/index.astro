@@ -18,17 +18,17 @@ const esDevelopments = await getCollection('developments', ({ data }) => data.la
         <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="featured.subtitle">{t("featured.subtitle")}</p>
         <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground" data-t="nav.developments">{t("nav.developments")}</h1>
       </div>
-      <div class="flex flex-col gap-12 reveal-stagger">
+      <div class="flex flex-col gap-6 reveal-stagger">
         {esDevelopments.map((dev, index) => {
           const isEven = index % 2 === 0;
           return (
             <a 
               href={`/developments/${dev.data.slug}`}
-              class={`group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-700 hover:shadow-2xl reveal ${isEven ? '' : 'lg:flex-row-reverse'}`}
+              class={`group relative overflow-hidden rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-700 hover:shadow-2xl reveal ${isEven ? '' : 'lg:flex-row-reverse'}`}
             >
-              <div class={`grid lg:grid-cols-2 gap-0 items-center ${isEven ? '' : 'lg:flex-row-reverse'}`}>
+              <div class={`grid lg:grid-cols-5 gap-0 items-center ${isEven ? '' : 'lg:flex-row-reverse'}`}>
                 <!-- Image Section -->
-                <div class="relative aspect-[4/3] lg:aspect-auto lg:h-full overflow-hidden">
+                <div class="relative aspect-[16/9] lg:aspect-[3/2] lg:col-span-2 overflow-hidden">
                   <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                   <img 
                     src={dev.data.image} 
@@ -40,29 +40,29 @@ const esDevelopments = await getCollection('developments', ({ data }) => data.la
                 </div>
                 
                 <!-- Content Section -->
-                <div class={`p-8 lg:p-12 flex flex-col justify-center ${isEven ? 'lg:order-last' : 'lg:order-first'}`}>
-                  <div class="flex items-center gap-2 mb-4">
+                <div class={`lg:col-span-3 p-6 lg:p-8 flex flex-col justify-center ${isEven ? 'lg:order-last' : 'lg:order-first'}`}>
+                  <div class="flex items-center gap-2 mb-2">
                     <svg class="w-4 h-4 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <p class="text-sm text-muted-foreground font-body tracking-wider uppercase">{dev.data.location}</p>
+                    <p class="text-xs text-muted-foreground font-body tracking-wider uppercase">{dev.data.location}</p>
                   </div>
                   
-                  <h3 class="text-3xl lg:text-4xl font-headline font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-500">
+                  <h3 class="text-2xl lg:text-3xl font-headline font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-500">
                     {dev.data.title}
                   </h3>
                   
-                  <p class="text-muted-foreground font-body leading-relaxed mb-6 text-pretty">
+                  <p class="text-sm text-muted-foreground font-body leading-relaxed mb-4 text-pretty line-clamp-2">
                     {dev.data.shortDescription}
                   </p>
                   
-                  <div class="flex items-center gap-2 text-primary font-body font-bold text-sm tracking-wider uppercase group-hover:gap-4 transition-all duration-300">
+                  <div class="flex items-center gap-2 text-primary font-body font-bold text-xs tracking-wider uppercase group-hover:gap-3 transition-all duration-300">
                     <span>{t("featured.cta")}</span>
-                    <svg class="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                   </div>
                 </div>
               </div>
               
               <!-- Decorative corner accent -->
-              <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+              <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             </a>
           );
         })}
