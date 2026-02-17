@@ -5,10 +5,10 @@
  */
 
 // Hero
-import heroMain from '@/assets/images/hero/hero-main.jpg';
+import heroMain from '@/assets/images/hero/hero-main.webp';
 
 // About
-import aboutInterior from '@/assets/images/about/about-interior.jpg';
+import aboutInterior from '@/assets/images/about/about-interior.webp';
 
 // Developments
 import devCuatroBacalar from '@/assets/images/developments/dev-cuatro-bacalar.jpg';
