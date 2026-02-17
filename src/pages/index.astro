@@ -4,14 +4,13 @@ import PageLayout from '../layouts/PageLayout.astro';
 import DevelopmentCard from '../components/DevelopmentCard.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import Icon from '../components/icons/Icon.astro';
-import {t} from '../i18n/utils';
 import {images} from '../data/images';
 import {getCollection} from 'astro:content';
 import SocialLinks from "@/components/SocialLinks.astro";
 
 let featuredDevelopments: any[] = [];
 try {
-    featuredDevelopments = await getCollection('developments', ({data}) => data.lang === 'es' && data.featured === true);
+    featuredDevelopments = await getCollection('developments', ({data}) => data.featured === true);
 } catch (e) {
     console.error('[v0] Content collection error:', e);
 }
@@ -36,12 +35,11 @@ try {
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="/developments"
-                   class="bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
-                   data-t="hero.cta.primary">{t("hero.cta.primary")}</a>
+                   class="bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2">VER DESARROLLOS</a>
                 <a href="/contact"
                    class="border border-[#ffffff66] text-[#fff] px-8 py-4 text-xs tracking-[0.2em] font-body hover:bg-[#ffffff1a] transition-colors inline-flex items-center justify-center gap-2">
                     <Icon name="play" class="w-4 h-4"/>
-                    <span data-t="hero.cta.secondary">{t("hero.cta.secondary")}</span>
+                    <span>CONTACTAR AGENTE</span>
                 </a>
             </div>
         </div>
@@ -55,23 +53,20 @@ try {
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div class="reveal" data-reveal="right">
-                    <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body"
-                       data-t="about.essence">{t("about.essence")}</p>
-                    <h2 class="text-4xl font-headline font-bold mb-6 text-foreground"
-                        data-t="about.title">{t("about.title")}</h2>
+                    <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body">Nuestra Esencia</p>
+                    <h2 class="text-4xl font-headline font-bold mb-6 text-foreground">Redefiniendo el Lujo Inmobiliario</h2>
                     <blockquote
                             class="text-xl text-muted-foreground italic leading-relaxed mb-8 font-body border-l-2 border-primary pl-6">
-                        "<span data-t="about.quote">{t("about.quote")}</span>"
+                        "Cada desarrollo de Mimosa refleja un firme compromiso con la excelencia. Proyectos pensados para cautivar los sentidos y elevar el estilo de vida"
                     </blockquote>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-8">
-                        <FeatureCard icon="star" titleKey="about.pillar1.title" descKey="about.pillar1.desc" centered/>
-                        <FeatureCard icon="shield" titleKey="about.pillar2.title" descKey="about.pillar2.desc"
+                        <FeatureCard icon="star" title="Exclusividad" desc="Desarrollo de residencias íntimas concebidas como oasis privados para un estilo de vida sereno." centered/>
+                        <FeatureCard icon="shield" title="Atencion Boutique" desc="Cada cliente recibe un trato personalizado, confidencial y sumamente exclusivo."
                                      centered/>
-                        <FeatureCard icon="diamond" titleKey="about.pillar3.title" descKey="about.pillar3.desc" centered/>
+                        <FeatureCard icon="diamond" title="Ubicacion Premium" desc="Solo operamos en los puntos geográficos mas estratégicos y de mayor plusvalía proyectada." centered/>
                     </div>
                     <a href="/about"
-                       class="inline-block bg-primary text-primary-foreground px-8 py-3 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors"
-                       data-t="about.cta">{t("about.cta")}</a>
+                       class="inline-block bg-primary text-primary-foreground px-8 py-3 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors">CONOCE NUESTRA HISTORIA</a>
                 </div>
                 <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
                     <Image src={images.about.interior} alt="Luxury property interior" class="w-full h-full object-cover"

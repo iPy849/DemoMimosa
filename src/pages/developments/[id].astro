@@ -1,207 +1,228 @@
 ---
+import { Image } from 'astro:assets';
 import PageLayout from '../../layouts/PageLayout.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Icon from '../../components/icons/Icon.astro';
-import { t } from '../../i18n/utils';
 import { getCollection } from 'astro:content';
+import '../../styles/splide-custom.css';
 
 export async function getStaticPaths() {
-  const esDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es');
-  const enDevelopments = await getCollection('developments', ({ data }) => data.lang === 'en');
+  const allDevelopments = await getCollection('developments');
 
-  return esDevelopments.map((dev) => {
-    const enPair = enDevelopments.find((en) => en.data.pairId === dev.data.pairId);
+  return allDevelopments.map((dev) => {
     return {
       params: { id: dev.data.slug },
-      props: { dev: dev.data, enDev: enPair?.data ?? null },
+      props: { dev },
     };
   });
 }
 
-const { dev, enDev } = Astro.props;
-const gallery = dev.gallery ?? [dev.image];
+const { dev } = Astro.props;
+const data = dev.data;
+
+// Prepare galleries
+const gallery = data.gallery ?? (data.image ? [data.image] : []);
+
+// Map amenity names to icon component names
+const amenityIconMap: Record<string, string> = {
+  'Beach Club Privado': 'pool',
+  'Seguridad 24/7': 'shield',
+  'Alberca Infinity': 'pool',
+  'Gimnasio': 'gym',
+  'Restaurante Gourmet': 'utensils',
+  'Muelle Privado': 'anchor',
+  'Cenote Privado': 'pool',
+  'Spa Holístico': 'spa',
+  'Restaurante Organico': 'utensils',
+  'Yoga Deck': 'yoga',
+  'Bicicletas': 'bike',
+};
 ---
 
 <PageLayout
-  title={`${dev.title} | MIMOSA Real Estate`}
-  description={dev.shortDescription ?? dev.description}
-  keywords={`desarrollo, ${dev.title}, ${dev.location}, lujo, inversion, caribe mexicano`}
+  title={`${data.title} | MIMOSA Real Estate`}
+  description={data.shortDescription ?? data.description}
+  keywords={`desarrollo, ${data.title}, ${data.location}, lujo, inversion, caribe mexicano`}
+  contactForm={false}
 >
-  <section class="pt-32 pb-24 px-6">
-    <div class="max-w-7xl mx-auto">
-      <!-- Back link -->
-      <a href="/developments" class="inline-flex items-center gap-2 text-primary text-sm tracking-wider uppercase font-bold font-body hover:underline mb-8">
-        <Icon name="arrow-left" class="w-4 h-4" />
-        <span data-t="dev.back">{t("dev.back")}</span>
-      </a>
+  <div id="dev-content">
+    <section class="pt-32 pb-16 px-6 bg-gradient-to-b from-muted/30 to-background">
+      <div class="max-w-7xl mx-auto">
+        <!-- Back link -->
+        <a href="/developments" class="inline-flex items-center gap-2 text-primary text-sm tracking-wider uppercase font-bold font-body hover:underline mb-8">
+          <Icon name="arrow-left" class="w-4 h-4" />
+          <span>VOLVER A DESARROLLOS</span>
+        </a>
 
-      <!-- Title -->
-      <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground mb-4" data-t-dev="title">{dev.title}</h1>
-      <div class="flex items-center gap-2 text-primary mb-10">
-        <Icon name="map-pin" class="w-5 h-5" />
-        <span class="font-body" data-t-dev="location">{dev.location}</span>
+        <!-- Title Area -->
+        <div class="text-center mb-16">
+          <div class="flex items-center justify-center gap-2 text-muted-foreground mb-4">
+            <Icon name="map-pin" class="w-5 h-5 text-primary" />
+            <p class="text-sm tracking-[0.3em] uppercase font-body">{data.location}</p>
+          </div>
+          <h1 class="text-5xl md:text-6xl font-headline font-bold text-foreground mb-6 text-balance">{data.title}</h1>
+          <p class="text-xl text-muted-foreground font-body leading-relaxed max-w-3xl mx-auto">{data.shortDescription}</p>
+        </div>
+
+        <div class="grid lg:grid-cols-5 gap-8 items-start">
+          <!-- Left: Description + Amenities (40%) -->
+          <div class="lg:col-span-2 space-y-8">
+            <!-- Description -->
+            <div class="space-y-4">
+              <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground">Una Experiencia Unica</h2>
+              <p class="text-lg text-muted-foreground font-body leading-relaxed">{data.description}</p>
+              <div class="pt-2">
+                <a href="#contact" class="inline-flex items-center gap-2 text-primary font-body font-bold text-sm tracking-wider uppercase hover:gap-4 transition-all">
+                  <span>AGENDA UNA VISITA</span>
+                  <Icon name="arrow-right" class="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+
+            <!-- Amenities Grid -->
+            <div>
+              <h3 class="text-xl font-headline font-bold text-foreground mb-4">Amenidades Exclusivas</h3>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {data.amenities.map((amenity: string) => (
+                  <div class="group flex flex-col items-center gap-2 p-3 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300">
+                    <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
+                      <Icon name={amenityIconMap[amenity] || 'check'} class="w-5 h-5 text-primary" />
+                    </div>
+                    <span class="text-foreground font-body font-medium text-xs text-center leading-tight">{amenity}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Gallery (60%) -->
+          <div class="lg:col-span-3">
+            <div class="sticky top-24 space-y-3">
+              <!-- Main Slider -->
+              <div id="main-carousel" class="splide rounded-xl overflow-hidden border border-border shadow-lg bg-card main-carousel">
+                <div class="splide__track">
+                  <ul class="splide__list">
+                    {gallery.map((img: string, i: number) => (
+                      <li class="splide__slide aspect-[4/3]">
+                        <Image src={img} alt={`${data.title} - ${i + 1}`} width={1200} height={900} class="w-full h-full object-cover" loading={i === 0 ? "eager" : "lazy"} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Thumbnail Slider -->
+              {gallery.length > 1 && (
+                <div id="thumbnail-carousel" class="splide mt-3 thumbnail-carousel">
+                  <div class="splide__track">
+                    <ul class="splide__list">
+                      {gallery.map((img: string, i: number) => (
+                        <li class="splide__slide aspect-video rounded-md overflow-hidden border border-transparent opacity-50 transition-all cursor-pointer">
+                          <Image src={img} alt={`Thumbnail ${i + 1}`} width={200} height={150} class="w-full h-full object-cover" loading="lazy" />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- Main row: Carousel (70%) + Sidebar (30%) -->
-      <div class="flex flex-col lg:flex-row gap-8 mb-12">
-        <!-- Carousel column -->
-        <div class="lg:w-[70%] flex flex-col gap-4">
-          <!-- Main image -->
-          <div class="relative aspect-[16/10] rounded-lg overflow-hidden bg-card">
-            {gallery.map((img: string, i: number) => (
-              <img
-                src={img}
-                alt={`${dev.title} - ${i + 1}`}
-                class:list={["carousel-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-500", i === 0 ? "opacity-100" : "opacity-0"]}
-                data-slide={i}
-                loading={i === 0 ? "eager" : "lazy"}
-              />
-            ))}
-            {gallery.length > 1 && (
-              <>
-                <button id="carousel-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors" aria-label="Previous">
-                  <Icon name="chevron-left" class="w-5 h-5" />
-                </button>
-                <button id="carousel-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors" aria-label="Next">
-                  <Icon name="chevron-right" class="w-5 h-5" />
-                </button>
-              </>
+    <!-- Map & Virtual Tour -->
+    {(data.mapUrl || data.virtualTour) && (
+      <section class="py-16 px-6 bg-muted/30">
+        <div class="max-w-7xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-8">
+            {data.mapUrl && (
+              <div class="space-y-4">
+                <h3 class="text-2xl font-headline font-bold text-foreground">Ubicacion Estrategica</h3>
+                <div class="rounded-2xl overflow-hidden border border-border aspect-[4/3] shadow-xl hover:shadow-2xl transition-shadow">
+                  <iframe src={data.mapUrl} width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title={`Map - ${data.title}`}></iframe>
+                </div>
+              </div>
+            )}
+            {data.virtualTour && (
+              <div class="space-y-4">
+                <h3 class="text-2xl font-headline font-bold text-foreground">Recorrido Virtual 360</h3>
+                <div class="rounded-2xl overflow-hidden border border-border aspect-[4/3] shadow-xl hover:shadow-2xl transition-shadow">
+                  <iframe src={data.virtualTour} width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" title={`Virtual Tour - ${data.title}`}></iframe>
+                </div>
+              </div>
             )}
           </div>
-          <!-- Thumbnails -->
-          {gallery.length > 1 && (
-            <div class="flex gap-3 overflow-x-auto pb-1">
-              {gallery.map((img: string, i: number) => (
-                <button
-                  class:list={["carousel-thumb shrink-0 w-20 h-16 rounded-md overflow-hidden border-2 transition-all cursor-pointer", i === 0 ? "border-primary" : "border-transparent opacity-60 hover:opacity-100"]}
-                  data-thumb={i}
-                  aria-label={`View image ${i + 1}`}
-                >
-                  <img src={img} alt={`Thumbnail ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
-                </button>
-              ))}
-            </div>
-          )}
         </div>
+      </section>
+    )}
+  </div>
 
-        <!-- Sidebar column (~30%): description + amenities -->
-        <div class="lg:w-[30%] flex flex-col gap-6">
-          <div>
-            <p class="text-muted-foreground leading-relaxed font-body" data-t-dev="description">{dev.description}</p>
-          </div>
-          <div class="bg-card rounded-lg border border-border p-6 flex-1">
-            <h3 class="font-headline font-semibold text-foreground mb-4" data-t-dev="amenities-title">Amenidades</h3>
-            <ul class="flex flex-col gap-3" id="amenities-list">
-              {dev.amenities.map((amenity: string, i: number) => (
-                <li class="flex items-center gap-2 text-muted-foreground font-body text-sm" data-amenity-index={i}>
-                  <Icon name="check" class="w-4 h-4 text-primary shrink-0" />
-                  <span>{amenity}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+  <!-- Contact Form -->
+  <section id="contact" class="py-16 px-6 bg-background">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-4">Inicia Tu Proxima Inversion</h2>
+        <p class="text-lg text-muted-foreground font-body">
+          Descubre personalmente la exclusividad de {data.title}
+        </p>
       </div>
-
-      <!-- Map + Virtual Tour row (50/50) -->
-      {(dev.mapUrl || dev.virtualTour) && (
-        <div class="flex flex-col md:flex-row gap-8 mb-16">
-          {dev.mapUrl && (
-            <div class="md:w-1/2">
-              <h3 class="text-xl font-headline font-semibold text-foreground mb-4" data-t="dev.location">{t("dev.location")}</h3>
-              <div class="rounded-lg overflow-hidden border border-border aspect-[4/3]">
-                <iframe src={dev.mapUrl} width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title={`Map - ${dev.title}`}></iframe>
-              </div>
-            </div>
-          )}
-          {dev.virtualTour && (
-            <div class="md:w-1/2">
-              <h3 class="text-xl font-headline font-semibold text-foreground mb-4" data-t="dev.360">{t("dev.360")}</h3>
-              <div class="rounded-lg overflow-hidden border border-border aspect-[4/3]">
-                <iframe src={dev.virtualTour} width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" title={`Virtual Tour - ${dev.title}`}></iframe>
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      <!-- Contact Form -->
-      <div class="mt-16">
-        <h3 class="text-2xl font-headline font-semibold text-foreground mb-8 text-center" data-t="contact.title">{t("contact.title")}</h3>
-        <ContactForm variant="card" />
-      </div>
+      <ContactForm variant="card" />
     </div>
   </section>
 </PageLayout>
 
-<!-- Embed EN development data for client-side translation -->
-{enDev && (
-  <script define:vars={{ enDev: JSON.stringify(enDev), esDev: JSON.stringify(dev) }}>
-    window.__enDevData = JSON.parse(enDev);
-    window.__esDevData = JSON.parse(esDev);
-  </script>
-)}
-
 <script>
-  // Carousel logic
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.carousel-slide');
-  const thumbs = document.querySelectorAll('.carousel-thumb');
-  const total = slides.length;
+  import Splide from '@splidejs/splide';
 
-  function goToSlide(index) {
-    currentSlide = ((index % total) + total) % total;
-    slides.forEach((s, i) => {
-      s.classList.toggle('opacity-100', i === currentSlide);
-      s.classList.toggle('opacity-0', i !== currentSlide);
-    });
-    thumbs.forEach((t, i) => {
-      t.classList.toggle('border-primary', i === currentSlide);
-      t.classList.toggle('border-transparent', i !== currentSlide);
-      t.classList.toggle('opacity-60', i !== currentSlide);
-    });
-  }
+  function initSplide() {
+    const mainCarouselEl = document.querySelector('#main-carousel');
+    const thumbCarouselEl = document.querySelector('#thumbnail-carousel');
 
-  document.getElementById('carousel-prev')?.addEventListener('click', () => goToSlide(currentSlide - 1));
-  document.getElementById('carousel-next')?.addEventListener('click', () => goToSlide(currentSlide + 1));
-  thumbs.forEach((thumb, i) => {
-    thumb.addEventListener('click', () => goToSlide(i));
-  });
+    if (mainCarouselEl && !mainCarouselEl.classList.contains('is-initialized')) {
+      mainCarouselEl.classList.add('is-initialized');
 
-  // Development-specific language switching
-  // This extends the global lang toggle in BaseLayout by also swapping development content
-  const origToggle = document.getElementById('lang-toggle');
-  const origToggleMobile = document.getElementById('lang-toggle-mobile');
+      const hasMultipleSlides = mainCarouselEl.querySelectorAll('.splide__slide').length > 1;
 
-  function swapDevContent() {
-    const lang = document.documentElement.lang;
-    const data = lang === 'en' ? window.__enDevData : window.__esDevData;
-    if (!data) return;
-
-    document.querySelectorAll('[data-t-dev]').forEach((el) => {
-      const field = el.getAttribute('data-t-dev');
-      if (field === 'amenities-title') {
-        el.textContent = lang === 'en' ? 'Amenities' : 'Amenidades';
-      } else if (field && data[field]) {
-        el.textContent = data[field];
-      }
-    });
-
-    // Swap amenities list
-    if (data.amenities) {
-      document.querySelectorAll('[data-amenity-index]').forEach((el) => {
-        const idx = parseInt(el.getAttribute('data-amenity-index') ?? '0');
-        const span = el.querySelector('span');
-        if (span && data.amenities[idx]) {
-          span.textContent = data.amenities[idx];
-        }
+      const main = new Splide('#main-carousel', {
+        type: 'fade',
+        rewind: true,
+        pagination: false,
+        arrows: hasMultipleSlides,
+        drag: hasMultipleSlides,
       });
+
+      if (thumbCarouselEl) {
+        const thumbnails = new Splide('#thumbnail-carousel', {
+          fixedWidth: 100,
+          fixedHeight: 64,
+          isNavigation: true,
+          gap: 12,
+          focus: 0,
+          pagination: false,
+          arrows: false,
+          breakpoints: {
+            640: {
+              fixedWidth: 80,
+              fixedHeight: 50,
+            },
+          },
+        });
+
+        main.sync(thumbnails);
+        main.mount();
+        thumbnails.mount();
+      } else {
+        main.mount();
+      }
     }
   }
 
-  // Listen for lang change event dispatched from Navbar
-  document.addEventListener('langChanged', swapDevContent);
-
-  // Also run on initial load in case browser language was EN
-  swapDevContent();
+  document.addEventListener('astro:page-load', initSplide);
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSplide);
+  } else {
+    initSplide();
+  }
 </script>

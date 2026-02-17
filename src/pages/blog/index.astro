@@ -1,16 +1,16 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import Icon from '../../components/icons/Icon.astro';
-import { t } from '@/i18n/utils.ts';
 import { getCollection } from 'astro:content';
 
-let allPosts: any[] = [];
+let posts: any[] = [];
+
 try {
-  allPosts = await getCollection('blog', ({ data }) => data.lang === 'es');
+  posts = await getCollection('blog');
+  posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 } catch (e) {
   console.error('[v0] Content collection error:', e);
 }
-const posts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
 <PageLayout
@@ -22,9 +22,10 @@ const posts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date
   <section class="pt-32 pb-24 px-6">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16 reveal" data-reveal="fade">
-        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="blog.subtitle">{t("blog.subtitle")}</p>
-        <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground" data-t="blog.title">{t("blog.title")}</h1>
+        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body">Inspiracion</p>
+        <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground">Blog & Estilo de Vida</h1>
       </div>
+      
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto reveal-stagger">
         {posts.map((post) => (
           <a href={`/blog/${post.data.slug}`} class="group block reveal">
@@ -45,8 +46,8 @@ const posts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date
                 </div>
                 <h2 class="text-xl font-headline font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">{post.data.title}</h2>
                 <p class="text-muted-foreground font-body text-sm leading-relaxed mb-4">{post.data.excerpt}</p>
-                <span class="text-primary text-sm font-bold tracking-wider uppercase font-body inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-t="blog.read_more">
-                  {t("blog.read_more")}
+                <span class="text-primary text-sm font-bold tracking-wider uppercase font-body inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+                  LEER MAS
                   <Icon name="arrow-right" class="w-4 h-4" />
                 </span>
               </div>

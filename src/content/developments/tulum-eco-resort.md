@@ -1,7 +1,5 @@
 ---
 slug: "tulum-eco-resort"
-lang: "es"
-pairId: "tulum-eco-resort"
 title: "Tulum Eco Resort"
 location: "Tulum, Mexico"
 image: "/assets/images/dev-tulum-eco-resort.jpg"

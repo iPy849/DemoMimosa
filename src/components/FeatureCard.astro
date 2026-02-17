@@ -1,16 +1,15 @@
 ---
 import Icon from './icons/Icon.astro';
-import { t } from '../i18n/utils';
 
 interface Props {
   icon: string;
-  titleKey: string;
-  descKey: string;
+  title: string;
+  desc: string;
   centered?: boolean;
   class?: string;
 }
 
-const { icon, titleKey, descKey, centered = false, class: className } = Astro.props;
+const { icon, title, desc, centered = false, class: className } = Astro.props;
 ---
 
 <div 
@@ -40,12 +39,11 @@ const { icon, titleKey, descKey, centered = false, class: className } = Astro.pr
         "font-headline font-bold text-foreground",
         centered ? "mb-2" : "mb-3 text-lg"
       ]} 
-      data-t={titleKey}
     >
-      {t(titleKey)}
+      {title}
     </h4>
-    <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t={descKey}>
-      {t(descKey)}
+    <p class="text-sm text-muted-foreground font-body leading-relaxed">
+      {desc}
     </p>
   </div>
 </div>

@@ -5,8 +5,6 @@ excerpt: "Descubre como los materiales naturales y la domotica estan redefiniend
 date: "24 Mayo, 2024"
 author: "Elena Rivera"
 image: "/assets/images/blog-design-trends.jpg"
-lang: "es"
-pairId: "design-trends-2024"
 ---
 
 El diseno de interiores para el ano 2024 esta marcado por una profunda conexion con la naturaleza y la integracion invisible de la tecnologia. En MIMOSA Estates, observamos como nuestros desarrollos estan adoptando estas filosofias para crear espacios que no solo son esteticamente impresionantes, sino que tambien promueven el bienestar.

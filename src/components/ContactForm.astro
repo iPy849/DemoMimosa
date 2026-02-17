@@ -1,5 +1,4 @@
 ---
-import { t } from '../i18n/utils';
 import Icon from './icons/Icon.astro';
 
 interface Props {
@@ -21,47 +20,47 @@ const textareaClass = "w-full bg-foreground/5 border border-foreground/15 rounde
   >
     <!-- Name -->
     <div class="flex flex-col gap-2">
-      <label class="text-sm font-semibold font-body text-foreground" data-t="contact.form.name">{t("contact.form.name")}</label>
+      <label class="text-sm font-semibold font-body text-foreground">Nombre Completo</label>
       <div class="relative">
         <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"><Icon name="user" class="w-5 h-5 text-muted-foreground/50" /></div>
-        <input type="text" name="name" required class={inputClass} placeholder={t("contact.form.name.placeholder")} data-t-placeholder="contact.form.name.placeholder" />
+        <input type="text" name="name" required class={inputClass} placeholder="Ingresa tu nombre completo" />
       </div>
     </div>
 
     {isCard ? (
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="flex flex-col gap-2">
-          <label class="text-sm font-semibold font-body text-foreground" data-t="contact.form.email">{t("contact.form.email")}</label>
+          <label class="text-sm font-semibold font-body text-foreground">Correo Electronico</label>
           <div class="relative">
             <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"><Icon name="mail" class="w-5 h-5 text-muted-foreground/50" /></div>
-            <input type="email" name="email" required class={inputClass} placeholder={t("contact.form.email.placeholder")} data-t-placeholder="contact.form.email.placeholder" />
+            <input type="email" name="email" required class={inputClass} placeholder="tucorreo@ejemplo.com" />
           </div>
         </div>
         <div class="flex flex-col gap-2">
-          <label class="text-sm font-semibold font-body text-foreground" data-t="contact.form.whatsapp">{t("contact.form.whatsapp")}</label>
+          <label class="text-sm font-semibold font-body text-foreground">WhatsApp</label>
           <div class="relative">
             <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"><Icon name="phone" class="w-5 h-5 text-muted-foreground/50" /></div>
-            <input type="tel" name="whatsapp" class={inputClass} placeholder={t("contact.form.whatsapp.placeholder")} data-t-placeholder="contact.form.whatsapp.placeholder" />
+            <input type="tel" name="whatsapp" class={inputClass} placeholder="+52 (998) 000 0000" />
           </div>
         </div>
       </div>
     ) : (
       <div class="flex flex-col gap-2">
-        <label class="text-sm font-semibold font-body text-foreground" data-t="contact.form.email">{t("contact.form.email")}</label>
+        <label class="text-sm font-semibold font-body text-foreground">Correo Electronico</label>
         <div class="relative">
           <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"><Icon name="mail" class="w-5 h-5 text-muted-foreground/50" /></div>
-          <input type="email" name="email" required class={inputClass} placeholder={t("contact.form.email.placeholder")} data-t-placeholder="contact.form.email.placeholder" />
+          <input type="email" name="email" required class={inputClass} placeholder="tucorreo@ejemplo.com" />
         </div>
       </div>
     )}
 
     {!isCard && (
       <div class="md:col-span-2 flex flex-col gap-2">
-        <label class="text-sm font-semibold font-body text-foreground" data-t="contact.form.interest">{t("contact.form.interest")}</label>
+        <label class="text-sm font-semibold font-body text-foreground">Desarrollo de Interes</label>
         <div class="relative">
           <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"><Icon name="home" class="w-5 h-5 text-muted-foreground/50" /></div>
           <select name="interest" class={selectClass}>
-            <option value="" disabled selected data-t="contact.form.interest.placeholder">{t("contact.form.interest.placeholder")}</option>
+            <option value="" disabled selected>Selecciona un desarrollo</option>
             <option>Cuatro Bacalar</option>
             <option>Tulum Eco Resort</option>
             <option>Merida Heritage</option>
@@ -72,10 +71,10 @@ const textareaClass = "w-full bg-foreground/5 border border-foreground/15 rounde
     )}
 
     <div class:list={["flex flex-col gap-2", !isCard && "md:col-span-2"]}>
-      <label class="text-sm font-semibold font-body text-foreground" data-t="contact.form.message">{t("contact.form.message")}</label>
+      <label class="text-sm font-semibold font-body text-foreground">Mensaje</label>
       <div class="relative">
         <div class="absolute left-3 top-3.5 pointer-events-none"><Icon name="message-circle" class="w-5 h-5 text-muted-foreground/50" /></div>
-        <textarea name="message" rows={isCard ? 5 : 4} class={textareaClass} placeholder={t("contact.form.message.placeholder")} data-t-placeholder="contact.form.message.placeholder"></textarea>
+        <textarea name="message" rows={isCard ? 5 : 4} class={textareaClass} placeholder="Cuentanos sobre tu proyecto de inversion..."></textarea>
       </div>
     </div>
 
@@ -84,10 +83,9 @@ const textareaClass = "w-full bg-foreground/5 border border-foreground/15 rounde
         type="submit"
         id="contact-submit"
         class="w-full bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed rounded-md flex items-center justify-center gap-2"
-        data-t={isCard ? "contact.page.submit" : "contact.form.submit"}
       >
         <Icon name="send" class="w-4 h-4" />
-        {isCard ? t("contact.page.submit") : t("contact.form.submit")}
+        {isCard ? "ENVIAR MENSAJE" : "ENVIAR SOLICITUD"}
       </button>
     </div>
 
@@ -114,28 +112,18 @@ const textareaClass = "w-full bg-foreground/5 border border-foreground/15 rounde
       const { error } = await actions.contact(formData);
 
       if (!error) {
-        messageEl.textContent = messageEl.getAttribute('data-success') || 'Su solicitud ha sido enviada exitosamente.';
+        messageEl.textContent = 'Su solicitud ha sido enviada exitosamente. Un asesor lo contactara pronto.';
         messageEl.classList.remove('hidden', 'text-red-500', 'bg-red-500/10');
         messageEl.classList.add('text-green-700', 'bg-green-500/10');
         form.reset();
       } else {
-        messageEl.textContent = messageEl.getAttribute('data-error') || 'Error. Por favor intente de nuevo.';
+        messageEl.textContent = 'Hubo un error al enviar su solicitud. Por favor intente de nuevo.';
         messageEl.classList.remove('hidden', 'text-green-700', 'bg-green-500/10');
         messageEl.classList.add('text-red-500', 'bg-red-500/10');
       }
 
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalHTML;
-    });
-
-    document.addEventListener('langChanged', function() {
-      var lang = document.documentElement.lang || 'es';
-      var translations = lang === 'en' ? window.__enTranslations : window.__esTranslations;
-      if (!translations) return;
-      document.querySelectorAll('[data-t-placeholder]').forEach(function(el) {
-        var key = el.getAttribute('data-t-placeholder');
-        if (key && translations[key]) el.setAttribute('placeholder', translations[key]);
-      });
     });
   }
 </script>

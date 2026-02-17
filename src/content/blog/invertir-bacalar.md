@@ -5,8 +5,6 @@ excerpt: "Analizamos el crecimiento exponencial de la zona y por que el lujo des
 date: "12 Abril, 2024"
 author: "Marco Sanchez"
 image: "/assets/images/blog-invest-bacalar.jpg"
-lang: "es"
-pairId: "invest-bacalar"
 ---
 
 Bacalar se ha convertido en uno de los destinos de inversion inmobiliaria mas prometedores de Mexico. La laguna de los siete colores ha captado la atencion internacional no solo por su belleza natural incomparable, sino tambien por las oportunidades de inversion que presenta.

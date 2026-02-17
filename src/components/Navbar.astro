@@ -1,5 +1,4 @@
 ---
-import { t } from '../i18n/utils';
 import SocialLinks from './SocialLinks.astro';
 import Icon from './icons/Icon.astro';
 import { images } from '../data/images';
@@ -12,11 +11,11 @@ interface Props {
 const { transparent = false } = Astro.props;
 
 const navItems = [
-  { key: "nav.home", href: '/' },
-  { key: "nav.about", href: '/about' },
-  { key: "nav.developments", href: '/developments' },
-  { key: "nav.blog", href: '/blog' },
-  { key: "nav.contact", href: '/contact' },
+  { label: "Inicio", href: '/' },
+  { label: "Nosotros", href: '/about' },
+  { label: "Desarrollos", href: '/developments' },
+  { label: "Blog", href: '/blog' },
+  { label: "Contacto", href: '/contact' },
 ];
 ---
 
@@ -33,7 +32,7 @@ const navItems = [
     <div class="hidden lg:flex items-center gap-4">
       {navItems.map((item) => (
         <a href={item.href} class="text-sm uppercase tracking-[0.2em] nav-link transition-colors font-body">
-          <span data-t={item.key}>{t(item.key)}</span>
+          <span>{item.label}</span>
         </a>
       ))}
     </div>
@@ -49,7 +48,7 @@ const navItems = [
       </button>
       <a href="/contact" class="inline-flex items-center gap-2 text-primary-foreground bg-primary px-5 py-2.5 rounded-sm text-xs tracking-[0.15em] font-bold font-body hover:bg-primary/90 transition-colors">
         <Icon name="message-circle" class="w-4 h-4" />
-        <span data-t="nav.contact">{t("nav.contact").toUpperCase()}</span>
+        <span>CONTACTO</span>
       </a>
     </div>
 
@@ -76,7 +75,7 @@ const navItems = [
   <nav class="flex-1 flex flex-col gap-1 px-5 py-6 overflow-y-auto">
     {navItems.map((item) => (
       <a href={item.href} class="text-sm uppercase tracking-[0.2em] font-body text-foreground/80 hover:text-primary transition-colors py-3 border-b border-border/50">
-        <span data-t={item.key}>{t(item.key)}</span>
+        <span>{item.label}</span>
       </a>
     ))}
   </nav>
@@ -124,39 +123,6 @@ const navItems = [
     var themeBtnM = document.getElementById('theme-toggle-mobile');
     if (themeBtn) themeBtn.onclick = toggleTheme;
     if (themeBtnM) themeBtnM.onclick = toggleTheme;
-
-    // Language
-    function toggleLanguage() {
-      var currentLang = document.documentElement.lang;
-      var newLang = currentLang === 'es' ? 'en' : 'es';
-      localStorage.setItem('lang', newLang);
-      document.documentElement.lang = newLang;
-
-      var enData = window.__enTranslations;
-      var esData = window.__esTranslations;
-      if (!enData || !esData) return;
-
-      var translations = newLang === 'en' ? enData : esData;
-      document.querySelectorAll('[data-t]').forEach(function(el) {
-        var key = el.getAttribute('data-t');
-        if (key && translations[key]) el.textContent = translations[key];
-      });
-      document.querySelectorAll('[data-t-placeholder]').forEach(function(el) {
-        var key = el.getAttribute('data-t-placeholder');
-        if (key && translations[key]) el.setAttribute('placeholder', translations[key]);
-      });
-
-      var label = newLang === 'es' ? 'ES' : 'EN';
-      document.querySelectorAll('#lang-toggle, #lang-toggle-mobile').forEach(function(btn) {
-        btn.textContent = label;
-      });
-
-      document.dispatchEvent(new CustomEvent('langChanged', { detail: { lang: newLang } }));
-    }
-    var langBtn = document.getElementById('lang-toggle');
-    var langBtnM = document.getElementById('lang-toggle-mobile');
-    if (langBtn) langBtn.onclick = toggleLanguage;
-    if (langBtnM) langBtnM.onclick = toggleLanguage;
 
     // Mobile menu slide-in/out
     var mobileMenu = document.getElementById('mobile-menu');

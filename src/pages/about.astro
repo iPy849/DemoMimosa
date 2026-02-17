@@ -4,7 +4,6 @@ import PageLayout from '../layouts/PageLayout.astro';
 import AnimatedCounter from '../components/AnimatedCounter.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import Icon from '../components/icons/Icon.astro';
-import {t} from '../i18n/utils';
 import {images} from '../data/images';
 ---
 
@@ -17,10 +16,8 @@ import {images} from '../data/images';
     <section class="pt-32 pb-24 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 reveal" data-reveal="fade">
-                <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body"
-                   data-t="about.history_subtitle">{t("about.history_subtitle")}</p>
-                <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground text-balance"
-                    data-t="about.history_title">{t("about.history_title")}</h1>
+                <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body">Nuestra Historia</p>
+                <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground text-balance">El Prestigio Detras de Mimosa</h1>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
                 <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
@@ -28,17 +25,15 @@ import {images} from '../data/images';
                            class="w-full h-full object-cover" width={800} height={600} loading="lazy"/>
                 </div>
                 <div class="reveal" data-reveal="right">
-                    <p class="text-muted-foreground leading-relaxed mb-6 font-body"
-                       data-t="about.history_p1">{t("about.history_p1")}</p>
-                    <p class="text-muted-foreground leading-relaxed mb-8 font-body"
-                       data-t="about.history_p2">{t("about.history_p2")}</p>
+                    <p class="text-muted-foreground leading-relaxed mb-6 font-body">Mimosa Developments es una empresa mexicana fundada en 2017, dedicada a la conceptualizacion, desarrollo y comercializacion de proyectos inmobiliarios de lujo en la Riviera Maya y el sureste de Mexico.</p>
+                    <p class="text-muted-foreground leading-relaxed mb-8 font-body">Nos distinguimos por ofrecer soluciones integrales a nuestros clientes, combinando asesoria experta, seguridad y una vision innovadora para garantizar inversiones solidas y de alta plusvalia.</p>
                     <blockquote
                             class="text-xl text-muted-foreground italic leading-relaxed font-body border-l-2 border-primary pl-6 mb-8">
-                        "<span data-t="about.quote">{t("about.quote")}</span>"
+                        "Cada desarrollo de Mimosa refleja un firme compromiso con la excelencia. Proyectos pensados para cautivar los sentidos y elevar el estilo de vida"
                     </blockquote>
                     <a href="/contact"
                        class="inline-block bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors">
-                        <span data-t="hero.cta.secondary">{t("hero.cta.secondary")}</span>
+                        <span>CONTACTAR AGENTE</span>
                     </a>
                 </div>
 
@@ -50,12 +45,9 @@ import {images} from '../data/images';
     <section class="py-24 bg-card px-6">
         <div class="max-w-7xl mx-auto">
             <div class="max-w-3xl mx-auto text-center reveal" data-reveal="fade">
-                <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body"
-                   data-t="about.philosophy_title">{t("about.philosophy_title")}</p>
-                <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-6 text-balance"
-                    data-t="about.philosophy_title">{t("about.philosophy_title")}</h2>
-                <p class="text-muted-foreground leading-relaxed text-lg font-body"
-                   data-t="about.philosophy_desc">{t("about.philosophy_desc")}</p>
+                <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body">Filosofia de la Empresa</p>
+                <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-6 text-balance">Filosofia de la Empresa</h2>
+                <p class="text-muted-foreground leading-relaxed text-lg font-body">Cada desarrollo de Mimosa refleja un firme compromiso con la excelencia: diseno arquitectonico de vanguardia, acabados de primer nivel y proyectos pensados para cautivar los sentidos y elevar el estilo de vida.</p>
             </div>
         </div>
     </section>
@@ -64,20 +56,19 @@ import {images} from '../data/images';
     <section class="py-24 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12 reveal" data-reveal="fade">
-                <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body"
-                   data-t="about.pillars_title">{t("about.pillars_title")}</p>
+                <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body">Nuestros Pilares</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 reveal-stagger">
                 {[
-                    {icon: 'star', titleKey: 'about.pillar1.title', descKey: 'about.pillar1.desc'},
-                    {icon: 'shield', titleKey: 'about.pillar2.title', descKey: 'about.pillar2.desc'},
-                    {icon: 'diamond', titleKey: 'about.pillar3.title', descKey: 'about.pillar3.desc'},
-                    {icon: 'heart', titleKey: 'about.pillar4.title', descKey: 'about.pillar4.desc'},
+                    {icon: 'star', title: 'Exclusividad', desc: 'Desarrollo de residencias íntimas concebidas como oasis privados para un estilo de vida sereno.'},
+                    {icon: 'shield', title: 'Atencion Boutique', desc: 'Cada cliente recibe un trato personalizado, confidencial y sumamente exclusivo.'},
+                    {icon: 'diamond', title: 'Ubicacion Premium', desc: 'Solo operamos en los puntos geográficos mas estratégicos y de mayor plusvalía proyectada.'},
+                    {icon: 'heart', title: 'Compromiso', desc: 'Relaciones de largo plazo basadas en transparencia y satisfaccion de nuestros inversionistas.'},
                 ].map((pillar) => (
                         <FeatureCard
                                 icon={pillar.icon}
-                                titleKey={pillar.titleKey}
-                                descKey={pillar.descKey}
+                                title={pillar.title}
+                                desc={pillar.desc}
                                 class="reveal"
                         />
                 ))}
@@ -90,24 +81,23 @@ import {images} from '../data/images';
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="reveal" data-reveal="left">
-                    <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body"
-                       data-t="about.experience_title">{t("about.experience_title")}</p>
-                    <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-6 text-balance"
-                        data-t="about.experience_title">{t("about.experience_title")}</h2>
-                    <p class="text-muted-foreground leading-relaxed font-body mb-8"
-                       data-t="about.experience_desc">{t("about.experience_desc")}</p>
+                    <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body">Experiencia Mimosa Real Estate</p>
+                    <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-6 text-balance">Experiencia Mimosa Real Estate</h2>
+                    <p class="text-muted-foreground leading-relaxed font-body mb-8">Mimosa Real Estate ha consolidado su presencia en la Riviera Maya asesorando a clientes nacionales e internacionales en inversiones inmobiliarias. Experiencia acompanando a inversionistas de Estados Unidos, Canada y Europa con estrategias personalizadas que combinan seguridad juridica, confianza y plusvalia.</p>
                 </div>
                 <div class="reveal" data-reveal="right">
                     <div class="bg-background rounded-lg border border-border p-8">
-                        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-4 font-body"
-                           data-t="about.trajectory_title">{t("about.trajectory_title")}</p>
-                        <p class="text-muted-foreground leading-relaxed font-body mb-6"
-                           data-t="about.trajectory_desc">{t("about.trajectory_desc")}</p>
+                        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-4 font-body">Trayectoria</p>
+                        <p class="text-muted-foreground leading-relaxed font-body mb-6">Antes de incursionar como desarrollador inmobiliario, Mimosa acumulo solida experiencia como fabricante de estructuras metalicas en proyectos de gran escala.</p>
                         <ul class="flex flex-col gap-3">
-                            {['about.trajectory_item1', 'about.trajectory_item2', 'about.trajectory_item3'].map((key) => (
+                            {[
+                                "Club Campestre Cordobes (2019) - 180 ton de acero",
+                                "Autopista Cordoba - Veracruz (2017-2020) - 3,600 ton de acero",
+                                "Plaza San Jose, Cordoba (2017) - 230 ton de acero"
+                            ].map((item) => (
                                     <li class="flex items-start gap-3 text-muted-foreground font-body text-sm">
                                         <Icon name="check" class="w-4 h-4 text-primary shrink-0 mt-0.5"/>
-                                        <span data-t={key}>{t(key)}</span>
+                                        <span>{item}</span>
                                     </li>
                             ))}
                         </ul>

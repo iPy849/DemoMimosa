@@ -4,40 +4,61 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="adv">
-      <change afterPath="$PROJECT_DIR$/src/assets/images/about/draw_n_logo.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/cuatro-bacalar/renders/alberca_privada_1.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/cuatro-bacalar/renders/alberca_privada_2.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/cuatro-bacalar/renders/alberca_privada_y_area_social.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/cuatro-bacalar/renders/area_social.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/cuatro-bacalar/renders/banno_recamara_principal.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/cuatro-bacalar/renders/fachada.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/cuatro-bacalar/renders/planta_alta.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/cuatro-bacalar/renders/planta_baja.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/cuatro-bacalar/renders/recamara_principal.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/cuatro-bacalar/renders/vista_aerea.webp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/logos/logo-dark.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/logos/logo-dark.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/logos/logo-light.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/logos/logo-light.svg" afterDir="false" />
+    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="[ADV] Left en and development data">
+      <change afterPath="$PROJECT_DIR$/../studio-mimosademo/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../studio-mimosademo/schemaTypes/postType.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ContactForm.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ContactForm.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DevelopmentCard.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DevelopmentCard.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FeatureCard.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FeatureCard.astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Footer.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Navbar.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SocialLinks.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialLinks.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/images.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/images.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/i18n/es.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n/es.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/WhatsAppButton.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WhatsAppButton.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/content.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/blog/en/design-trends-2024.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/blog/en/invest-bacalar.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/blog/es/invertir-bacalar.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/blog/es/tendencias-diseno-2024.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/developments/en/cancun-penthouse.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/developments/en/cuatro-bacalar.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/developments/en/loscabos-villas.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/developments/en/merida-luxury.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/developments/en/punta-mita-estates.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/developments/en/tulum-eco-resort.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/developments/es/cancun-penthouse.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/developments/es/cuatro-bacalar.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/developments/es/loscabos-villas.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/developments/es/merida-luxury.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/developments/es/punta-mita-estates.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/content/developments/es/tulum-eco-resort.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n/en.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n/es.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n/utils.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/BaseLayout.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/BaseLayout.astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/PageLayout.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/PageLayout.astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/about.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/about.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/blog/[id].astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/[id].astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/blog/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/index.astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/contact.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contact.astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/cuatro-bacalar.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cuatro-bacalar.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/developments/[id].astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/developments/[id].astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/developments/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/developments/index.astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sitemap.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sitemap.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../studio-mimosademo/schemaTypes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../studio-mimosademo/schemaTypes/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -45,7 +66,7 @@
         <entry key="$PROJECT_DIR$" value="landing-page-to-astro" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../studio-mimosademo" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -79,11 +100,11 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "modify-about-section",
+    "git-widget-placeholder": "main",
     "javascript.preferred.runtime.type.id": "node",
     "js.debugger.nextJs.config.created.client": "true",
     "js.debugger.nextJs.config.created.server": "true",
-    "last_opened_file_path": "/home/aleortega/WebstormProjects/DemoMimosa/src/assets/logos",
+    "last_opened_file_path": "/home/aleortega/WebstormProjects/studio-mimosademo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -136,7 +157,7 @@
       <workItem from="1770883486313" duration="292000" />
       <workItem from="1771275094671" duration="30000" />
       <workItem from="1771310600610" duration="214000" />
-      <workItem from="1771310986549" duration="16593000" />
+      <workItem from="1771310986549" duration="25733000" />
     </task>
     <task id="LOCAL-00001" summary="adv">
       <option name="closed" value="true" />
@@ -146,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771313632106</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="[ADV] Left en and development data">
+      <option name="closed" value="true" />
+      <created>1771357490047</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1771357490047</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,7 +192,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/modify-about-section" />
+                        <option value="modify-about-section" />
                       </list>
                     </value>
                   </entry>
@@ -177,6 +206,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="adv" />
-    <option name="LAST_COMMIT_MESSAGE" value="adv" />
+    <MESSAGE value="[ADV] Left en and development data" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ADV] Left en and development data" />
   </component>
 </project>

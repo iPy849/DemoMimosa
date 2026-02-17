@@ -1,5 +1,4 @@
 ---
-import { t } from '../i18n/utils';
 import { images } from '../data/images';
 import Icon from './icons/Icon.astro';
 import SocialLinks from './SocialLinks.astro';
@@ -8,7 +7,7 @@ import {getCollection} from "astro:content";
 let esDevelopments: any[] = [];
 
 try {
-   esDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es');
+   esDevelopments = await getCollection('developments');
 } catch (e) {
   console.error('[v0] Content collection error:', e);
 }
@@ -22,21 +21,21 @@ try {
           <img src={images.logos.dark} alt="MIMOSA Real Estate" class="h-12 w-auto logo-dark" />
           <img src={images.logos.light} alt="MIMOSA Real Estate" class="h-12 w-auto logo-light" />
         </a>
-        <p class="text-muted-foreground text-sm leading-relaxed font-body" data-t="footer.brand_desc">{t("footer.brand_desc")}</p>
+        <p class="text-muted-foreground text-sm leading-relaxed font-body">Definiendo el lujo inmobiliario en el Caribe. Proyectos exclusivos disenados para un estilo de vida inigualable.</p>
         <SocialLinks class="mt-6 text-muted-foreground" />
       </div>
       <div>
-        <h4 class="font-headline font-semibold mb-4 text-foreground" data-t="footer.nav">{t("footer.nav")}</h4>
+        <h4 class="font-headline font-semibold mb-4 text-foreground">Navegacion</h4>
         <ul class="flex flex-col gap-2 font-body">
-          <li><a href="/" class="text-muted-foreground hover:text-primary transition-colors text-sm" data-t="nav.home">{t("nav.home")}</a></li>
-          <li><a href="/about" class="text-muted-foreground hover:text-primary transition-colors text-sm" data-t="nav.about">{t("nav.about")}</a></li>
-          <li><a href="/developments" class="text-muted-foreground hover:text-primary transition-colors text-sm" data-t="nav.developments">{t("nav.developments")}</a></li>
-          <li><a href="/blog" class="text-muted-foreground hover:text-primary transition-colors text-sm" data-t="nav.blog">{t("nav.blog")}</a></li>
-          <li><a href="/contact" class="text-muted-foreground hover:text-primary transition-colors text-sm" data-t="nav.contact">{t("nav.contact")}</a></li>
+          <li><a href="/" class="text-muted-foreground hover:text-primary transition-colors text-sm">Inicio</a></li>
+          <li><a href="/about" class="text-muted-foreground hover:text-primary transition-colors text-sm">Nosotros</a></li>
+          <li><a href="/developments" class="text-muted-foreground hover:text-primary transition-colors text-sm">Desarrollos</a></li>
+          <li><a href="/blog" class="text-muted-foreground hover:text-primary transition-colors text-sm">Blog</a></li>
+          <li><a href="/contact" class="text-muted-foreground hover:text-primary transition-colors text-sm">Contacto</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-headline font-semibold mb-4 text-foreground" data-t="footer.explore">{t("footer.explore")}</h4>
+        <h4 class="font-headline font-semibold mb-4 text-foreground">Explorar</h4>
         <ul class="flex flex-col gap-2 font-body">
           {esDevelopments.map(e =>
             <li><a href={/developments/+e.slug} class="text-muted-foreground hover:text-primary transition-colors text-sm">{e.data.title}</a></li>
@@ -44,7 +43,7 @@ try {
         </ul>
       </div>
       <div>
-        <h4 class="font-headline font-semibold mb-4 text-foreground" data-t="footer.contact">{t("footer.contact")}</h4>
+        <h4 class="font-headline font-semibold mb-4 text-foreground">Contacto</h4>
         <ul class="flex flex-col gap-3 font-body">
           <li class="flex items-center gap-2 text-muted-foreground text-sm">
             <Icon name="mail" class="w-4 h-4 text-primary shrink-0" />
@@ -64,10 +63,10 @@ try {
   </div>
   <div class="border-t border-border">
     <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-sm text-muted-foreground font-body">&copy; {new Date().getFullYear()} MIMOSA Developments. <span data-t="footer.rights">{t("footer.rights")}</span></p>
+      <p class="text-sm text-muted-foreground font-body">&copy; {new Date().getFullYear()} MIMOSA Developments. Todos los derechos reservados.</p>
       <div class="flex gap-6 font-body">
-        <a href="#" class="text-sm text-muted-foreground hover:text-primary transition-colors" data-t="footer.terms">{t("footer.terms")}</a>
-        <a href="#" class="text-sm text-muted-foreground hover:text-primary transition-colors" data-t="footer.privacy">{t("footer.privacy")}</a>
+        <a href="#" class="text-sm text-muted-foreground hover:text-primary transition-colors">Terminos y Condiciones</a>
+        <a href="#" class="text-sm text-muted-foreground hover:text-primary transition-colors">Politica de Privacidad</a>
       </div>
     </div>
   </div>

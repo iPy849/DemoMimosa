@@ -1,7 +1,5 @@
 ---
 slug: "cancun-penthouse"
-lang: "es"
-pairId: "cancun-penthouse"
 title: "Skyline Cancun"
 location: "Cancun, Mexico"
 image: "/assets/images/dev-cancun-penthouse.jpg"

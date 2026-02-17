@@ -1,7 +1,6 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import Icon from '../components/icons/Icon.astro';
-import { t } from '../i18n/utils';
 ---
 
 <PageLayout
@@ -12,8 +11,8 @@ import { t } from '../i18n/utils';
   <section class="pt-32 pb-24 px-6">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-16 reveal" data-reveal="fade">
-        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="sitemap.title">{t("sitemap.title")}</p>
-        <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground text-balance" data-t="sitemap.title">{t("sitemap.title")}</h1>
+        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body">Mapa del Sitio</p>
+        <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground text-balance">Mapa del Sitio</h1>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -21,21 +20,21 @@ import { t } from '../i18n/utils';
           <div>
             <h3 class="flex items-center gap-2 text-lg font-headline font-bold text-foreground mb-4">
               <Icon name="home" class="w-5 h-5 text-primary" />
-              <span data-t="sitemap.general">{t("sitemap.general")}</span>
+              <span>Principales</span>
             </h3>
             <ul class="space-y-2 pl-7">
-              <li><a href="/" class="text-muted-foreground hover:text-primary font-body text-sm transition-colors" data-t="nav.home">{t("nav.home")}</a></li>
-              <li><a href="/about" class="text-muted-foreground hover:text-primary font-body text-sm transition-colors" data-t="nav.about">{t("nav.about")}</a></li>
-              <li><a href="/contact" class="text-muted-foreground hover:text-primary font-body text-sm transition-colors" data-t="nav.contact">{t("nav.contact")}</a></li>
+              <li><a href="/" class="text-muted-foreground hover:text-primary font-body text-sm transition-colors">Inicio</a></li>
+              <li><a href="/about" class="text-muted-foreground hover:text-primary font-body text-sm transition-colors">Nosotros</a></li>
+              <li><a href="/contact" class="text-muted-foreground hover:text-primary font-body text-sm transition-colors">Contacto</a></li>
             </ul>
           </div>
           <div>
             <h3 class="flex items-center gap-2 text-lg font-headline font-bold text-foreground mb-4">
               <Icon name="building" class="w-5 h-5 text-primary" />
-              <span data-t="sitemap.developments">{t("sitemap.developments")}</span>
+              <span>Desarrollos</span>
             </h3>
             <ul class="space-y-2 pl-7">
-              <li><a href="/developments" class="text-muted-foreground hover:text-primary font-body text-sm transition-colors" data-t="nav.developments">{t("nav.developments")}</a></li>
+              <li><a href="/developments" class="text-muted-foreground hover:text-primary font-body text-sm transition-colors">Desarrollos</a></li>
               <li><a href="/cuatro-bacalar" class="text-muted-foreground hover:text-primary font-body text-sm transition-colors">Cuatro Bacalar</a></li>
             </ul>
           </div>
@@ -43,10 +42,10 @@ import { t } from '../i18n/utils';
         <div>
           <h3 class="flex items-center gap-2 text-lg font-headline font-bold text-foreground mb-4">
             <Icon name="calendar" class="w-5 h-5 text-primary" />
-            <span data-t="sitemap.blog">{t("sitemap.blog")}</span>
+            <span>Blog</span>
           </h3>
           <ul class="space-y-2 pl-7">
-            <li><a href="/blog" class="text-muted-foreground hover:text-primary font-body text-sm transition-colors" data-t="nav.blog">{t("nav.blog")}</a></li>
+            <li><a href="/blog" class="text-muted-foreground hover:text-primary font-body text-sm transition-colors">Blog</a></li>
           </ul>
         </div>
       </div>

@@ -1,18 +1,22 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import Icon from '../../components/icons/Icon.astro';
-import { t } from '../../i18n/utils';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const esPosts = await getCollection('blog', ({ data }) => data.lang === 'es');
-  return esPosts.map((post) => ({
-    params: { id: post.data.slug },
-    props: { post },
-  }));
+  const allPosts = await getCollection('blog');
+  
+  return allPosts.map((post) => {
+    return {
+      params: { id: post.data.slug },
+      props: { post },
+    };
+  });
 }
 
 const { post } = Astro.props;
+
+// Render content
 const { Content } = await render(post);
 ---
 
@@ -25,26 +29,29 @@ const { Content } = await render(post);
     <div class="max-w-3xl mx-auto">
       <a href="/blog" class="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 font-body text-sm">
         <Icon name="arrow-left" class="w-4 h-4" />
-        <span data-t="blog.back">{t("blog.back")}</span>
+        <span>Volver al blog</span>
       </a>
-      <div class="flex items-center gap-4 text-sm text-muted-foreground mb-4 font-body">
-        <span class="flex items-center gap-1">
-          <Icon name="calendar" class="w-4 h-4" />
-          {post.data.date}
-        </span>
-        <span class="flex items-center gap-1">
-          <Icon name="user" class="w-4 h-4" />
-          {post.data.author}
-        </span>
-      </div>
-      <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground mb-8 text-balance">{post.data.title}</h1>
-      {post.data.image && (
-        <div class="mb-10 rounded-2xl overflow-hidden aspect-video border border-border shadow-lg">
-          <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover" />
+
+      <div id="post-content">
+        <div class="flex items-center gap-4 text-sm text-muted-foreground mb-4 font-body">
+          <span class="flex items-center gap-1">
+            <Icon name="calendar" class="w-4 h-4" />
+            {post.data.date}
+          </span>
+          <span class="flex items-center gap-1">
+            <Icon name="user" class="w-4 h-4" />
+            {post.data.author}
+          </span>
         </div>
-      )}
-      <div class="prose prose-lg dark:prose-invert max-w-none font-body">
-        <Content />
+        <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground mb-8 text-balance">{post.data.title}</h1>
+        {post.data.image && (
+          <div class="mb-10 rounded-2xl overflow-hidden aspect-video border border-border shadow-lg">
+            <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover" />
+          </div>
+        )}
+        <div class="prose prose-lg dark:prose-invert max-w-none font-body">
+          <Content />
+        </div>
       </div>
     </div>
   </section>
