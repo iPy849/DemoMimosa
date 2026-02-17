@@ -6,6 +6,7 @@ import Icon from '../components/icons/Icon.astro';
 import { t } from '../i18n/utils';
 import { images } from '../data/images';
 import { getCollection } from 'astro:content';
+import '../styles/splide-custom.css';
 
 let dev: any;
 try {
@@ -47,6 +48,7 @@ const amenityIcons: Record<string, string> = {
   title={`${dev.title} | MIMOSA Real Estate`}
   description={dev.shortDescription ?? dev.description}
   keywords={`cuatro bacalar, ${dev.title}, ${dev.location}, lujo, inversion, caribe mexicano, laguna bacalar`}
+  contactForm={false}
 >
   <!-- Section 1: Text, Amenities, and Gallery -->
   <section class="pt-32 pb-16 px-6 bg-gradient-to-b from-muted/30 to-background">
@@ -97,109 +99,32 @@ const amenityIcons: Record<string, string> = {
         <!-- Right: Gallery (60%) -->
         <div class="lg:col-span-3">
           <div class="sticky top-24 space-y-3">
-            <!-- Main Image -->
-            <div class="relative rounded-xl overflow-hidden border border-border shadow-lg aspect-[4/3] bg-card group cursor-pointer">
-              {gallery.map((img: string, i: number) => (
-                <div
-                  class:list={["gallery-slide absolute inset-0 transition-opacity duration-700", i === 0 ? "opacity-100" : "opacity-0"]}
-                  data-slide={i}
-                  data-gallery-image={img}
-                >
-                  <img src={img} alt={`${dev.title} - Imagen ${i + 1}`} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading={i === 0 ? "eager" : "lazy"} />
-                </div>
-              ))}
-              {gallery.length > 1 && (
-                <>
-                  <button id="gallery-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 backdrop-blur-sm hover:bg-black/60 text-white rounded-full w-8 h-8 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Previous">
-                    <Icon name="chevron-left" class="w-4 h-4" />
-                  </button>
-                  <button id="gallery-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 backdrop-blur-sm hover:bg-black/60 text-white rounded-full w-8 h-8 flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Next">
-                    <Icon name="chevron-right" class="w-4 h-4" />
-                  </button>
-                </>
-              )}
-            </div>
-
-            <!-- Thumbnails Grid -->
-            {gallery.length > 1 && (
-              <div class="grid grid-cols-4 gap-2">
-                {gallery.map((img: string, i: number) => (
-                  <button
-                    class="gallery-thumb group relative aspect-video rounded-md overflow-hidden border-2 transition-all hover:scale-105 cursor-pointer"
-                    data-thumb={i}
-                    data-active={i === 0}
-                  >
-                    <img src={img} alt={`Miniatura ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
-                  </button>
-                ))}
+            <!-- Main Slider -->
+            <div id="main-carousel" class="splide rounded-xl overflow-hidden border border-border shadow-lg bg-card">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  {gallery.map((img: string, i: number) => (
+                    <li class="splide__slide aspect-[4/3] cursor-zoom-in">
+                      <img src={img} alt={`${dev.title} - Imagen ${i + 1}`} class="w-full h-full object-cover" loading={i === 0 ? "eager" : "lazy"} />
+                    </li>
+                  ))}
+                </ul>
               </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+            </div>
 
-  <!-- Section 2: Our Four Houses (staircase of images) -->
-  <section id="houses" class="py-16 px-6 bg-background">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-headline font-bold text-foreground mb-4">Nuestras Cuatro Casas</h2>
-        <p class="text-lg text-muted-foreground font-body max-w-2xl mx-auto">Cada residencia ha sido disenada para ofrecer privacidad, lujo y conexion con la naturaleza</p>
-      </div>
-
-      <!-- Staircase Layout - 4 identical floor plan images rotated 90° -->
-      <div class="relative flex items-center justify-center min-h-[400px] md:min-h-[500px] mb-12">
-        {[0, 1, 2, 3].map((i) => (
-          <div
-            class:list={[
-              "house-stair absolute transition-all duration-500",
-              i === 0 ? "z-10" : "",
-              i === 1 ? "z-20" : "",
-              i === 2 ? "z-30" : "",
-              i === 3 ? "z-40" : "",
-            ]}
-            style={`
-              left: calc(50% - 240px + ${i * 120}px);
-              bottom: ${i * 50}px;
-            `}
-          >
-            <div class="relative w-[200px] md:w-[240px]">
-              <Image src={housePlanImage} alt={`Planta Baja ${i + 1}`} class="w-full h-auto rotate-90" loading="lazy" />
-              {i === 0 && (
-                <div class="absolute inset-0 bg-[#00355a]/80 rotate-90 flex items-center justify-center">
-                  <span class="text-white font-headline font-bold text-base -rotate-90">VENDIDA</span>
-                </div>
-              )}
+            <!-- Thumbnail Slider -->
+            <div id="thumbnail-carousel" class="splide mt-3">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  {gallery.map((img: string, i: number) => (
+                    <li class="splide__slide aspect-video rounded-md overflow-hidden border border-transparent opacity-50 transition-all cursor-pointer">
+                      <img src={img} alt={`Miniatura ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        ))}
-      </div>
-
-      <!-- Floor Plans Side by Side (no card, no interactivity) -->
-      <div class="max-w-5xl mx-auto mb-12">
-        <div class="grid md:grid-cols-2 gap-8 mb-8">
-          <div class="space-y-3">
-            <h4 class="text-xl font-headline font-bold text-foreground text-center">Planta Baja</h4>
-            <Image src={plantaBajaImage} alt="Planta Baja" class="w-full h-auto" loading="lazy" />
-          </div>
-          <div class="space-y-3">
-            <h4 class="text-xl font-headline font-bold text-foreground text-center">Planta Alta</h4>
-            <Image src={plantaAltaImage} alt="Planta Alta" class="w-full h-auto" loading="lazy" />
-          </div>
-        </div>
-
-        <!-- Single Description Below -->
-        <div class="text-center max-w-3xl mx-auto space-y-6">
-          <p class="text-muted-foreground font-body leading-relaxed text-lg">Cada casa cuenta con dos niveles, dos recamaras con bano completo, amplia sala-comedor con cocina integrada, alberca privada, estacionamiento techado y terraza con vista panoramica. Diseno arquitectonico contemporaneo con acabados de primer nivel y materiales locales sustentables.</p>
-          
-          <button
-            id="view-floor-plan"
-            class="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold font-body text-sm tracking-wider uppercase transition-all hover:scale-105 shadow-lg hover:shadow-xl"
-          >
-            <Icon name="floor-plan" class="w-5 h-5" />
-            <span>VER PLANOS ARQUITECTONICOS</span>
-          </button>
         </div>
       </div>
     </div>
@@ -242,39 +167,9 @@ const amenityIcons: Record<string, string> = {
     </div>
   </section>
 
-  <!-- Floor Plan Modal Overlay -->
-  <div id="floor-plan-modal" class="hidden fixed inset-0 bg-black/95 z-50 p-6 overflow-auto">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex items-center justify-between mb-6">
-        <h3 class="text-2xl font-headline font-bold text-white">Planos Arquitectonicos Detallados</h3>
-        <button id="close-floor-plan" class="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center transition-all hover:scale-110">
-          <Icon name="x" class="w-6 h-6" />
-        </button>
-      </div>
-      <Image src={floorPlanImage} alt="Planos Arquitectonicos Detallados" class="w-full h-auto rounded-2xl shadow-2xl" />
-    </div>
-  </div>
-
-  <!-- Image Lightbox Modal -->
-  <div id="lightbox-modal" class="hidden fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-6 cursor-pointer">
-    <div class="relative max-w-6xl max-h-full">
-      <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[90vh] object-contain rounded-lg" />
-      <button id="close-lightbox" class="absolute top-4 right-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center transition-all hover:scale-110">
-        <Icon name="x" class="w-6 h-6" />
-      </button>
-    </div>
-  </div>
 </PageLayout>
 
 <style>
-  .gallery-thumb[data-active="true"] {
-    border-color: hsl(var(--primary));
-    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
-  }
-  .gallery-thumb[data-active="false"] {
-    border-color: hsl(var(--border));
-  }
-
   @media (max-width: 768px) {
     .house-stair:nth-child(1) { left: calc(50% - 180px) !important; bottom: 0px !important; }
     .house-stair:nth-child(2) { left: calc(50% - 80px) !important; bottom: 40px !important; }
@@ -284,70 +179,39 @@ const amenityIcons: Record<string, string> = {
 </style>
 
 <script>
-  // Gallery Carousel
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.gallery-slide');
-  const thumbs = document.querySelectorAll('.gallery-thumb');
-  const total = slides.length;
+  import Splide from '@splidejs/splide';
 
-  function goTo(index: number) {
-    currentSlide = ((index % total) + total) % total;
-    slides.forEach((s, i) => {
-      s.classList.toggle('opacity-100', i === currentSlide);
-      s.classList.toggle('opacity-0', i !== currentSlide);
-    });
-    thumbs.forEach((t, i) => {
-      t.setAttribute('data-active', i === currentSlide ? 'true' : 'false');
-    });
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const mainCarouselEl = document.querySelector('#main-carousel');
+    const thumbCarouselEl = document.querySelector('#thumbnail-carousel');
 
-  document.getElementById('gallery-prev')?.addEventListener('click', () => goTo(currentSlide - 1));
-  document.getElementById('gallery-next')?.addEventListener('click', () => goTo(currentSlide + 1));
-  thumbs.forEach((t, i) => t.addEventListener('click', () => goTo(i)));
+    if (mainCarouselEl && thumbCarouselEl) {
+      const main = new Splide('#main-carousel', {
+        type: 'fade',
+        rewind: true,
+        pagination: false,
+        arrows: true,
+      });
 
-  // Gallery main image click to open lightbox
-  slides.forEach((slide) => {
-    slide.addEventListener('click', () => {
-      const imgSrc = slide.getAttribute('data-gallery-image');
-      if (imgSrc) {
-        const lightbox = document.getElementById('lightbox-modal');
-        const lightboxImg = document.getElementById('lightbox-image') as HTMLImageElement;
-        if (lightbox && lightboxImg) {
-          lightboxImg.src = imgSrc;
-          lightbox.classList.remove('hidden');
-          document.body.style.overflow = 'hidden';
-        }
-      }
-    });
-  });
+      const thumbnails = new Splide('#thumbnail-carousel', {
+        fixedWidth: 100,
+        fixedHeight: 64,
+        isNavigation: true,
+        gap: 12,
+        focus: 0,
+        pagination: false,
+        arrows: false,
+        breakpoints: {
+          640: {
+            fixedWidth: 80,
+            fixedHeight: 50,
+          },
+        },
+      });
 
-  // Close lightbox
-  const lightboxModal = document.getElementById('lightbox-modal');
-  document.getElementById('close-lightbox')?.addEventListener('click', () => {
-    lightboxModal?.classList.add('hidden');
-    document.body.style.overflow = '';
-  });
-  lightboxModal?.addEventListener('click', (e) => {
-    if (e.target === lightboxModal) {
-      lightboxModal.classList.add('hidden');
-      document.body.style.overflow = '';
-    }
-  });
-
-  // Floor Plan Modal
-  const fpModal = document.getElementById('floor-plan-modal');
-  document.getElementById('view-floor-plan')?.addEventListener('click', () => {
-    fpModal?.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  });
-  document.getElementById('close-floor-plan')?.addEventListener('click', () => {
-    fpModal?.classList.add('hidden');
-    document.body.style.overflow = '';
-  });
-  fpModal?.addEventListener('click', (e) => {
-    if (e.target === fpModal) {
-      fpModal.classList.add('hidden');
-      document.body.style.overflow = '';
+      main.sync(thumbnails);
+      main.mount();
+      thumbnails.mount();
     }
   });
 </script>

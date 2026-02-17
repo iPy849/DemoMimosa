@@ -1,110 +1,117 @@
 ---
-import { Image } from 'astro:assets';
+import {Image} from 'astro:assets';
 import PageLayout from '../layouts/PageLayout.astro';
 import DevelopmentCard from '../components/DevelopmentCard.astro';
-import ContactForm from '../components/ContactForm.astro';
+import FeatureCard from '../components/FeatureCard.astro';
 import Icon from '../components/icons/Icon.astro';
-import { t } from '../i18n/utils';
-import { images } from '../data/images';
-import { getCollection } from 'astro:content';
+import {t} from '../i18n/utils';
+import {images} from '../data/images';
+import {getCollection} from 'astro:content';
+import SocialLinks from "@/components/SocialLinks.astro";
 
 let featuredDevelopments: any[] = [];
 try {
-  featuredDevelopments = await getCollection('developments', ({ data }) => data.lang === 'es' && data.featured === true);
+    featuredDevelopments = await getCollection('developments', ({data}) => data.lang === 'es' && data.featured === true);
 } catch (e) {
-  console.error('[v0] Content collection error:', e);
+    console.error('[v0] Content collection error:', e);
 }
 ---
 
 <PageLayout
-  title="MIMOSA Real Estate | Boutique Real Estate en el Caribe Mexicano"
-  description="Descubre una coleccion curada de los desarrollos mas exclusivos del Caribe mexicano. Propiedades de lujo en Bacalar, Tulum, Merida, Cancun y mas."
-  keywords="real estate, bienes raices, lujo, caribe mexicano, bacalar, tulum, merida, desarrollos, inversion, propiedades exclusivas"
-  navTransparent={true}
+        title="MIMOSA Real Estate | Boutique Real Estate en el Caribe Mexicano"
+        description="Descubre una coleccion curada de los desarrollos mas exclusivos del Caribe mexicano. Propiedades de lujo en Bacalar, Tulum, Merida, Cancun y mas."
+        keywords="real estate, bienes raices, lujo, caribe mexicano, bacalar, tulum, merida, desarrollos, inversion, propiedades exclusivas"
+        navTransparent={true}
 >
-  <!-- Hero Section -->
-  <section class="relative h-screen flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <Image src={images.hero.main} alt="Luxury Caribbean development" class="w-full h-full object-cover" width={1920} height={1080} />
-      <div class="absolute inset-0 bg-black/50"></div>
-    </div>
-    <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/40 to-transparent z-10"></div>
-    <div class="relative z-20 text-center max-w-4xl mx-auto px-6 fade-in flex flex-col items-center gap-8">
-      <img src="/assets/logo-light.svg" alt="MIMOSA Real Estate" class="w-80" />
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/developments" class="bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2" data-t="hero.cta.primary">{t("hero.cta.primary")}</a>
-        <a href="/contact" class="border border-[#ffffff66] text-[#fff] px-8 py-4 text-xs tracking-[0.2em] font-body hover:bg-[#ffffff1a] transition-colors inline-flex items-center justify-center gap-2">
-          <Icon name="play" class="w-4 h-4" />
-          <span data-t="hero.cta.secondary">{t("hero.cta.secondary")}</span>
-        </a>
-      </div>
-    </div>
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-      <Icon name="chevron-down" class="w-6 h-6 text-[#ffffff99]" />
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section class="py-24 bg-card">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <div class="reveal" data-reveal="right">
-          <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="about.essence">{t("about.essence")}</p>
-          <h2 class="text-4xl font-headline font-bold mb-6 text-foreground" data-t="about.title">{t("about.title")}</h2>
-          <blockquote class="text-xl text-muted-foreground italic leading-relaxed mb-8 font-body border-l-2 border-primary pl-6">
-            "<span data-t="about.quote">{t("about.quote")}</span>"
-          </blockquote>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-8">
-            <div class="group relative overflow-hidden p-6 bg-background rounded-xl border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div class="relative z-10 text-center">
-                <div class="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-                  <Icon name="star" class="w-7 h-7 text-primary" />
-                </div>
-                <h4 class="font-headline font-bold text-foreground mb-2" data-t="about.pillar1.title">{t("about.pillar1.title")}</h4>
-                <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t="about.pillar1.desc">{t("about.pillar1.desc")}</p>
-              </div>
-            </div>
-            <div class="group relative overflow-hidden p-6 bg-background rounded-xl border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div class="relative z-10 text-center">
-                <div class="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-                  <Icon name="shield" class="w-7 h-7 text-primary" />
-                </div>
-                <h4 class="font-headline font-bold text-foreground mb-2" data-t="about.pillar2.title">{t("about.pillar2.title")}</h4>
-                <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t="about.pillar2.desc">{t("about.pillar2.desc")}</p>
-              </div>
-            </div>
-            <div class="group relative overflow-hidden p-6 bg-background rounded-xl border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div class="relative z-10 text-center">
-                <div class="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-                  <Icon name="sun" class="w-7 h-7 text-primary" />
-                </div>
-                <h4 class="font-headline font-bold text-foreground mb-2" data-t="about.pillar3.title">{t("about.pillar3.title")}</h4>
-                <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t="about.pillar3.desc">{t("about.pillar3.desc")}</p>
-              </div>
-            </div>
-          </div>
-          <a href="/about" class="inline-block bg-primary text-primary-foreground px-8 py-3 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors" data-t="about.cta">{t("about.cta")}</a>
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <Image src={images.hero.main} alt="Luxury Caribbean development" class="w-full h-full object-cover"
+                   width={1920} height={1080}/>
+            <div class="absolute inset-0 bg-black/50"></div>
         </div>
-        <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
-          <Image src={images.about.interior} alt="Luxury property interior" class="w-full h-full object-cover" width={800} height={600} loading="lazy" />
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/40 to-transparent z-10"></div>
+        <div class="relative z-20 text-center max-w-4xl mx-auto px-6 fade-in flex flex-col items-center gap-8">
+            <img src="/assets/logo-light.svg" alt="MIMOSA Real Estate" class="w-80"/>
 
-  <!-- Contact Form Section -->
-  <section class="py-24 px-6">
-    <div class="max-w-3xl mx-auto text-center mb-12 reveal">
-      <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="contact.subtitle">{t("contact.subtitle")}</p>
-      <h2 class="text-4xl font-headline font-bold mb-4 text-foreground" data-t="contact.title">{t("contact.title")}</h2>
-      <p class="text-muted-foreground font-body" data-t="contact.desc">{t("contact.desc")}</p>
-    </div>
-    <div class="reveal">
-      <ContactForm variant="inline" />
-    </div>
-  </section>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/developments"
+                   class="bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
+                   data-t="hero.cta.primary">{t("hero.cta.primary")}</a>
+                <a href="/contact"
+                   class="border border-[#ffffff66] text-[#fff] px-8 py-4 text-xs tracking-[0.2em] font-body hover:bg-[#ffffff1a] transition-colors inline-flex items-center justify-center gap-2">
+                    <Icon name="play" class="w-4 h-4"/>
+                    <span data-t="hero.cta.secondary">{t("hero.cta.secondary")}</span>
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+            <Icon name="chevron-down" class="w-6 h-6 text-[#ffffff99]"/>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-24 bg-card">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="reveal" data-reveal="right">
+                    <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body"
+                       data-t="about.essence">{t("about.essence")}</p>
+                    <h2 class="text-4xl font-headline font-bold mb-6 text-foreground"
+                        data-t="about.title">{t("about.title")}</h2>
+                    <blockquote
+                            class="text-xl text-muted-foreground italic leading-relaxed mb-8 font-body border-l-2 border-primary pl-6">
+                        "<span data-t="about.quote">{t("about.quote")}</span>"
+                    </blockquote>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-8">
+                        <FeatureCard icon="star" titleKey="about.pillar1.title" descKey="about.pillar1.desc" centered/>
+                        <FeatureCard icon="shield" titleKey="about.pillar2.title" descKey="about.pillar2.desc"
+                                     centered/>
+                        <FeatureCard icon="diamond" titleKey="about.pillar3.title" descKey="about.pillar3.desc" centered/>
+                    </div>
+                    <a href="/about"
+                       class="inline-block bg-primary text-primary-foreground px-8 py-3 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors"
+                       data-t="about.cta">{t("about.cta")}</a>
+                </div>
+                <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
+                    <Image src={images.about.interior} alt="Luxury property interior" class="w-full h-full object-cover"
+                           width={800} height={600} loading="lazy"/>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Static gallery -->
+    <section class="py-24 px-6 hidden md:block">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 grid-rows-2 gap-4">
+            <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
+                <Image src={images.cuatroBacalar.renders.vistaAerea} alt="Luxury property interior"
+                       class="w-full h-full object-cover"
+                       width={800} height={600} loading="lazy"/>
+            </div>
+            <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
+                <Image src={images.cuatroBacalar.renders.alberca2} alt="Luxury property interior"
+                       class="w-full h-full object-cover"
+                       width={800} height={600} loading="lazy"/>
+            </div>
+            <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
+                <Image src={images.cuatroBacalar.renders.fachada} alt="Luxury property interior"
+                       class="w-full h-full object-cover"
+                       width={800} height={600} loading="lazy"/>
+            </div>
+            <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
+                <Image src={images.cuatroBacalar.renders.alberca1} alt="Luxury property interior"
+                       class="w-full h-full object-cover"
+                       width={800} height={600} loading="lazy"/>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Socials -->
+    <section class="py-16 px-6 bg-card/50">
+        <div class="max-w-7xl mx-auto flex justify-center reveal" data-reveal="fade">
+            <SocialLinks variant="solid" size="w-18"/>
+        </div>
+    </section>
 </PageLayout>

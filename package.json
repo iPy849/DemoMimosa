@@ -10,13 +10,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.7.10",
-    "@astrojs/vercel": "^8.1.4"
+    "@astrojs/vercel": "^8.1.4",
+    "@splidejs/splide": "^4.1.4",
+    "astro": "^5.7.10"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.0",
-    "tailwindcss": "^4.1.0",
     "@types/node": "^20",
+    "tailwindcss": "^4.1.0",
     "typescript": "^5"
   }
 }

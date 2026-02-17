@@ -3,23 +3,34 @@ import Icon from './icons/Icon.astro';
 
 interface Props {
   class?: string;
-  iconClass?: string;
+  variant?: 'outline' | 'solid';
+  size?: string;
 }
 
-const { class: className = '', iconClass = 'w-4 h-4' } = Astro.props;
+const { 
+  class: className = '', 
+  variant = 'outline',
+  size = 'w-12'
+} = Astro.props;
+
+const baseStyles = `${size} aspect-square rounded-full flex items-center justify-center transition-all duration-300 shrink-0`;
+const variantStyles = {
+  outline: "border border-current/20 opacity-70 hover:opacity-100 hover:border-primary hover:text-primary",
+  solid: "bg-muted-foreground text-background hover:bg-primary hover:scale-110 shadow-md"
+};
 ---
 
-<div class:list={["flex gap-3", className]}>
-  <a href="#" class="w-10 h-10 rounded-full border border-current/20 flex items-center justify-center opacity-70 hover:opacity-100 hover:border-primary hover:text-primary transition-all" aria-label="Instagram">
-    <Icon name="instagram" class={iconClass} />
+<div class:list={["flex gap-4", className]}>
+  <a href="#" class:list={[baseStyles, variantStyles[variant]]} aria-label="Instagram">
+    <Icon name="instagram" class="w-1/2 h-1/2" />
   </a>
-  <a href="#" class="w-10 h-10 rounded-full border border-current/20 flex items-center justify-center opacity-70 hover:opacity-100 hover:border-primary hover:text-primary transition-all" aria-label="Facebook">
-    <Icon name="facebook" class={iconClass} />
+  <a href="#" class:list={[baseStyles, variantStyles[variant]]} aria-label="Facebook">
+    <Icon name="facebook" class="w-1/2 h-1/2" />
   </a>
-  <a href="#" class="w-10 h-10 rounded-full border border-current/20 flex items-center justify-center opacity-70 hover:opacity-100 hover:border-primary hover:text-primary transition-all" aria-label="LinkedIn">
-    <Icon name="linkedin" class={iconClass} />
+  <a href="#" class:list={[baseStyles, variantStyles[variant]]} aria-label="LinkedIn">
+    <Icon name="linkedin" class="w-1/2 h-1/2" />
   </a>
-  <a href="#" class="w-10 h-10 rounded-full border border-current/20 flex items-center justify-center opacity-70 hover:opacity-100 hover:border-primary hover:text-primary transition-all" aria-label="TikTok">
-    <Icon name="tiktok" class={iconClass} />
+  <a href="#" class:list={[baseStyles, variantStyles[variant]]} aria-label="TikTok">
+    <Icon name="tiktok" class="w-1/2 h-1/2" />
   </a>
 </div>

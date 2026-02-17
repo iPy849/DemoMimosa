@@ -1,159 +1,119 @@
 ---
-import { Image } from 'astro:assets';
+import {Image} from 'astro:assets';
 import PageLayout from '../layouts/PageLayout.astro';
 import AnimatedCounter from '../components/AnimatedCounter.astro';
+import FeatureCard from '../components/FeatureCard.astro';
 import Icon from '../components/icons/Icon.astro';
-import { t } from '../i18n/utils';
-import { images } from '../data/images';
+import {t} from '../i18n/utils';
+import {images} from '../data/images';
 ---
 
 <PageLayout
-  title="Nosotros | MIMOSA Real Estate"
-  description="Conoce la historia y los pilares de MIMOSA Real Estate. Redefinimos el lujo inmobiliario en el Caribe Mexicano con excelencia, atencion boutique y ubicaciones premium."
-  keywords="nosotros, historia, equipo, lujo inmobiliario, caribe mexicano, mimosa real estate, atencion boutique"
+        title="Nosotros | MIMOSA Real Estate"
+        description="Conoce la historia y los pilares de MIMOSA Real Estate. Redefinimos el lujo inmobiliario en el Caribe Mexicano con excelencia, atencion boutique y ubicaciones premium."
+        keywords="nosotros, historia, equipo, lujo inmobiliario, caribe mexicano, mimosa real estate, atencion boutique"
 >
-  <!-- Hero / History -->
-  <section class="pt-32 pb-24 px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16 reveal" data-reveal="fade">
-        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="about.history_subtitle">{t("about.history_subtitle")}</p>
-        <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground text-balance" data-t="about.history_title">{t("about.history_title")}</h1>
-      </div>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
-        <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
-          <Image src={images.about.interior} alt="MIMOSA Developments office" class="w-full h-full object-cover" width={800} height={600} loading="lazy" />
-        </div>
-        <div class="reveal" data-reveal="right">
-          <p class="text-muted-foreground leading-relaxed mb-6 font-body" data-t="about.history_p1">{t("about.history_p1")}</p>
-          <p class="text-muted-foreground leading-relaxed mb-8 font-body" data-t="about.history_p2">{t("about.history_p2")}</p>
-          <blockquote class="text-xl text-muted-foreground italic leading-relaxed font-body border-l-2 border-primary pl-6">
-            "<span data-t="about.quote">{t("about.quote")}</span>"
-          </blockquote>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Philosophy -->
-  <section class="py-24 bg-card px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="max-w-3xl mx-auto text-center reveal" data-reveal="fade">
-        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="about.philosophy_title">{t("about.philosophy_title")}</p>
-        <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-6 text-balance" data-t="about.philosophy_title">{t("about.philosophy_title")}</h2>
-        <p class="text-muted-foreground leading-relaxed text-lg font-body" data-t="about.philosophy_desc">{t("about.philosophy_desc")}</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pillars -->
-  <section class="py-24 px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-12 reveal" data-reveal="fade">
-        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="about.pillars_title">{t("about.pillars_title")}</p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 reveal-stagger">
-        {[
-          { icon: 'star', titleKey: 'about.pillar1.title', descKey: 'about.pillar1.desc' },
-          { icon: 'shield', titleKey: 'about.pillar2.title', descKey: 'about.pillar2.desc' },
-          { icon: 'sun', titleKey: 'about.pillar3.title', descKey: 'about.pillar3.desc' },
-          { icon: 'heart', titleKey: 'about.pillar4.title', descKey: 'about.pillar4.desc' },
-        ].map((pillar) => (
-          <div class="group relative overflow-hidden p-8 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 reveal">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="relative z-10">
-              <div class="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-                <Icon name={pillar.icon} class="w-8 h-8 text-primary" />
-              </div>
-              <h4 class="font-headline font-bold text-foreground mb-3 text-lg" data-t={pillar.titleKey}>{t(pillar.titleKey)}</h4>
-              <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t={pillar.descKey}>{t(pillar.descKey)}</p>
+    <!-- Hero / History -->
+    <section class="pt-32 pb-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal" data-reveal="fade">
+                <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body"
+                   data-t="about.history_subtitle">{t("about.history_subtitle")}</p>
+                <h1 class="text-4xl md:text-5xl font-headline font-bold text-foreground text-balance"
+                    data-t="about.history_title">{t("about.history_title")}</h1>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+                <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
+                    <Image src={images.about.draw_n_logo} alt="MIMOSA Developments office"
+                           class="w-full h-full object-cover" width={800} height={600} loading="lazy"/>
+                </div>
+                <div class="reveal" data-reveal="right">
+                    <p class="text-muted-foreground leading-relaxed mb-6 font-body"
+                       data-t="about.history_p1">{t("about.history_p1")}</p>
+                    <p class="text-muted-foreground leading-relaxed mb-8 font-body"
+                       data-t="about.history_p2">{t("about.history_p2")}</p>
+                    <blockquote
+                            class="text-xl text-muted-foreground italic leading-relaxed font-body border-l-2 border-primary pl-6 mb-8">
+                        "<span data-t="about.quote">{t("about.quote")}</span>"
+                    </blockquote>
+                    <a href="/contact"
+                       class="inline-block bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors">
+                        <span data-t="hero.cta.secondary">{t("hero.cta.secondary")}</span>
+                    </a>
+                </div>
 
-  <!-- Experience Mimosa Real Estate -->
-  <section class="py-24 bg-card px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div class="reveal" data-reveal="left">
-          <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="about.experience_title">{t("about.experience_title")}</p>
-          <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-6 text-balance" data-t="about.experience_title">{t("about.experience_title")}</h2>
-          <p class="text-muted-foreground leading-relaxed font-body mb-8" data-t="about.experience_desc">{t("about.experience_desc")}</p>
+            </div>
         </div>
-        <div class="reveal" data-reveal="right">
-          <div class="bg-background rounded-lg border border-border p-8">
-            <p class="text-primary text-sm tracking-[0.3em] uppercase mb-4 font-body" data-t="about.trajectory_title">{t("about.trajectory_title")}</p>
-            <p class="text-muted-foreground leading-relaxed font-body mb-6" data-t="about.trajectory_desc">{t("about.trajectory_desc")}</p>
-            <ul class="flex flex-col gap-3">
-              {['about.trajectory_item1', 'about.trajectory_item2', 'about.trajectory_item3'].map((key) => (
-                <li class="flex items-start gap-3 text-muted-foreground font-body text-sm">
-                  <Icon name="check" class="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                  <span data-t={key}>{t(key)}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Strategic Synergy -->
-  <section class="py-24 px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16 reveal" data-reveal="fade">
-        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="about.synergy_title">{t("about.synergy_title")}</p>
-        <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-6 text-balance" data-t="about.synergy_title">{t("about.synergy_title")}</h2>
-        <p class="text-muted-foreground leading-relaxed font-body max-w-3xl mx-auto" data-t="about.synergy_desc">{t("about.synergy_desc")}</p>
-      </div>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-        <div class="bg-card rounded-lg border border-border p-8 reveal" data-reveal="left">
-          <h3 class="text-2xl font-headline font-bold text-foreground mb-4" data-t="about.constructor_title">{t("about.constructor_title")}</h3>
-          <p class="text-muted-foreground leading-relaxed font-body mb-6" data-t="about.constructor_desc">{t("about.constructor_desc")}</p>
-          <div class="grid grid-cols-2 gap-4 mb-6">
-            <div class="bg-primary/5 rounded-lg p-6 text-center">
-              <AnimatedCounter value={4000} prefix="+" />
-              <p class="text-sm text-muted-foreground mt-2 font-body">{t("about.constructor_stat1").replace('+4,000 ', '')}</p>
+    <!-- Philosophy -->
+    <section class="py-24 bg-card px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="max-w-3xl mx-auto text-center reveal" data-reveal="fade">
+                <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body"
+                   data-t="about.philosophy_title">{t("about.philosophy_title")}</p>
+                <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-6 text-balance"
+                    data-t="about.philosophy_title">{t("about.philosophy_title")}</h2>
+                <p class="text-muted-foreground leading-relaxed text-lg font-body"
+                   data-t="about.philosophy_desc">{t("about.philosophy_desc")}</p>
             </div>
-            <div class="bg-primary/5 rounded-lg p-6 text-center">
-              <AnimatedCounter value={100000} prefix="+" />
-              <p class="text-sm text-muted-foreground mt-2 font-body">{t("about.constructor_stat2").replace('+100,000 m2 de ', '')}</p>
-            </div>
-          </div>
-          <div class="bg-primary/5 rounded-lg p-6 text-center mb-6">
-            <AnimatedCounter value={15} prefix="+" />
-            <p class="text-sm text-muted-foreground mt-2 font-body">anos de experiencia</p>
-          </div>
-          <div class="bg-primary/5 rounded-lg p-6 text-center">
-            <AnimatedCounter value={6000} prefix="MXN $" suffix="M" />
-            <p class="text-sm text-muted-foreground mt-2 font-body">en obras (ultimos 5 anos)</p>
-          </div>
         </div>
-        <div class="flex flex-col gap-4 reveal" data-reveal="right">
-          {['about.constructor_exp1', 'about.constructor_exp2', 'about.constructor_exp3'].map((key) => (
-            <div class="bg-card rounded-lg border border-border p-6">
-              <div class="flex items-start gap-3">
-                <Icon name="building" class="w-5 h-5 text-primary shrink-0 mt-1" />
-                <p class="text-muted-foreground font-body text-sm leading-relaxed" data-t={key}>{t(key)}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Commitment -->
-  <section class="py-24 bg-card px-6">
-    <div class="max-w-3xl mx-auto text-center reveal" data-reveal="fade">
-      <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body" data-t="about.commitment_title">{t("about.commitment_title")}</p>
-      <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-6 text-balance" data-t="about.commitment_title">{t("about.commitment_title")}</h2>
-      <p class="text-muted-foreground leading-relaxed text-lg font-body mb-8" data-t="about.commitment_desc">{t("about.commitment_desc")}</p>
-      <a href="/contact" class="inline-block bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors">
-        <span data-t="hero.cta.secondary">{t("hero.cta.secondary")}</span>
-      </a>
-    </div>
-  </section>
+    <!-- Pillars -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12 reveal" data-reveal="fade">
+                <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body"
+                   data-t="about.pillars_title">{t("about.pillars_title")}</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 reveal-stagger">
+                {[
+                    {icon: 'star', titleKey: 'about.pillar1.title', descKey: 'about.pillar1.desc'},
+                    {icon: 'shield', titleKey: 'about.pillar2.title', descKey: 'about.pillar2.desc'},
+                    {icon: 'diamond', titleKey: 'about.pillar3.title', descKey: 'about.pillar3.desc'},
+                    {icon: 'heart', titleKey: 'about.pillar4.title', descKey: 'about.pillar4.desc'},
+                ].map((pillar) => (
+                        <FeatureCard
+                                icon={pillar.icon}
+                                titleKey={pillar.titleKey}
+                                descKey={pillar.descKey}
+                                class="reveal"
+                        />
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Mimosa Real Estate -->
+    <section class="py-24 bg-card px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal" data-reveal="left">
+                    <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body"
+                       data-t="about.experience_title">{t("about.experience_title")}</p>
+                    <h2 class="text-3xl md:text-4xl font-headline font-bold text-foreground mb-6 text-balance"
+                        data-t="about.experience_title">{t("about.experience_title")}</h2>
+                    <p class="text-muted-foreground leading-relaxed font-body mb-8"
+                       data-t="about.experience_desc">{t("about.experience_desc")}</p>
+                </div>
+                <div class="reveal" data-reveal="right">
+                    <div class="bg-background rounded-lg border border-border p-8">
+                        <p class="text-primary text-sm tracking-[0.3em] uppercase mb-4 font-body"
+                           data-t="about.trajectory_title">{t("about.trajectory_title")}</p>
+                        <p class="text-muted-foreground leading-relaxed font-body mb-6"
+                           data-t="about.trajectory_desc">{t("about.trajectory_desc")}</p>
+                        <ul class="flex flex-col gap-3">
+                            {['about.trajectory_item1', 'about.trajectory_item2', 'about.trajectory_item3'].map((key) => (
+                                    <li class="flex items-start gap-3 text-muted-foreground font-body text-sm">
+                                        <Icon name="check" class="w-4 h-4 text-primary shrink-0 mt-0.5"/>
+                                        <span data-t={key}>{t(key)}</span>
+                                    </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </PageLayout>

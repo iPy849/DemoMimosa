@@ -9,6 +9,7 @@ import heroMain from '@/assets/images/hero/hero-main.webp';
 
 // About
 import aboutInterior from '@/assets/images/about/about-interior.webp';
+import drawNLogo from '@/assets/images/about/draw_n_logo.webp';
 
 // Developments
 import devCuatroBacalar from '@/assets/images/developments/dev-cuatro-bacalar.jpg';
@@ -31,12 +32,25 @@ import plantaBaja from '@/assets/images/cuatro-bacalar/planta-baja.png';
 import plantaAlta from '@/assets/images/cuatro-bacalar/planta-alta.png';
 import floorPlanDetail from '@/assets/images/cuatro-bacalar/floor-plan-detail.png';
 
+// Cuatro Bacalar Renders
+import cbAlberca1 from '@/assets/images/cuatro-bacalar/renders/alberca_privada_1.webp';
+import cbAlberca2 from '@/assets/images/cuatro-bacalar/renders/alberca_privada_2.webp';
+import cbAlbercaSocial from '@/assets/images/cuatro-bacalar/renders/alberca_privada_y_area_social.webp';
+import cbAreaSocial from '@/assets/images/cuatro-bacalar/renders/area_social.webp';
+import cbBannoPrincipal from '@/assets/images/cuatro-bacalar/renders/banno_recamara_principal.webp';
+import cbFachada from '@/assets/images/cuatro-bacalar/renders/fachada.webp';
+import cbPlantaAltaRender from '@/assets/images/cuatro-bacalar/renders/planta_alta.webp';
+import cbPlantaBajaRender from '@/assets/images/cuatro-bacalar/renders/planta_baja.webp';
+import cbRecamaraPrincipal from '@/assets/images/cuatro-bacalar/renders/recamara_principal.webp';
+import cbVistaAerea from '@/assets/images/cuatro-bacalar/renders/vista_aerea.webp';
+
 export const images = {
   hero: {
     main: heroMain,
   },
   about: {
     interior: aboutInterior,
+    draw_n_logo: drawNLogo,
   },
   developments: {
     'cuatro-bacalar': devCuatroBacalar,
@@ -63,6 +77,18 @@ export const images = {
     plantaBaja,
     plantaAlta,
     floorPlanDetail,
+    renders: {
+      alberca1: cbAlberca1,
+      alberca2: cbAlberca2,
+      albercaSocial: cbAlbercaSocial,
+      areaSocial: cbAreaSocial,
+      bannoPrincipal: cbBannoPrincipal,
+      fachada: cbFachada,
+      plantaAlta: cbPlantaAltaRender,
+      plantaBaja: cbPlantaBajaRender,
+      recamaraPrincipal: cbRecamaraPrincipal,
+      vistaAerea: cbVistaAerea,
+    },
   },
   logos: {
     dark: '/assets/logo-dark.svg',

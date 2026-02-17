@@ -2,6 +2,8 @@
 import { t } from '../i18n/utils';
 import SocialLinks from './SocialLinks.astro';
 import Icon from './icons/Icon.astro';
+import { images } from '../data/images';
+
 
 interface Props {
   transparent?: boolean;
@@ -23,8 +25,8 @@ const navItems = [
     <!-- Logo: dark logo for light mode, light logo for dark mode.
          When nav-transparent (hero), always show light logo via CSS override. -->
     <a href="/" class="block shrink-0">
-      <img src="/assets/logo-dark.svg" alt="MIMOSA Real Estate" class="h-14 w-auto nav-logo-dark block dark:hidden" />
-      <img src="/assets/logo-light.svg" alt="MIMOSA Real Estate" class="h-14 w-auto nav-logo-light hidden dark:block" />
+      <img src={images.logos.dark} alt="MIMOSA Real Estate" class="h-14 w-auto logo-dark" />
+      <img src={images.logos.light} alt="MIMOSA Real Estate" class="h-14 w-auto logo-light" />
     </a>
 
     <!-- Desktop nav links -->
@@ -45,7 +47,7 @@ const navItems = [
         <Icon name="moon" class="dark:hidden w-5 h-5" />
         <Icon name="sun-light" class="hidden dark:block w-5 h-5" />
       </button>
-      <a href="/contact" class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-sm text-xs tracking-[0.15em] font-bold font-body hover:bg-primary/90 transition-colors">
+      <a href="/contact" class="inline-flex items-center gap-2 text-primary-foreground bg-primary px-5 py-2.5 rounded-sm text-xs tracking-[0.15em] font-bold font-body hover:bg-primary/90 transition-colors">
         <Icon name="message-circle" class="w-4 h-4" />
         <span data-t="nav.contact">{t("nav.contact").toUpperCase()}</span>
       </a>
@@ -90,7 +92,7 @@ const navItems = [
         <Icon name="sun-light" class="hidden dark:block w-4 h-4" />
       </button>
     </div>
-    <SocialLinks class="text-foreground" iconClass="w-3.5 h-3.5" />
+    <SocialLinks class="text-foreground" size="w-8" />
   </div>
 </div>
 

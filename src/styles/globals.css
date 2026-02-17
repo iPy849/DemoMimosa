@@ -161,12 +161,6 @@
   & .nav-text-muted { color: var(--color-muted-foreground); }
   & .nav-link { color: color-mix(in oklch, var(--color-foreground) 70%, transparent); }
   & .nav-link:hover { color: var(--color-foreground); }
-
-  /* Light mode: dark logo. Dark mode: light logo. */
-  & .nav-logo-dark { display: block !important; }
-  & .nav-logo-light { display: none !important; }
-  .dark & .nav-logo-dark { display: none !important; }
-  .dark & .nav-logo-light { display: block !important; }
 }
 
 @utility nav-transparent {
@@ -174,8 +168,18 @@
   & .nav-text-muted { color: rgba(255, 255, 255, 0.7); }
   & .nav-link { color: rgba(255, 255, 255, 0.7); }
   & .nav-link:hover { color: #fff; }
-
-  /* Over the dark hero: always show light logo, hide dark logo */
-  & .nav-logo-dark { display: none !important; }
-  & .nav-logo-light { display: block !important; }
 }
+
+/* ---- Logo Visibility Logic ---- */
+
+/* Default (Light Mode) */
+.logo-light { display: none; }
+.logo-dark { display: block; }
+
+/* Dark Mode */
+.dark .logo-light { display: block; }
+.dark .logo-dark { display: none; }
+
+/* Force light logo on Transparent Nav (Hero) regardless of theme */
+.nav-transparent .logo-light { display: block !important; }
+.nav-transparent .logo-dark { display: none !important; }

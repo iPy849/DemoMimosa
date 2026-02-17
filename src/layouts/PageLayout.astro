@@ -3,22 +3,42 @@ import BaseLayout from './BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
+import {t} from "@/i18n/utils.ts";
+import ContactForm from "@/components/ContactForm.astro";
 
 interface Props {
-  title?: string;
-  description?: string;
-  keywords?: string;
-  navTransparent?: boolean;
+    title?: string;
+    description?: string;
+    keywords?: string;
+    navTransparent?: boolean;
+    contactForm?: boolean;
 }
 
-const { title, description, keywords, navTransparent = false } = Astro.props;
+const {title, description, keywords, navTransparent = false, contactForm = true} = Astro.props;
 ---
 
 <BaseLayout title={title} description={description} keywords={keywords}>
-  <Navbar transparent={navTransparent} />
-  <main class="flex-1">
-    <slot />
-  </main>
-  <Footer />
-  <WhatsAppButton />
+    <Navbar transparent={navTransparent}/>
+    <main class="flex-1">
+        <slot/>
+    </main>
+    <!-- Contact Form Section -->
+    {
+        contactForm &&
+            <section class="py-24 px-6">
+                <div class="max-w-3xl mx-auto text-center mb-12 reveal">
+                    <p class="text-primary text-sm tracking-[0.3em] uppercase mb-2 font-body"
+                       data-t="contact.subtitle">{t("contact.subtitle")}</p>
+                    <h2 class="text-4xl font-headline font-bold mb-4 text-foreground"
+                        data-t="contact.title">{t("contact.title")}</h2>
+                    <p class="text-muted-foreground font-body" data-t="contact.desc">{t("contact.desc")}</p>
+                </div>
+                <div class="reveal">
+                    <ContactForm variant="inline"/>
+                </div>
+            </section>
+    }
+
+    <Footer/>
+    <WhatsAppButton/>
 </BaseLayout>

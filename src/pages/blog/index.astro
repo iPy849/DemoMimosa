@@ -1,7 +1,7 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import Icon from '../../components/icons/Icon.astro';
-import { t } from '../../i18n/utils';
+import { t } from '@/i18n/utils.ts';
 import { getCollection } from 'astro:content';
 
 let allPosts: any[] = [];
@@ -17,6 +17,7 @@ const posts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date
   title="Blog & Estilo de Vida | MIMOSA Real Estate"
   description="Articulos sobre tendencias de diseno, oportunidades de inversion y estilo de vida en el Caribe Mexicano."
   keywords="blog, estilo de vida, tendencias, diseno, inversion, caribe mexicano, bienes raices lujo"
+  contactForm={false}
 >
   <section class="pt-32 pb-24 px-6">
     <div class="max-w-7xl mx-auto">

@@ -1,0 +1,39 @@
+@import "@splidejs/splide/css";
+
+/* Arrows color and styling */
+.splide__arrow {
+  background: var(--color-background) !important;
+  opacity: 1 !important;
+}
+
+.splide__arrow svg {
+  fill: var(--color-primary) !important;
+  width: 1rem !important;
+  aspect-ratio: 1 / 1;
+}
+
+.splide__arrow:hover svg {
+  opacity: 0.7;
+}
+
+/* Thumbnails styling */
+#thumbnail-carousel .splide__slide {
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  opacity: 0.5;
+  border-radius: var(--radius-md);
+}
+
+#thumbnail-carousel .splide__slide.is-active {
+  border: 1px solid var(--color-primary) !important;
+  opacity: 1 !important;
+}
+
+#thumbnail-carousel .splide__track {
+  padding: 0 !important;
+}
+
+/* Global active slide override if needed */
+.splide__slide.is-active {
+  opacity: 1 !important;
+}

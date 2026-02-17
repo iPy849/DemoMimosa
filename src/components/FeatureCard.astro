@@ -1,0 +1,51 @@
+---
+import Icon from './icons/Icon.astro';
+import { t } from '../i18n/utils';
+
+interface Props {
+  icon: string;
+  titleKey: string;
+  descKey: string;
+  centered?: boolean;
+  class?: string;
+}
+
+const { icon, titleKey, descKey, centered = false, class: className } = Astro.props;
+---
+
+<div 
+  class:list={[
+    "group relative overflow-hidden transition-all duration-500 border border-border hover:border-primary/50 hover:-translate-y-1",
+    centered ? "p-6 bg-background rounded-xl hover:shadow-lg" : "p-8 bg-card rounded-2xl hover:shadow-xl",
+    className
+  ]}
+>
+  <div 
+    class:list={[
+      "absolute top-0 right-0 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+      centered ? "w-24 h-24" : "w-32 h-32"
+    ]}
+  ></div>
+  <div class:list={["relative z-10", centered && "text-center"]}>
+    <div 
+      class:list={[
+        "bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3",
+        centered ? "w-14 h-14 mx-auto mb-4" : "w-16 h-16 mb-6"
+      ]}
+    >
+      <Icon name={icon} class={centered ? "w-7 h-7 text-primary" : "w-8 h-8 text-primary"} />
+    </div>
+    <h4 
+      class:list={[
+        "font-headline font-bold text-foreground",
+        centered ? "mb-2" : "mb-3 text-lg"
+      ]} 
+      data-t={titleKey}
+    >
+      {t(titleKey)}
+    </h4>
+    <p class="text-sm text-muted-foreground font-body leading-relaxed" data-t={descKey}>
+      {t(descKey)}
+    </p>
+  </div>
+</div>
