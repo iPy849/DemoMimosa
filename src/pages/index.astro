@@ -23,21 +23,20 @@ try {
         navTransparent={true}
 >
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <section class="relative h-[75vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <Image src={images.hero.main} alt="Luxury Caribbean development" class="w-full h-full object-cover"
+            <Image src={images.hero.main} alt="Mimosa development" class="w-full h-full object-cover lg:object-bottom"
                    width={1920} height={1080}/>
             <div class="absolute inset-0 bg-black/50"></div>
         </div>
-        <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/40 to-transparent z-10"></div>
         <div class="relative z-20 text-center max-w-4xl mx-auto px-6 fade-in flex flex-col items-center gap-8">
-            <img src="/assets/logo-light.svg" alt="MIMOSA Developments" class="w-80"/>
+            <img src="/assets/logo-light.svg" alt="MIMOSA Developments" class="w-48 md:w-80"/>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="/developments"
                    class="bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2">VER DESARROLLOS</a>
                 <a href="/contact"
-                   class="border border-[#ffffff66] text-[#fff] px-8 py-4 text-xs tracking-[0.2em] font-body hover:bg-[#ffffff1a] transition-colors inline-flex items-center justify-center gap-2">
+                   class="border border-[#ffffff66] text-white px-8 py-4 text-xs tracking-[0.2em] font-body hover:bg-[#ffffff1a] transition-colors inline-flex items-center justify-center gap-2">
                     <Icon name="play" class="w-4 h-4"/>
                     <span>CONTACTAR AGENTE</span>
                 </a>
@@ -68,7 +67,7 @@ try {
                     <a href="/about"
                        class="inline-block bg-primary text-primary-foreground px-8 py-3 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors">CONOCE NUESTRA HISTORIA</a>
                 </div>
-                <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
+                <div class="relative aspect-4/3 rounded-lg overflow-hidden reveal" data-reveal="left">
                     <Image src={images.about.interior} alt="Luxury property interior" class="w-full h-full object-cover"
                            width={800} height={600} loading="lazy"/>
                 </div>
@@ -79,22 +78,22 @@ try {
     <!-- Static gallery -->
     <section class="py-24 px-6 hidden md:block">
         <div class="max-w-7xl mx-auto grid grid-cols-2 grid-rows-2 gap-4">
-            <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
+            <div class="relative aspect-4/3 rounded-lg overflow-hidden reveal" data-reveal="left">
                 <Image src={images.cuatroBacalar.renders.vistaAerea} alt="Luxury property interior"
                        class="w-full h-full object-cover"
                        width={800} height={600} loading="lazy"/>
             </div>
-            <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
+            <div class="relative aspect-4/3 rounded-lg overflow-hidden reveal" data-reveal="left">
                 <Image src={images.cuatroBacalar.renders.alberca2} alt="Luxury property interior"
                        class="w-full h-full object-cover"
                        width={800} height={600} loading="lazy"/>
             </div>
-            <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
+            <div class="relative aspect-4/3 rounded-lg overflow-hidden reveal" data-reveal="left">
                 <Image src={images.cuatroBacalar.renders.fachada} alt="Luxury property interior"
                        class="w-full h-full object-cover"
                        width={800} height={600} loading="lazy"/>
             </div>
-            <div class="relative aspect-[4/3] rounded-lg overflow-hidden reveal" data-reveal="left">
+            <div class="relative aspect-4/3 rounded-lg overflow-hidden reveal" data-reveal="left">
                 <Image src={images.cuatroBacalar.renders.alberca1} alt="Luxury property interior"
                        class="w-full h-full object-cover"
                        width={800} height={600} loading="lazy"/>

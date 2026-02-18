@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="New pkg json" />
+    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="[ADD] Fixed index hero layout and intersection observer">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/BaseLayout.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/BaseLayout.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.astro" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +23,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="modify-about-section" />
+    <option name="BRANCH" value="origin/astro-compiler-error" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -59,6 +64,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.localhost:3000.executor&quot;: &quot;Debug&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
@@ -88,8 +94,11 @@
       <recent name="$PROJECT_DIR$/src/assets/images/hero" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.Next.js: server-side">
+  <component name="RunManager" selected="JavaScript Debug.localhost:3000">
     <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:9002/">
+      <method v="2" />
+    </configuration>
+    <configuration name="localhost:3000" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:3000/">
       <method v="2" />
     </configuration>
     <configuration name="Next.js: server-side" type="js.build_tools.npm">
@@ -102,6 +111,11 @@
       <envs />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.localhost:3000" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -188,7 +202,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>
@@ -207,6 +221,7 @@
     <MESSAGE value="[ADV] Favicons" />
     <MESSAGE value="[ADD] Initial SEO" />
     <MESSAGE value="New pkg json" />
-    <option name="LAST_COMMIT_MESSAGE" value="New pkg json" />
+    <MESSAGE value="[ADD] Fixed index hero layout and intersection observer" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ADD] Fixed index hero layout and intersection observer" />
   </component>
 </project>
