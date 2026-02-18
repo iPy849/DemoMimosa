@@ -88,114 +88,8 @@ const amenityIconMap: Record<string, string> = {
           </p>
         </div>
 
-        <!-- Mobile/Tablet: Full-width layout -->
-        <div class="lg:hidden space-y-8 sm:space-y-10">
-          <!-- Description + Amenities -->
-          <div class="space-y-6 sm:space-y-8">
-            <div class="space-y-3 sm:space-y-4">
-              <h2
-                class="text-2xl sm:text-3xl md:text-4xl font-headline font-bold text-foreground"
-              >
-                Una Experiencia Unica
-              </h2>
-              <p
-                class="text-base sm:text-lg text-muted-foreground font-body leading-relaxed"
-              >
-                {data.description}
-              </p>
-              <div class="pt-2">
-                <a
-                  href="#contact"
-                  class="inline-flex items-center gap-2 text-primary font-body font-bold text-xs sm:text-sm tracking-wider uppercase hover:gap-4 transition-all"
-                >
-                  <span>AGENDA UNA VISITA</span>
-                  <Icon name="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5" />
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <h3
-                class="text-lg sm:text-xl font-headline font-bold text-foreground mb-3 sm:mb-4"
-              >
-                Amenidades Exclusivasss
-              </h3>
-              <div class="grid grid-cols-3 sm:grid-cols-4 gap-2">
-                {
-                  data.amenities.map((amenity: string) => (
-                    <div class="group flex flex-col items-center gap-2 p-2 sm:p-3 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300">
-                      <div class="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
-                        <Icon
-                          name={amenityIconMap[amenity] || "check"}
-                          class="w-4 h-4 sm:w-5 sm:h-5 text-primary"
-                        />
-                      </div>
-                      <span class="text-foreground font-body font-medium text-[10px] sm:text-xs text-center leading-tight">
-                        {amenity}
-                      </span>
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
-          </div>
-
-          <!-- Full-width Carousel -->
-          <div class="space-y-3">
-            <div id="main-carousel" class="splide main-carousel">
-              <div class="splide__track">
-                <ul class="splide__list">
-                  {
-                    gallery.map((img: string, i: number) => (
-                      <li class="splide__slide">
-                        <div class="aspect-16/10 sm:aspect-video">
-                          <Image
-                            src={img}
-                            alt={`${data.title} - ${i + 1}`}
-                            width={1200}
-                            height={900}
-                            class="w-full h-full object-cover"
-                            loading={i === 0 ? "eager" : "lazy"}
-                          />
-                        </div>
-                      </li>
-                    ))
-                  }
-                </ul>
-              </div>
-            </div>
-            {
-              gallery.length > 1 && (
-                <div class="px-0">
-                  <div
-                    id="thumbnail-carousel"
-                    class="splide thumbnail-carousel"
-                  >
-                    <div class="splide__track">
-                      <ul class="splide__list">
-                        {gallery.map((img: string, i: number) => (
-                          <li class="splide__slide aspect-video rounded-md overflow-hidden border border-transparent opacity-50 transition-all cursor-pointer">
-                            <Image
-                              src={img}
-                              alt={`Thumbnail ${i + 1}`}
-                              width={200}
-                              height={150}
-                              class="w-full h-full object-cover"
-                              loading="lazy"
-                            />
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )
-            }
-          </div>
-        </div>
-
-        <!-- Desktop: Two column layout -->
-        <div class="hidden lg:grid lg:grid-cols-5 gap-8 items-start">
+        <!-- Unified layout: column on mobile, two-column grid on desktop -->
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-8 items-start">
           <!-- Left: Description + Amenities -->
           <div class="lg:col-span-2 space-y-8">
             <div class="space-y-3 sm:space-y-4">
@@ -226,17 +120,17 @@ const amenityIconMap: Record<string, string> = {
               >
                 Amenidades Exclusivas
               </h3>
-              <div class="grid grid-cols-3 gap-3">
+              <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 {
                   data.amenities.map((amenity: string) => (
-                    <div class="group flex flex-col items-center gap-2 p-3 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300">
-                      <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
+                    <div class="group flex flex-col items-center gap-2 p-2 sm:p-3 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300">
+                      <div class="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
                         <Icon
                           name={amenityIconMap[amenity] || "check"}
-                          class="w-5 h-5 text-primary"
+                          class="w-4 h-4 sm:w-5 sm:h-5 text-primary"
                         />
                       </div>
-                      <span class="text-foreground font-body font-medium text-xs text-center leading-tight">
+                      <span class="text-foreground font-body font-medium text-[10px] sm:text-xs text-center leading-tight">
                         {amenity}
                       </span>
                     </div>
@@ -248,9 +142,9 @@ const amenityIconMap: Record<string, string> = {
 
           <!-- Right: Gallery -->
           <div class="lg:col-span-3">
-            <div class="sticky top-24 space-y-3">
+            <div class="lg:sticky lg:top-24 space-y-3">
               <div
-                id="main-carousel-desktop"
+                id="main-carousel"
                 class="splide rounded-xl overflow-hidden border border-border shadow-lg bg-card main-carousel"
               >
                 <div class="splide__track">
@@ -276,7 +170,7 @@ const amenityIconMap: Record<string, string> = {
               {
                 gallery.length > 1 && (
                   <div
-                    id="thumbnail-carousel-desktop"
+                    id="thumbnail-carousel"
                     class="splide mt-3 thumbnail-carousel"
                   >
                     <div class="splide__track">
@@ -418,10 +312,7 @@ const amenityIconMap: Record<string, string> = {
   }
 
   function initSplide() {
-    // Mobile/tablet carousel (full-width)
     initCarousel("#main-carousel", "#thumbnail-carousel");
-    // Desktop carousel (in sidebar)
-    initCarousel("#main-carousel-desktop", "#thumbnail-carousel-desktop");
   }
 
   document.addEventListener("astro:page-load", initSplide);
