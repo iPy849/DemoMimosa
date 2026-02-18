@@ -2,7 +2,7 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Icon from '../components/icons/Icon.astro';
-import { contactInfo } from '../config/contact';
+import { contactInfo } from '../data/contact';
 ---
 
 <PageLayout
@@ -52,7 +52,7 @@ import { contactInfo } from '../config/contact';
                 </div>
                 <div class="flex-1">
                   <h4 class="font-headline font-semibold text-foreground text-sm mb-1">Telefono</h4>
-                  <a href={`tel:${contactInfo.phoneRaw}`} class="text-muted-foreground hover:text-primary font-body text-sm transition-colors">
+                  <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} class="text-muted-foreground hover:text-primary font-body text-sm transition-colors">
                     {contactInfo.phone}
                   </a>
                 </div>
@@ -66,8 +66,7 @@ import { contactInfo } from '../config/contact';
                 <div class="flex-1">
                   <h4 class="font-headline font-semibold text-foreground text-sm mb-1">Oficina</h4>
                   <p class="text-muted-foreground font-body text-sm leading-relaxed">
-                    {contactInfo.address.street}<br>
-                    {contactInfo.address.city}
+                    {contactInfo.address}
                   </p>
                 </div>
               </div>
@@ -79,7 +78,9 @@ import { contactInfo } from '../config/contact';
                 </div>
                 <div class="flex-1">
                   <h4 class="font-headline font-semibold text-foreground text-sm mb-1">Horario</h4>
-                  <p class="text-muted-foreground font-body text-sm">{contactInfo.hours}</p>
+                  <div class="text-muted-foreground font-body text-sm space-y-1">
+                    {contactInfo.hours.map(hour => <p>{hour}</p>)}
+                  </div>
                 </div>
               </div>
             </div>

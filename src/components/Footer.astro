@@ -2,7 +2,7 @@
 import { images } from '../data/images';
 import Icon from './icons/Icon.astro';
 import SocialLinks from './SocialLinks.astro';
-import { contactInfo } from '../config/contact';
+import { contactInfo } from '../data/contact';
 import {getCollection} from "astro:content";
 
 let esDevelopments: any[] = [];
@@ -56,7 +56,7 @@ try {
           </li>
           <li class="flex items-start gap-2 text-muted-foreground text-sm">
             <Icon name="map-pin" class="w-4 h-4 text-primary shrink-0 mt-0.5" />
-            {contactInfo.address.full}
+            {contactInfo.address}
           </li>
         </ul>
       </div>
