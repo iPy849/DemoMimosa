@@ -2,6 +2,7 @@
 import { images } from '../data/images';
 import Icon from './icons/Icon.astro';
 import SocialLinks from './SocialLinks.astro';
+import { contactInfo } from '../config/contact';
 import {getCollection} from "astro:content";
 
 let esDevelopments: any[] = [];
@@ -47,27 +48,23 @@ try {
         <ul class="flex flex-col gap-3 font-body">
           <li class="flex items-center gap-2 text-muted-foreground text-sm">
             <Icon name="mail" class="w-4 h-4 text-primary shrink-0" />
-            info@mimosadevelopments.com
+            {contactInfo.email}
           </li>
           <li class="flex items-center gap-2 text-muted-foreground text-sm">
             <Icon name="phone" class="w-4 h-4 text-primary shrink-0" />
-            +52 (998) 123 4567
+            {contactInfo.phone}
           </li>
           <li class="flex items-start gap-2 text-muted-foreground text-sm">
             <Icon name="map-pin" class="w-4 h-4 text-primary shrink-0 mt-0.5" />
-            Av. Luxury Developments 404, Zona Hotelera, Cancun, MX
+            {contactInfo.address.full}
           </li>
         </ul>
       </div>
     </div>
   </div>
   <div class="border-t border-border">
-    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex justify-center items-center">
       <p class="text-sm text-muted-foreground font-body">&copy; {new Date().getFullYear()} MIMOSA Developments. Todos los derechos reservados.</p>
-      <div class="flex gap-6 font-body">
-        <a href="#" class="text-sm text-muted-foreground hover:text-primary transition-colors">Terminos y Condiciones</a>
-        <a href="#" class="text-sm text-muted-foreground hover:text-primary transition-colors">Politica de Privacidad</a>
-      </div>
     </div>
   </div>
 </footer>

@@ -1,5 +1,6 @@
 ---
 import Icon from './icons/Icon.astro';
+import { contactInfo } from '../config/contact';
 ---
 
 <!-- Floating WhatsApp: icon-only circle + tooltip after 60s -->
@@ -22,7 +23,7 @@ import Icon from './icons/Icon.astro';
 
   <!-- Icon button -->
   <a
-    href="https://wa.me/529981234567"
+    href={`https://wa.me/${contactInfo.whatsapp}`}
     target="_blank"
     rel="noopener noreferrer"
     id="wa-btn"
