@@ -4,23 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="[ADV] Favicons">
-      <change afterPath="$PROJECT_DIR$/public/assets/images/draw_n_logo.webp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SocialLinks.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialLinks.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/BaseLayout.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/BaseLayout.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/PageLayout.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/PageLayout.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/about.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/about.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/[id].astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/[id].astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/index.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/contact.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contact.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/cuatro-bacalar.astro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/developments/[id].astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/developments/[id].astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/developments/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/developments/index.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sitemap.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sitemap.astro" afterDir="false" />
+    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="[ADD] Initial SEO">
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +124,7 @@
       <workItem from="1770883486313" duration="292000" />
       <workItem from="1771275094671" duration="30000" />
       <workItem from="1771310600610" duration="214000" />
-      <workItem from="1771310986549" duration="29433000" />
+      <workItem from="1771310986549" duration="29892000" />
     </task>
     <task id="LOCAL-00001" summary="adv">
       <option name="closed" value="true" />
@@ -172,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771371996454</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="[ADD] Initial SEO">
+      <option name="closed" value="true" />
+      <created>1771374322768</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1771374322768</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +200,7 @@
     <MESSAGE value="[ADV] Left en and development data" />
     <MESSAGE value="[ADV] Only spanish and finished design" />
     <MESSAGE value="[ADV] Favicons" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ADV] Favicons" />
+    <MESSAGE value="[ADD] Initial SEO" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ADD] Initial SEO" />
   </component>
 </project>
