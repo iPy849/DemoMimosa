@@ -9,14 +9,16 @@ interface Props {
     title?: string;
     description?: string;
     keywords?: string;
+    image?: string;
+    type?: 'website' | 'article';
     navTransparent?: boolean;
     contactForm?: boolean;
 }
 
-const {title, description, keywords, navTransparent = false, contactForm = true} = Astro.props;
+const {title, description, keywords, image, type, navTransparent = false, contactForm = true} = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords}>
+<BaseLayout title={title} description={description} keywords={keywords} image={image} type={type}>
     <Navbar transparent={navTransparent}/>
     <main class="flex-1">
         <slot/>

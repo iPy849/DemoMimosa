@@ -32,7 +32,7 @@ const amenityIconMap: Record<string, string> = {
   'Restaurante Gourmet': 'utensils',
   'Muelle Privado': 'anchor',
   'Cenote Privado': 'pool',
-  'Spa Holístico': 'spa',
+  'Spa Holistico': 'spa',
   'Restaurante Organico': 'utensils',
   'Yoga Deck': 'yoga',
   'Bicicletas': 'bike',
@@ -40,9 +40,11 @@ const amenityIconMap: Record<string, string> = {
 ---
 
 <PageLayout
-  title={`${data.title} | MIMOSA Real Estate`}
+  title={`${data.title} | MIMOSA Developments`}
   description={data.shortDescription ?? data.description}
   keywords={`desarrollo, ${data.title}, ${data.location}, lujo, inversion, caribe mexicano`}
+  image={data.image}
+  type="article"
   contactForm={false}
 >
   <div id="dev-content">

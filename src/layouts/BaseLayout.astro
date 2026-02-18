@@ -5,15 +5,41 @@ interface Props {
   title?: string;
   description?: string;
   keywords?: string;
+  image?: string;
+  type?: 'website' | 'article';
 }
 
 const {
-  title = 'MIMOSA Real Estate | Boutique Real Estate',
+  title = 'MIMOSA Developments | Boutique Real Estate',
   description = 'Exclusividad y Prestigio en el Caribe Mexicano. Desarrollos y propiedades de lujo en Bacalar, Tulum, Merida, Cancun y mas.',
   keywords = 'real estate, bienes raices, lujo, caribe mexicano, desarrollos inmobiliarios, propiedades exclusivas',
+  image = '/assets/images/draw_n_logo.webp',
+  type = 'website',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://mimosarealestate.com');
+const siteName = 'MIMOSA Developments';
+
+// JSON-LD Structured Data for AI and Search Engines
+const schema = {
+  "@context": "https://schema.org",
+  "@type": type === 'article' ? 'Article' : 'RealEstateAgent',
+  "name": siteName,
+  "description": description,
+  "url": canonicalURL.href,
+  "logo": new URL('/assets/logo-dark.svg', canonicalURL).href,
+  "image": new URL(image, canonicalURL).href,
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "Quintana Roo",
+    "addressCountry": "MX"
+  },
+  "areaServed": ["Bacalar", "Tulum", "Merida", "Cancun", "Playa del Carmen"],
+  "sameAs": [
+    "https://www.instagram.com/mimosarealestate",
+    "https://www.facebook.com/mimosarealestate"
+  ]
+};
 ---
 
 <!doctype html>
@@ -21,11 +47,34 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://mimosare
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- General SEO -->
+    <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
-    <meta name="author" content="MIMOSA Real Estate" />
+    <meta name="author" content={siteName} />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalURL.href} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL).href} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="es_MX" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL.href} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, canonicalURL).href} />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Forum&display=swap" rel="stylesheet" />
