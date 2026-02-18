@@ -1,13 +1,13 @@
 ---
-import { Image } from 'astro:assets';
-import PageLayout from '../../layouts/PageLayout.astro';
-import ContactForm from '../../components/ContactForm.astro';
-import Icon from '../../components/icons/Icon.astro';
-import { getCollection } from 'astro:content';
-import '../../styles/splide-custom.css';
+import { Image } from "astro:assets";
+import PageLayout from "../../layouts/PageLayout.astro";
+import ContactForm from "../../components/ContactForm.astro";
+import Icon from "../../components/icons/Icon.astro";
+import { getCollection } from "astro:content";
+import "../../styles/splide-custom.css";
 
 export async function getStaticPaths() {
-  const allDevelopments = await getCollection('developments');
+  const allDevelopments = await getCollection("developments");
 
   return allDevelopments.map((dev) => {
     return {
@@ -25,17 +25,17 @@ const gallery = data.gallery ?? (data.image ? [data.image] : []);
 
 // Map amenity names to icon component names
 const amenityIconMap: Record<string, string> = {
-  'Beach Club Privado': 'pool',
-  'Seguridad 24/7': 'shield',
-  'Alberca Infinity': 'pool',
-  'Gimnasio': 'gym',
-  'Restaurante Gourmet': 'utensils',
-  'Muelle Privado': 'anchor',
-  'Cenote Privado': 'pool',
-  'Spa Holistico': 'spa',
-  'Restaurante Organico': 'utensils',
-  'Yoga Deck': 'yoga',
-  'Bicicletas': 'bike',
+  "Beach Club Privado": "pool",
+  "Seguridad 24/7": "shield",
+  "Alberca Infinity": "pool",
+  Gimnasio: "gym",
+  "Restaurante Gourmet": "utensils",
+  "Muelle Privado": "anchor",
+  "Cenote Privado": "pool",
+  "Spa Holistico": "spa",
+  "Restaurante Organico": "utensils",
+  "Yoga Deck": "yoga",
+  Bicicletas: "bike",
 };
 ---
 
@@ -49,11 +49,16 @@ const amenityIconMap: Record<string, string> = {
 >
   <div id="dev-content">
     <!-- Title + Content Section -->
-    <section class="py-6 sm:py-8 md:py-12 lg:pt-28 lg:pb-16 px-4 sm:px-6 bg-gradient-to-b from-muted/30 to-background">
+    <section
+      class="py-6 sm:py-8 md:py-12 lg:pt-28 lg:pb-16 px-4 sm:px-6 bg-gradient-to-b from-muted/30 to-background"
+    >
       <div class="max-w-7xl mx-auto">
         <!-- Back link - Desktop only -->
-        <div class="hidden lg:block mb-6 sm:mb-8">
-          <a href="/developments" class="inline-flex items-center gap-2 text-primary text-xs sm:text-sm tracking-wider uppercase font-bold font-body hover:underline">
+        <div class="block mb-6 sm:mb-8">
+          <a
+            href="/developments"
+            class="inline-flex items-center gap-2 text-primary text-xs sm:text-sm tracking-wider uppercase font-bold font-body hover:underline"
+          >
             <Icon name="arrow-left" class="w-3 h-3 sm:w-4 sm:h-4" />
             <span>VOLVER A DESARROLLOS</span>
           </a>
@@ -61,12 +66,26 @@ const amenityIconMap: Record<string, string> = {
 
         <!-- Title Area -->
         <div class="text-center mb-8 sm:mb-10 lg:mb-16">
-          <div class="flex items-center justify-center gap-2 text-muted-foreground mb-3 sm:mb-4">
+          <div
+            class="flex items-center justify-center gap-2 text-muted-foreground mb-3 sm:mb-4"
+          >
             <Icon name="map-pin" class="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-            <p class="text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase font-body">{data.location}</p>
+            <p
+              class="text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase font-body"
+            >
+              {data.location}
+            </p>
           </div>
-          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-headline font-bold text-foreground mb-4 sm:mb-6 text-balance">{data.title}</h1>
-          <p class="text-base sm:text-lg md:text-xl text-muted-foreground font-body leading-relaxed max-w-3xl mx-auto">{data.shortDescription}</p>
+          <h1
+            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-headline font-bold text-foreground mb-4 sm:mb-6 text-balance"
+          >
+            {data.title}
+          </h1>
+          <p
+            class="text-base sm:text-lg md:text-xl text-muted-foreground font-body leading-relaxed max-w-3xl mx-auto"
+          >
+            {data.shortDescription}
+          </p>
         </div>
 
         <!-- Mobile/Tablet: Full-width layout -->
@@ -74,10 +93,21 @@ const amenityIconMap: Record<string, string> = {
           <!-- Description + Amenities -->
           <div class="space-y-6 sm:space-y-8">
             <div class="space-y-3 sm:space-y-4">
-              <h2 class="text-2xl sm:text-3xl md:text-4xl font-headline font-bold text-foreground">Una Experiencia Unica</h2>
-              <p class="text-base sm:text-lg text-muted-foreground font-body leading-relaxed">{data.description}</p>
+              <h2
+                class="text-2xl sm:text-3xl md:text-4xl font-headline font-bold text-foreground"
+              >
+                Una Experiencia Unica
+              </h2>
+              <p
+                class="text-base sm:text-lg text-muted-foreground font-body leading-relaxed"
+              >
+                {data.description}
+              </p>
               <div class="pt-2">
-                <a href="#contact" class="inline-flex items-center gap-2 text-primary font-body font-bold text-xs sm:text-sm tracking-wider uppercase hover:gap-4 transition-all">
+                <a
+                  href="#contact"
+                  class="inline-flex items-center gap-2 text-primary font-body font-bold text-xs sm:text-sm tracking-wider uppercase hover:gap-4 transition-all"
+                >
                   <span>AGENDA UNA VISITA</span>
                   <Icon name="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
@@ -85,56 +115,82 @@ const amenityIconMap: Record<string, string> = {
             </div>
 
             <div>
-              <h3 class="text-lg sm:text-xl font-headline font-bold text-foreground mb-3 sm:mb-4">Amenidades Exclusivas</h3>
+              <h3
+                class="text-lg sm:text-xl font-headline font-bold text-foreground mb-3 sm:mb-4"
+              >
+                Amenidades Exclusivas
+              </h3>
               <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
-                {data.amenities.map((amenity: string) => (
-                  <div class="group flex flex-col items-center gap-2 p-2 sm:p-3 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300">
-                    <div class="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
-                      <Icon name={amenityIconMap[amenity] || 'check'} class="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                {
+                  data.amenities.map((amenity: string) => (
+                    <div class="group flex flex-col items-center gap-2 p-2 sm:p-3 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300">
+                      <div class="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
+                        <Icon
+                          name={amenityIconMap[amenity] || "check"}
+                          class="w-4 h-4 sm:w-5 sm:h-5 text-primary"
+                        />
+                      </div>
+                      <span class="text-foreground font-body font-medium text-[10px] sm:text-xs text-center leading-tight">
+                        {amenity}
+                      </span>
                     </div>
-                    <span class="text-foreground font-body font-medium text-[10px] sm:text-xs text-center leading-tight">{amenity}</span>
-                  </div>
-                ))}
+                  ))
+                }
               </div>
             </div>
           </div>
-
-          <!-- Back link for mobile -->
-          <a href="/developments" class="inline-flex items-center gap-2 text-primary text-xs sm:text-sm tracking-wider uppercase font-bold font-body hover:underline">
-            <Icon name="arrow-left" class="w-3 h-3 sm:w-4 sm:h-4" />
-            <span>VOLVER A DESARROLLOS</span>
-          </a>
 
           <!-- Full-width Carousel -->
           <div class="space-y-3">
             <div id="main-carousel" class="splide main-carousel">
               <div class="splide__track">
                 <ul class="splide__list">
-                  {gallery.map((img: string, i: number) => (
-                    <li class="splide__slide">
-                      <div class="aspect-[16/10] sm:aspect-[16/9]">
-                        <Image src={img} alt={`${data.title} - ${i + 1}`} width={1200} height={900} class="w-full h-full object-cover" loading={i === 0 ? "eager" : "lazy"} />
-                      </div>
-                    </li>
-                  ))}
+                  {
+                    gallery.map((img: string, i: number) => (
+                      <li class="splide__slide">
+                        <div class="aspect-[16/10] sm:aspect-[16/9]">
+                          <Image
+                            src={img}
+                            alt={`${data.title} - ${i + 1}`}
+                            width={1200}
+                            height={900}
+                            class="w-full h-full object-cover"
+                            loading={i === 0 ? "eager" : "lazy"}
+                          />
+                        </div>
+                      </li>
+                    ))
+                  }
                 </ul>
               </div>
             </div>
-            {gallery.length > 1 && (
-              <div class="px-0">
-                <div id="thumbnail-carousel" class="splide thumbnail-carousel">
-                  <div class="splide__track">
-                    <ul class="splide__list">
-                      {gallery.map((img: string, i: number) => (
-                        <li class="splide__slide aspect-video rounded-md overflow-hidden border border-transparent opacity-50 transition-all cursor-pointer">
-                          <Image src={img} alt={`Thumbnail ${i + 1}`} width={200} height={150} class="w-full h-full object-cover" loading="lazy" />
-                        </li>
-                      ))}
-                    </ul>
+            {
+              gallery.length > 1 && (
+                <div class="px-0">
+                  <div
+                    id="thumbnail-carousel"
+                    class="splide thumbnail-carousel"
+                  >
+                    <div class="splide__track">
+                      <ul class="splide__list">
+                        {gallery.map((img: string, i: number) => (
+                          <li class="splide__slide aspect-video rounded-md overflow-hidden border border-transparent opacity-50 transition-all cursor-pointer">
+                            <Image
+                              src={img}
+                              alt={`Thumbnail ${i + 1}`}
+                              width={200}
+                              height={150}
+                              class="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )
+            }
           </div>
         </div>
 
@@ -143,10 +199,21 @@ const amenityIconMap: Record<string, string> = {
           <!-- Left: Description + Amenities -->
           <div class="lg:col-span-2 space-y-8">
             <div class="space-y-3 sm:space-y-4">
-              <h2 class="text-2xl sm:text-3xl md:text-4xl font-headline font-bold text-foreground">Una Experiencia Unica</h2>
-              <p class="text-base sm:text-lg text-muted-foreground font-body leading-relaxed">{data.description}</p>
+              <h2
+                class="text-2xl sm:text-3xl md:text-4xl font-headline font-bold text-foreground"
+              >
+                Una Experiencia Unica
+              </h2>
+              <p
+                class="text-base sm:text-lg text-muted-foreground font-body leading-relaxed"
+              >
+                {data.description}
+              </p>
               <div class="pt-2">
-                <a href="#contact" class="inline-flex items-center gap-2 text-primary font-body font-bold text-xs sm:text-sm tracking-wider uppercase hover:gap-4 transition-all">
+                <a
+                  href="#contact"
+                  class="inline-flex items-center gap-2 text-primary font-body font-bold text-xs sm:text-sm tracking-wider uppercase hover:gap-4 transition-all"
+                >
                   <span>AGENDA UNA VISITA</span>
                   <Icon name="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
@@ -154,16 +221,27 @@ const amenityIconMap: Record<string, string> = {
             </div>
 
             <div>
-              <h3 class="text-lg sm:text-xl font-headline font-bold text-foreground mb-3 sm:mb-4">Amenidades Exclusivas</h3>
+              <h3
+                class="text-lg sm:text-xl font-headline font-bold text-foreground mb-3 sm:mb-4"
+              >
+                Amenidades Exclusivas
+              </h3>
               <div class="grid grid-cols-3 gap-3">
-                {data.amenities.map((amenity: string) => (
-                  <div class="group flex flex-col items-center gap-2 p-3 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300">
-                    <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
-                      <Icon name={amenityIconMap[amenity] || 'check'} class="w-5 h-5 text-primary" />
+                {
+                  data.amenities.map((amenity: string) => (
+                    <div class="group flex flex-col items-center gap-2 p-3 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300">
+                      <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
+                        <Icon
+                          name={amenityIconMap[amenity] || "check"}
+                          class="w-5 h-5 text-primary"
+                        />
+                      </div>
+                      <span class="text-foreground font-body font-medium text-xs text-center leading-tight">
+                        {amenity}
+                      </span>
                     </div>
-                    <span class="text-foreground font-body font-medium text-xs text-center leading-tight">{amenity}</span>
-                  </div>
-                ))}
+                  ))
+                }
               </div>
             </div>
           </div>
@@ -171,31 +249,55 @@ const amenityIconMap: Record<string, string> = {
           <!-- Right: Gallery -->
           <div class="lg:col-span-3">
             <div class="sticky top-24 space-y-3">
-              <div id="main-carousel-desktop" class="splide rounded-xl overflow-hidden border border-border shadow-lg bg-card main-carousel">
+              <div
+                id="main-carousel-desktop"
+                class="splide rounded-xl overflow-hidden border border-border shadow-lg bg-card main-carousel"
+              >
                 <div class="splide__track">
                   <ul class="splide__list">
-                    {gallery.map((img: string, i: number) => (
-                      <li class="splide__slide aspect-[4/3]">
-                        <Image src={img} alt={`${data.title} - ${i + 1}`} width={1200} height={900} class="w-full h-full object-cover" loading={i === 0 ? "eager" : "lazy"} />
-                      </li>
-                    ))}
+                    {
+                      gallery.map((img: string, i: number) => (
+                        <li class="splide__slide aspect-[4/3]">
+                          <Image
+                            src={img}
+                            alt={`${data.title} - ${i + 1}`}
+                            width={1200}
+                            height={900}
+                            class="w-full h-full object-cover"
+                            loading={i === 0 ? "eager" : "lazy"}
+                          />
+                        </li>
+                      ))
+                    }
                   </ul>
                 </div>
               </div>
 
-              {gallery.length > 1 && (
-                <div id="thumbnail-carousel-desktop" class="splide mt-3 thumbnail-carousel">
-                  <div class="splide__track">
-                    <ul class="splide__list">
-                      {gallery.map((img: string, i: number) => (
-                        <li class="splide__slide aspect-video rounded-md overflow-hidden border border-transparent opacity-50 transition-all cursor-pointer">
-                          <Image src={img} alt={`Thumbnail ${i + 1}`} width={200} height={150} class="w-full h-full object-cover" loading="lazy" />
-                        </li>
-                      ))}
-                    </ul>
+              {
+                gallery.length > 1 && (
+                  <div
+                    id="thumbnail-carousel-desktop"
+                    class="splide mt-3 thumbnail-carousel"
+                  >
+                    <div class="splide__track">
+                      <ul class="splide__list">
+                        {gallery.map((img: string, i: number) => (
+                          <li class="splide__slide aspect-video rounded-md overflow-hidden border border-transparent opacity-50 transition-all cursor-pointer">
+                            <Image
+                              src={img}
+                              alt={`Thumbnail ${i + 1}`}
+                              width={200}
+                              height={150}
+                              class="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              )}
+                )
+              }
             </div>
           </div>
         </div>
@@ -203,37 +305,64 @@ const amenityIconMap: Record<string, string> = {
     </section>
 
     <!-- Map & Virtual Tour -->
-    {(data.mapUrl || data.virtualTour) && (
-      <section class="py-12 md:py-16 px-4 sm:px-6 bg-muted/30">
-        <div class="max-w-7xl mx-auto">
-          <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
-            {data.mapUrl && (
-              <div class="space-y-3 sm:space-y-4">
-                <h3 class="text-xl sm:text-2xl font-headline font-bold text-foreground">Ubicacion Estrategica</h3>
-                <div class="rounded-xl sm:rounded-2xl overflow-hidden border border-border aspect-[4/3] shadow-xl hover:shadow-2xl transition-shadow">
-                  <iframe src={data.mapUrl} width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title={`Map - ${data.title}`}></iframe>
+    {
+      (data.mapUrl || data.virtualTour) && (
+        <section class="py-12 md:py-16 px-4 sm:px-6 bg-muted/30">
+          <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
+              {data.mapUrl && (
+                <div class="space-y-3 sm:space-y-4">
+                  <h3 class="text-xl sm:text-2xl font-headline font-bold text-foreground">
+                    Ubicacion Estrategica
+                  </h3>
+                  <div class="rounded-xl sm:rounded-2xl overflow-hidden border border-border aspect-[4/3] shadow-xl hover:shadow-2xl transition-shadow">
+                    <iframe
+                      src={data.mapUrl}
+                      width="100%"
+                      height="100%"
+                      style="border:0;"
+                      allowfullscreen
+                      loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      title={`Map - ${data.title}`}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
-            {data.virtualTour && (
-              <div class="space-y-3 sm:space-y-4">
-                <h3 class="text-xl sm:text-2xl font-headline font-bold text-foreground">Recorrido Virtual 360</h3>
-                <div class="rounded-xl sm:rounded-2xl overflow-hidden border border-border aspect-[4/3] shadow-xl hover:shadow-2xl transition-shadow">
-                  <iframe src={data.virtualTour} width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" title={`Virtual Tour - ${data.title}`}></iframe>
+              )}
+              {data.virtualTour && (
+                <div class="space-y-3 sm:space-y-4">
+                  <h3 class="text-xl sm:text-2xl font-headline font-bold text-foreground">
+                    Recorrido Virtual 360
+                  </h3>
+                  <div class="rounded-xl sm:rounded-2xl overflow-hidden border border-border aspect-[4/3] shadow-xl hover:shadow-2xl transition-shadow">
+                    <iframe
+                      src={data.virtualTour}
+                      width="100%"
+                      height="100%"
+                      style="border:0;"
+                      allowfullscreen
+                      loading="lazy"
+                      title={`Virtual Tour - ${data.title}`}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
-      </section>
-    )}
+        </section>
+      )
+    }
   </div>
 
   <!-- Contact Form -->
   <section id="contact" class="py-12 md:py-16 px-4 sm:px-6 bg-background">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-8 sm:mb-10 md:mb-12">
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-headline font-bold text-foreground mb-3 sm:mb-4 px-4">Inicia Tu Proxima Inversion</h2>
+        <h2
+          class="text-2xl sm:text-3xl md:text-4xl font-headline font-bold text-foreground mb-3 sm:mb-4 px-4"
+        >
+          Inicia Tu Proxima Inversion
+        </h2>
         <p class="text-base sm:text-lg text-muted-foreground font-body px-4">
           Descubre personalmente la exclusividad de {data.title}
         </p>
@@ -244,19 +373,19 @@ const amenityIconMap: Record<string, string> = {
 </PageLayout>
 
 <script>
-  import Splide from '@splidejs/splide';
+  import Splide from "@splidejs/splide";
 
   function initCarousel(mainId: string, thumbId: string) {
     const mainEl = document.querySelector(mainId);
     const thumbEl = document.querySelector(thumbId);
 
-    if (!mainEl || mainEl.classList.contains('is-initialized')) return;
-    mainEl.classList.add('is-initialized');
+    if (!mainEl || mainEl.classList.contains("is-initialized")) return;
+    mainEl.classList.add("is-initialized");
 
-    const hasMultiple = mainEl.querySelectorAll('.splide__slide').length > 1;
+    const hasMultiple = mainEl.querySelectorAll(".splide__slide").length > 1;
 
     const main = new Splide(mainId, {
-      type: 'fade',
+      type: "fade",
       rewind: true,
       pagination: false,
       arrows: hasMultiple,
@@ -290,15 +419,15 @@ const amenityIconMap: Record<string, string> = {
 
   function initSplide() {
     // Mobile/tablet carousel (full-width)
-    initCarousel('#main-carousel', '#thumbnail-carousel');
+    initCarousel("#main-carousel", "#thumbnail-carousel");
     // Desktop carousel (in sidebar)
-    initCarousel('#main-carousel-desktop', '#thumbnail-carousel-desktop');
+    initCarousel("#main-carousel-desktop", "#thumbnail-carousel-desktop");
   }
 
-  document.addEventListener('astro:page-load', initSplide);
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSplide);
+  document.addEventListener("astro:page-load", initSplide);
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSplide);
   } else {
     initSplide();
   }
