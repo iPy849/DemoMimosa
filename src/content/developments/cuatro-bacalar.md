@@ -13,7 +13,7 @@ amenities:
   - "Restaurante Gourmet"
   - "Muelle Privado"
 featured: true
-mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15082.4939223793!2d-88.3974443!3d18.6755455!2m3!1f0!2f0!3f0!3m2!1i1024!2i1024!2f1080!3m2!1m1!2zMTjCsDQwJzMyLjAiTiA4OMKwMjMnNTAuOCJX!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx"
+mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3779.395658446607!2d-88.39299942480419!3d18.691096282435826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTjCsDQxJzI4LjAiTiA4OMKwMjMnMjUuNSJX!5e0!3m2!1ses!2smx!4v1771450760207!5m2!1ses!2smx"
 virtualTour: "https://kuula.co/share/hs7cq/collection/7Dgjf?logo=0&info=0&fs=1&vr=1&initload=0&thumbs=1"
 gallery:
   - "/assets/images/cuatro-bacalar/renders/vista_aerea.webp"
