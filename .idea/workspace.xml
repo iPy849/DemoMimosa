@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="[ADD] Initial SEO">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="New pkg json" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,7 +121,7 @@
       <workItem from="1770883486313" duration="292000" />
       <workItem from="1771275094671" duration="30000" />
       <workItem from="1771310600610" duration="214000" />
-      <workItem from="1771310986549" duration="29892000" />
+      <workItem from="1771310986549" duration="30260000" />
     </task>
     <task id="LOCAL-00001" summary="adv">
       <option name="closed" value="true" />
@@ -166,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771374322768</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="New pkg json">
+      <option name="closed" value="true" />
+      <created>1771374680611</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1771374680611</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +206,7 @@
     <MESSAGE value="[ADV] Only spanish and finished design" />
     <MESSAGE value="[ADV] Favicons" />
     <MESSAGE value="[ADD] Initial SEO" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ADD] Initial SEO" />
+    <MESSAGE value="New pkg json" />
+    <option name="LAST_COMMIT_MESSAGE" value="New pkg json" />
   </component>
 </project>
