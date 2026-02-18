@@ -192,6 +192,19 @@ const amenityIconMap: Record<string, string> = {
         pagination: false,
         arrows: hasMultipleSlides,
         drag: hasMultipleSlides,
+        heightRatio: 0.75,
+        cover: true,
+        breakpoints: {
+          768: {
+            heightRatio: 0.75,
+            arrows: true,
+          },
+          640: {
+            heightRatio: 0.75,
+            arrows: hasMultipleSlides,
+            padding: 0,
+          },
+        },
       });
 
       if (thumbCarouselEl) {
@@ -203,10 +216,22 @@ const amenityIconMap: Record<string, string> = {
           focus: 0,
           pagination: false,
           arrows: false,
+          drag: true,
           breakpoints: {
-            640: {
+            1024: {
+              fixedWidth: 90,
+              fixedHeight: 56,
+              gap: 10,
+            },
+            768: {
               fixedWidth: 80,
               fixedHeight: 50,
+              gap: 8,
+            },
+            640: {
+              fixedWidth: 70,
+              fixedHeight: 44,
+              gap: 6,
             },
           },
         });
