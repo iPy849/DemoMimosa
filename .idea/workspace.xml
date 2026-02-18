@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="[FIX]">
+    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="[FIX] Hero logo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.astro" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +138,7 @@
       <workItem from="1771310600610" duration="214000" />
       <workItem from="1771310986549" duration="30260000" />
       <workItem from="1771442305932" duration="1859000" />
-      <workItem from="1771444448572" duration="598000" />
+      <workItem from="1771444448572" duration="1135000" />
     </task>
     <task id="LOCAL-00001" summary="adv">
       <option name="closed" value="true" />
@@ -227,7 +228,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771444823062</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="[FIX] Hero logo">
+      <option name="closed" value="true" />
+      <created>1771445066301</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1771445066301</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,6 +275,7 @@
     <MESSAGE value="[ADD] Fixed index hero layout and intersection observer" />
     <MESSAGE value="[ADD] Fixed index hero layout and intersection observer and fixed ai tailwind classes" />
     <MESSAGE value="[FIX]" />
-    <option name="LAST_COMMIT_MESSAGE" value="[FIX]" />
+    <MESSAGE value="[FIX] Hero logo" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FIX] Hero logo" />
   </component>
 </project>
