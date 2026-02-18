@@ -105,7 +105,6 @@ const schema = {
         // Scroll-reveal observer
         var observer = new IntersectionObserver(function(entries) {
           entries.forEach(function(entry) {
-            console.log(entry.intersectionRatio)
             if (entry.isIntersecting) {
               entry.target.classList.add('revealed');
               observer.unobserve(entry.target);
