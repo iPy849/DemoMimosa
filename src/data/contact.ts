@@ -1,7 +1,7 @@
 export const contactInfo = {
   email: 'info@mimosarealestate.com',
   phone: '+52 (998) 768 5904',
-  whatsapp: '52 (998) 768 5904',
+  whatsapp: '+529987685904',
   address: 'Master Plaza 135, Cancún Quintana Roo',
   hours: [
     'Lun - Vie: 9:00 - 18:00',
