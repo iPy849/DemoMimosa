@@ -39,7 +39,7 @@ try {
         <h4 class="font-headline font-semibold mb-4 text-foreground">Explorar</h4>
         <ul class="flex flex-col gap-2 font-body">
           {esDevelopments.map(e =>
-            <li><a href={/developments/+e.slug} class="text-muted-foreground hover:text-primary transition-colors text-sm">{e.data.title}</a></li>
+            <li><a href={/developments/+e.data.slug} class="text-muted-foreground hover:text-primary transition-colors text-sm">{e.data.title}</a></li>
           )}
         </ul>
       </div>
