@@ -50,7 +50,7 @@ const amenityIconMap: Record<string, string> = {
   <div id="dev-content">
     <!-- Title + Content Section -->
     <section
-      class="pt-32 pb-12 md:pb-16 px-4 sm:px-6 bg-gradient-to-b from-muted/30 to-background"
+      class="pt-32 pb-12 md:pb-16 px-4 sm:px-6 bg-linear-to-b from-muted/30 to-background"
     >
       <div class="max-w-7xl mx-auto">
         <!-- Back link - Desktop only -->
@@ -118,9 +118,9 @@ const amenityIconMap: Record<string, string> = {
               <h3
                 class="text-lg sm:text-xl font-headline font-bold text-foreground mb-3 sm:mb-4"
               >
-                Amenidades Exclusivas
+                Amenidades Exclusivasss
               </h3>
-              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+              <div class="grid grid-cols-3 sm:grid-cols-4 gap-2">
                 {
                   data.amenities.map((amenity: string) => (
                     <div class="group flex flex-col items-center gap-2 p-2 sm:p-3 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300">
@@ -148,7 +148,7 @@ const amenityIconMap: Record<string, string> = {
                   {
                     gallery.map((img: string, i: number) => (
                       <li class="splide__slide">
-                        <div class="aspect-[16/10] sm:aspect-[16/9]">
+                        <div class="aspect-16/10 sm:aspect-video">
                           <Image
                             src={img}
                             alt={`${data.title} - ${i + 1}`}
@@ -257,7 +257,7 @@ const amenityIconMap: Record<string, string> = {
                   <ul class="splide__list">
                     {
                       gallery.map((img: string, i: number) => (
-                        <li class="splide__slide aspect-[4/3]">
+                        <li class="splide__slide aspect-4/3">
                           <Image
                             src={img}
                             alt={`${data.title} - ${i + 1}`}
@@ -315,7 +315,7 @@ const amenityIconMap: Record<string, string> = {
                   <h3 class="text-xl sm:text-2xl font-headline font-bold text-foreground">
                     Ubicacion Estrategica
                   </h3>
-                  <div class="rounded-xl sm:rounded-2xl overflow-hidden border border-border aspect-[4/3] shadow-xl hover:shadow-2xl transition-shadow">
+                  <div class="rounded-xl sm:rounded-2xl overflow-hidden border border-border aspect-4/3 shadow-xl hover:shadow-2xl transition-shadow">
                     <iframe
                       src={data.mapUrl}
                       width="100%"
@@ -334,7 +334,7 @@ const amenityIconMap: Record<string, string> = {
                   <h3 class="text-xl sm:text-2xl font-headline font-bold text-foreground">
                     Recorrido Virtual 360
                   </h3>
-                  <div class="rounded-xl sm:rounded-2xl overflow-hidden border border-border aspect-[4/3] shadow-xl hover:shadow-2xl transition-shadow">
+                  <div class="rounded-xl sm:rounded-2xl overflow-hidden border border-border aspect-4/3 shadow-xl hover:shadow-2xl transition-shadow">
                     <iframe
                       src={data.virtualTour}
                       width="100%"

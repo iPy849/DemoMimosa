@@ -111,7 +111,7 @@ const schema = {
               observer.unobserve(entry.target);
             }
           });
-        }, { threshold: .05 });
+        }, { threshold: .1 });
         document.querySelectorAll('.reveal:not(.revealed)').forEach(function(el) {
           observer.observe(el);
         });
