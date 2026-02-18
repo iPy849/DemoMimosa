@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="[ADD] Fixed index hero layout and intersection observer and fixed ai tailwind classes">
+    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="[FIX]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/BaseLayout.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/BaseLayout.astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/developments/[id].astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/developments/[id].astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.astro" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="reduce-padding" />
+        <entry key="$PROJECT_DIR$" value="layout-adjustment" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -115,6 +113,7 @@
       <list>
         <item itemvalue="JavaScript Debug.localhost:3000" />
         <item itemvalue="JavaScript Debug.localhost:3000" />
+        <item itemvalue="JavaScript Debug.localhost:3000" />
       </list>
     </recent_temporary>
   </component>
@@ -137,7 +136,7 @@
       <workItem from="1771275094671" duration="30000" />
       <workItem from="1771310600610" duration="214000" />
       <workItem from="1771310986549" duration="30260000" />
-      <workItem from="1771442305932" duration="571000" />
+      <workItem from="1771442305932" duration="1820000" />
     </task>
     <task id="LOCAL-00001" summary="adv">
       <option name="closed" value="true" />
@@ -195,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771439650869</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="[FIX]">
+      <option name="closed" value="true" />
+      <created>1771443152279</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1771443152279</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +240,7 @@
     <MESSAGE value="New pkg json" />
     <MESSAGE value="[ADD] Fixed index hero layout and intersection observer" />
     <MESSAGE value="[ADD] Fixed index hero layout and intersection observer and fixed ai tailwind classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ADD] Fixed index hero layout and intersection observer and fixed ai tailwind classes" />
+    <MESSAGE value="[FIX]" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FIX]" />
   </component>
 </project>
