@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="[UPD] Home page">
+    <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="[UPD]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ContactForm.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ContactForm.astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/developments/[id].astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/developments/[id].astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.astro" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +138,7 @@
       <workItem from="1771310986549" duration="30260000" />
       <workItem from="1771442305932" duration="1859000" />
       <workItem from="1771444448572" duration="4589000" />
-      <workItem from="1771515458673" duration="4807000" />
+      <workItem from="1771515458673" duration="5197000" />
     </task>
     <task id="LOCAL-00001" summary="adv">
       <option name="closed" value="true" />
@@ -270,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771520197713</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="[UPD]">
+      <option name="closed" value="true" />
+      <created>1771523528594</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1771523528594</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,6 +320,7 @@
     <MESSAGE value="[UPD] Updated info" />
     <MESSAGE value="[UPD] Updated WhatsAppButton.astro" />
     <MESSAGE value="[UPD] Home page" />
-    <option name="LAST_COMMIT_MESSAGE" value="[UPD] Home page" />
+    <MESSAGE value="[UPD]" />
+    <option name="LAST_COMMIT_MESSAGE" value="[UPD]" />
   </component>
 </project>
