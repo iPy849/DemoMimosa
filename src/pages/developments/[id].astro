@@ -152,7 +152,7 @@ const amenityIconMap: Record<string, string> = {
                     {
                       gallery.map((img: string, i: number) => (
                         <li class="splide__slide">
-                          <div class="w-full aspect-[4/3] overflow-hidden">
+                          <div class="w-full aspect-4/3 overflow-hidden">
                             <Image
                               src={img}
                               alt={`${data.title} - ${i + 1}`}
@@ -179,7 +179,7 @@ const amenityIconMap: Record<string, string> = {
                       <ul class="splide__list">
                         {gallery.map((img: string, i: number) => (
                           <li class="splide__slide rounded-md overflow-hidden border border-transparent opacity-50 transition-all cursor-pointer">
-                            <div class="w-full aspect-video overflow-hidden">
+                            <div class="w-full aspect-4/3 overflow-hidden">
                               <Image
                                 src={img}
                                 alt={`Thumbnail ${i + 1}`}
