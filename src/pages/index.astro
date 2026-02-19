@@ -19,14 +19,14 @@ try {
         title="MIMOSA Developments | Boutique Real Estate en el Caribe Mexicano"
         description="Descubre una coleccion curada de los desarrollos mas exclusivos del Caribe mexicano"
         keywords="real estate, bienes raices, lujo, caribe mexicano, bacalar, tulum, merida, desarrollos, inversion, propiedades exclusivas"
-        navTransparent={true}
+        navTransparent={false}
 >
     <!-- Hero Section -->
     <section class="relative h-[75vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <Image src={images.hero.main} alt="Mimosa development" class="w-full h-full object-cover lg:object-bottom"
                    width={1920} height={1080}/>
-            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="absolute inset-0 bg-black/10"></div>
         </div>
         <div class="relative z-20 text-center max-w-4xl mx-auto px-6 fade-in flex flex-col items-center gap-8">
             <img src="/assets/logo-light.svg" alt="MIMOSA Developments" class="w-48 md:w-60"/>
@@ -35,7 +35,7 @@ try {
                 <a href="/developments"
                    class="bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] font-bold font-body hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2">VER DESARROLLOS</a>
                 <a href="/contact"
-                   class="border border-[#ffffff66] text-white px-8 py-4 text-xs tracking-[0.2em] font-body hover:bg-[#ffffff1a] transition-colors inline-flex items-center justify-center gap-2">
+                   class="bg-primary-foreground text-primary px-8 py-4 text-xs tracking-[0.2em] font-bold hover:bg-primary-foreground/80 transition-colors inline-flex items-center justify-center gap-2">
                     <Icon name="play" class="w-4 h-4"/>
                     <span>CONTACTAR AGENTE</span>
                 </a>

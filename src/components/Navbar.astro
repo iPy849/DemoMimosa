@@ -20,12 +20,12 @@ const navItems = [
 ---
 
 <nav id="main-nav" class:list={["fixed top-0 left-0 right-0 z-50 transition-all duration-500", transparent ? "nav-transparent" : "glass-nav"]} data-transparent={transparent ? "true" : "false"}>
-  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-14">
     <!-- Logo: dark logo for light mode, light logo for dark mode.
          When nav-transparent (hero), always show light logo via CSS override. -->
     <a href="/" class="block shrink-0">
-      <img src={images.logos.dark} alt="MIMOSA Developments" class="h-10 md:h-14 w-auto logo-dark" />
-      <img src={images.logos.light} alt="MIMOSA Developments" class="h-10 md:h-14 w-auto logo-light" />
+      <img src={images.logos.dark} alt="MIMOSA Developments" class="h-10 w-auto logo-dark" />
+      <img src={images.logos.light} alt="MIMOSA Developments" class="h-10 w-auto logo-light" />
     </a>
 
     <!-- Desktop nav links -->
@@ -63,7 +63,7 @@ const navItems = [
 <div id="mobile-menu-overlay" class="fixed inset-0 z-59 bg-black/40 hidden" aria-hidden="true"></div>
 <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 z-60 w-3/5 max-w-xs bg-background shadow-2xl translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
   <!-- Header -->
-  <div class="flex items-center justify-between px-5 h-20 border-b border-border">
+  <div class="flex items-center justify-between px-5 h-14 border-b border-border">
     <a href="/" class="block shrink-0">
       <img src={images.logos.dark} alt="MIMOSA Developments" class="h-10 w-auto logo-dark" />
       <img src={images.logos.light} alt="MIMOSA Developments" class="h-10 w-auto logo-light" />
