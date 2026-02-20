@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b7a9764a-fa35-48df-9247-cf534a948861" name="Changes" comment="[UPD]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/developments/[id].astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/developments/[id].astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/WhatsAppButton.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WhatsAppButton.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/PageLayout.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/PageLayout.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.astro" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +140,8 @@
       <workItem from="1771310986549" duration="30260000" />
       <workItem from="1771442305932" duration="1859000" />
       <workItem from="1771444448572" duration="4589000" />
-      <workItem from="1771515458673" duration="6016000" />
+      <workItem from="1771515458673" duration="18181000" />
+      <workItem from="1771623563089" duration="3039000" />
     </task>
     <task id="LOCAL-00001" summary="adv">
       <option name="closed" value="true" />
@@ -284,11 +287,22 @@
       <option name="project" value="LOCAL" />
       <updated>1771523909917</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="[UPD]">
+      <option name="closed" value="true" />
+      <created>1771524731121</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1771524731121</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="astro.config.mjs" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
